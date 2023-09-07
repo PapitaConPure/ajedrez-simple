@@ -35,9 +35,9 @@ Esto significa que en lugar de usar las letras significativas de cada pieza, se 
 * [X] Implementar detección básica de movimientos válidos
 * [X] Implementar colisiones
 * [X] Implementar turnos
-* [ ] Implementar Enroque Corto "`O-O`" y Enroque Largo "`O-O-O`"
-* [ ] Implementar Promoción de Peón: "`a1=D`", "`e8=N`", etc.
-  * Para las piezas: Torre, Caballero, Alfil, Reina
+* [X] Implementar Captura _En-Passant_ (Peón al Paso) para la clase Peón
+* [ ] #1
+* [ ] #2
 
 ## Desarrolladores
 * [@PapitaConPuré](https://github.com/PapitaConPure)
