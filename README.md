@@ -3,6 +3,8 @@ Una aplicación de Ajedrez sencilla para practicar herencia y polimorfismo en C#
 
 ![Demostración de Juego](https://github.com/PapitaConPure/ajedrez-simple/blob/main/Muestras/muestra1.gif)
 
+![Demostración de Juego](https://github.com/PapitaConPure/ajedrez-simple/blob/main/Planificación/v1.jpg)
+
 ## Índice
 * [Tecnologías](#tecnologías)
 * [Notaciones](#notaciones)
