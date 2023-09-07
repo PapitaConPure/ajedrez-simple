@@ -32,13 +32,16 @@ Esto significa que en lugar de usar las letras significativas de cada pieza, se 
 **Primera versión correcta del diagrama UML**
 ![UML 1](https://github.com/PapitaConPure/ajedrez-simple/blob/main/Planificación/v1.jpg)
 
+**Primera revisión, con clase Registro y movimientos especiales**
+![UML 1](https://github.com/PapitaConPure/ajedrez-simple/blob/main/Planificación/v2.jpg)
+
 ## Tareas
 * [X] Implementar detección básica de movimientos válidos
 * [X] Implementar colisiones
 * [X] Implementar turnos
 * [X] Implementar Captura _En-Passant_ (Peón al Paso) para la clase Peón
 * [ ] [Implementar Enroque Corto y Enroque Largo para la clase Rey](https://github.com/PapitaConPure/ajedrez-simple/issues/1)
-* [ ] [Implementar Promoción para la clase Peón](https://github.com/PapitaConPure/ajedrez-simple/issues/2)
+* [X] [Implementar Promoción para la clase Peón](https://github.com/PapitaConPure/ajedrez-simple/issues/2)
 
 ## Desarrolladores
 * [@PapitaConPuré](https://github.com/PapitaConPure)
