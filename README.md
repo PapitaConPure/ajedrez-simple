@@ -3,14 +3,6 @@ Una aplicación de Ajedrez sencilla para practicar herencia y polimorfismo en C#
 
 ![Demostración de Juego](https://github.com/PapitaConPure/ajedrez-simple/blob/main/Muestras/muestra1.gif)
 
-![Demostración de Juego](https://github.com/PapitaConPure/ajedrez-simple/blob/main/Planificación/v1.jpg)
-
-## Índice
-* [Tecnologías](#tecnologías)
-* [Notaciones](#notaciones)
-* [Tareas](#tareas)
-* [Desarrolladores](#desarrolladores)
-
 ## Tecnologías
 * .NET Framework 4.7.2
 
@@ -34,6 +26,10 @@ Las letras indican piezas de Ajedrez individuales, siendo blancas si son mayúsc
 ### Movimientos
 Los métodos `Notación()` y `ToString()` de la clase `Registro` utilizan la versión con íconos de la [Notación Algebraica Estándar](https://en.wikipedia.org/wiki/Algebraic_notation_(chess)) para describir movimientos.
 Esto significa que en lugar de usar las letras significativas de cada pieza, se las representa con su Emoji.
+
+## Planificación
+**Primera versión correcta del diagrama UML**
+![UML 1](https://github.com/PapitaConPure/ajedrez-simple/blob/main/Planificación/v1.jpg)
 
 ## Tareas
 * [X] Implementar detección básica de movimientos válidos
