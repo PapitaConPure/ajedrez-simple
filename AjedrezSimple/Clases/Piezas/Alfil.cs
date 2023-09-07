@@ -5,7 +5,7 @@
 			this.Nombre = "Alfil";
 		}
 
-		public override bool PuedeMover(Movimiento movimiento) {
+		public override bool ConfirmarMover(Movimiento movimiento) {
 			if(movimiento.EsCero)
 				return false;
 

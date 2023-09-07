@@ -5,6 +5,7 @@ Una aplicación de Ajedrez sencilla para practicar herencia y polimorfismo en C#
 
 ## Tecnologías
 * .NET Framework 4.7.2
+* WhiteStarUML 5.9.1.0
 
 ##  Notaciones
 ### Posición de Tablero

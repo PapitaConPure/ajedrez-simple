@@ -5,7 +5,7 @@
 			this.Nombre = "Rey";
 		}
 
-		public override bool PuedeMover(Movimiento movimiento) {
+		public override bool ConfirmarMover(Movimiento movimiento) {
 			if(movimiento.EsCero || movimiento.Magnitud > 1)
 				return false;
 

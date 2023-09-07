@@ -166,6 +166,11 @@ namespace AjedrezSimple {
 			this.ActualizarTablero();
 			this.dgvTablero.ClearSelection();
 			this.seleccionada = new NoPieza();
+
+			if(pieza is Peón) {
+				this.PromocionarPeón(pieza as Peón);
+			}
+
 			this.turno = pieza.ColorContrario;
 			this.juego.IniciarNuevoTurno(this.turno);
 
@@ -176,6 +181,30 @@ namespace AjedrezSimple {
 				this.btnMover.ForeColor = Color.White;
 				this.btnMover.BackColor = Color.Black;
 			}
+		}
+
+		private void PromocionarPeón(Peón peón) {
+			if(!peón.EnPosiciónFinal)
+				return;
+
+			FPromoción fPromoción = new FPromoción();
+			fPromoción.tbEquipo.Text = peón.Color.ToString();
+			fPromoción.tbCandidato.Text = peón.ToString();
+			fPromoción.ShowDialog();
+
+			Ajedrez.OpciónPromoción opción = Ajedrez.OpciónPromoción.Ninguno;
+
+			if(fPromoción.rbTorre.Checked)
+				opción = Ajedrez.OpciónPromoción.Torre;
+			else if(fPromoción.rbCaballero.Checked)
+				opción = Ajedrez.OpciónPromoción.Caballero;
+			else if(fPromoción.rbAlfil.Checked)
+				opción = Ajedrez.OpciónPromoción.Alfil;
+			else if(fPromoción.rbReina.Checked)
+				opción = Ajedrez.OpciónPromoción.Reina;
+
+			this.juego.PromocionarPeón(peón, opción);
+			this.ActualizarTablero();
 		}
 	}
 }

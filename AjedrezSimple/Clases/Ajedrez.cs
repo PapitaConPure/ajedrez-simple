@@ -6,6 +6,14 @@ namespace AjedrezSimple {
 		private ArrayList piezas;
 		private ArrayList historial;
 
+		public enum OpciónPromoción {
+			Ninguno = 0,
+			Torre,
+			Caballero,
+			Alfil,
+			Reina
+		}
+
 		public Ajedrez(string formacion) {
 			this.piezas = new ArrayList();
 			this.historial = new ArrayList();
@@ -92,7 +100,7 @@ namespace AjedrezSimple {
 
 		public Pieza this[int x, int y, Pieza.ColorPieza color] {
 			get {
-				if(color == Pieza.ColorPieza.Ninguna)
+				if(color == Pieza.ColorPieza.Ninguno)
 					return new NoPieza(x, y);
 
 				Pieza encontrada = null;
@@ -121,6 +129,27 @@ namespace AjedrezSimple {
 					peón.HizoDobleEncaque = false;
 				}
 			}
+		}
+
+		public bool PromocionarPeón(Peón peón, OpciónPromoción opción) {
+			Pieza nueva;
+
+			switch(opción) {
+			case OpciónPromoción.Torre:     nueva = new Torre(peón.X, peón.Y, peón.Color, this);     break;
+			case OpciónPromoción.Caballero: nueva = new Caballero(peón.X, peón.Y, peón.Color, this); break;
+			case OpciónPromoción.Alfil:     nueva = new Alfil(peón.X, peón.Y, peón.Color, this);     break;
+			case OpciónPromoción.Reina:     nueva = new Reina(peón.X, peón.Y, peón.Color, this);     break;
+			default: return false;
+			}
+
+			int índice = this.piezas.IndexOf(peón);
+
+			if(índice < 0)
+				return false;
+
+			this.piezas[índice] = nueva;
+
+			return true;
 		}
 
 		public Pieza VerPieza(string posición) {
