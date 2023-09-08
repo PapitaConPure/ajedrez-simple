@@ -60,27 +60,36 @@
 		}
 
 		public string Notación() {
-			string ret = this.Emisora.Ícono;
+			if(this.Enroque == Movimiento.TipoEnroque.Corto)
+				return "O-O";
+
+			if(this.Enroque == Movimiento.TipoEnroque.Largo)
+				return "O-O-O";
+
+			string notación = this.Emisora.Ícono;
 
 			if(this.HayAmbiguedad) {
 				string notaciónOrigen = Pieza.ANotación(this.OrigenX, this.OrigenY);
 				if(this.DesambiguableX)
-					ret += notaciónOrigen[0];
+					notación += notaciónOrigen[0];
 				else if(this.DesambiguableY)
-					ret += notaciónOrigen[1];
+					notación += notaciónOrigen[1];
 				else
-					ret += notaciónOrigen;
+					notación += notaciónOrigen;
 			}
 
 			if(!(this.Captura is NoPieza))
-				ret += "x";
+				notación += "x";
 
-			ret += Pieza.ANotación(this.Movimiento.DestinoX, this.Movimiento.DestinoY);
+			notación += Pieza.ANotación(this.Movimiento.DestinoX, this.Movimiento.DestinoY);
 
 			if(this.EnPassant)
-				ret += " e.p";
+				notación += " e.p";
 
-			return ret;
+			if(!(this.Promoción is NoPieza))
+				notación += $"={this.Promoción.Ícono}";
+
+			return notación;
 		}
 
 		public override string ToString() {
