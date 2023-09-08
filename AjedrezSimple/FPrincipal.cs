@@ -167,9 +167,8 @@ namespace AjedrezSimple {
 			this.dgvTablero.ClearSelection();
 			this.seleccionada = new NoPieza();
 
-			if(pieza is Peón) {
+			if(pieza is Peón)
 				this.PromocionarPeón(pieza as Peón);
-			}
 
 			this.turno = pieza.ColorContrario;
 			this.juego.IniciarNuevoTurno(this.turno);

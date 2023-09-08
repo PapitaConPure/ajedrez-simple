@@ -148,6 +148,8 @@ namespace AjedrezSimple {
 				return false;
 
 			this.piezas[índice] = nueva;
+			Registro últimoRegistro = this.historial[this.historial.Count - 1] as Registro;
+			últimoRegistro.Movimiento.Promoción = nueva;
 
 			return true;
 		}
