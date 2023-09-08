@@ -62,6 +62,14 @@ namespace AjedrezSimple {
 			get { return Math.Max(this.distanciaX, this.distanciaY); }
 		}
 
+		public int SentidoH {
+			get { return Math.Sign(this.diferenciaX); }
+		}
+
+		public int SentidoV {
+			get { return Math.Sign(this.diferenciaY); }
+		}
+
 		public bool EsCero {
 			get { return this.diferenciaX == 0 && this.diferenciaY == 0; }
 		}
@@ -91,10 +99,10 @@ namespace AjedrezSimple {
 		}
 
 		public bool EsHaciaDelante(Pieza.ColorPieza color) {
-			return this.diferenciaY * this.Dirección(color) > 0;
+			return this.diferenciaY * this.DirecciónPieza(color) > 0;
 		}
 
-		public int Dirección(Pieza.ColorPieza color) {
+		public int DirecciónPieza(Pieza.ColorPieza color) {
 			int dir = 0;
 
 			if(color == Pieza.ColorPieza.Blanco)
@@ -103,6 +111,11 @@ namespace AjedrezSimple {
 				dir = -1;
 
 			return dir;
+		}
+
+		public void Dirección(out int h, out int v) {
+			h = this.SentidoH;
+			v = this.SentidoV;
 		}
 	}
 }

@@ -60,7 +60,7 @@ namespace AjedrezSimple {
 		}
 
 		private bool ProcesarEnPassant(Movimiento movimiento) {
-			Pieza pieza = this.juego[movimiento.DestinoX, movimiento.DestinoY - movimiento.Dirección(this.Color), this.ColorContrario];
+			Pieza pieza = this.juego[movimiento.DestinoX, movimiento.DestinoY - movimiento.DirecciónPieza(this.Color), this.ColorContrario];
 
 			if(!(pieza is Peón))
 				return false;
