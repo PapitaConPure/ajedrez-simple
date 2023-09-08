@@ -3,7 +3,10 @@
 		public Torre(int x, int y, ColorPieza color, Ajedrez juego) : base(x, y, color, juego) {
 			this.Ícono = "♜";
 			this.Nombre = "Torre";
+			this.HaMovido = false;
 		}
+
+		public bool HaMovido { get; private set; }
 
 		public override bool ConfirmarMover(Movimiento movimiento) {
 			if(movimiento.EsCero)
@@ -12,7 +15,9 @@
 			if(!movimiento.EsOrtogonal)
 				return false;
 
-			return this.AnalizarCamino(movimiento);
+			bool seMovió = this.AnalizarCamino(movimiento);
+			this.HaMovido |= seMovió;
+			return seMovió;
 		}
 	}
 }
