@@ -48,12 +48,13 @@ namespace AjedrezSimple {
 					movimiento.Captura = atacadaDirecta;
 				else if(!this.ProcesarEnPassant(movimiento))
 					return false;
-			} else {
+			} else if(movimiento.EsSoloVertical) {
 				if(this.juego.Colisiones(this.x, this.y, movimiento, true).Length > 0)
 					return false;
 
 				this.HizoDobleEncaque = movimiento.DistanciaY == 2;
-			}
+			} else
+				return false;
 
 			return true;
 		}
