@@ -42,6 +42,10 @@ Esto significa que en lugar de usar las letras significativas de cada pieza, se 
 * [X] Implementar Captura _En-Passant_ (Peón al Paso) para la clase Peón
 * [X] [Implementar Enroque Corto y Enroque Largo para la clase Rey](https://github.com/PapitaConPure/ajedrez-simple/issues/1)
 * [X] [Implementar Promoción para la clase Peón](https://github.com/PapitaConPure/ajedrez-simple/issues/2)
+* [ ] [Implementar Jaque y Jaque Mate](https://github.com/PapitaConPure/ajedrez-simple/issues/3)
+* [ ] Implementar Empate por Rey Ahogado
+* [ ] Implementar Empate por Tablas
+* [ ] Implementar Empate por Acuerdo
 
 ## Desarrolladores
 * [@PapitaConPuré](https://github.com/PapitaConPure)
