@@ -16,6 +16,7 @@ namespace AjedrezSimple {
 		private Ajedrez juego;
 		private Pieza seleccionada;
 		private Pieza.ColorPieza turno;
+		private bool espectando = false;
 
 		public FPrincipal() {
 			this.InitializeComponent();
@@ -72,14 +73,18 @@ namespace AjedrezSimple {
 		}
 
 		private void dgvTablero_CellStateChanged(object sender, DataGridViewCellStateChangedEventArgs e) {
+			if(this.juego == null) {
+				this.dgvTablero.ClearSelection();
+				return;
+			}
+
 			DataGridViewCell celda = e.Cell;
 
 			if(celda == null)
 				return;
 
 			if(celda.State != DataGridViewElementStates.Selected) {
-				if(this.juego != null)
-					this.ActualizarTablero();
+				this.ActualizarTablero();
 				return;
 			}
 
@@ -167,6 +172,10 @@ namespace AjedrezSimple {
 		private void MoverPiezaSeleccionada(int dx, int dy) {
 			Pieza pieza = this.seleccionada;
 			this.dgvTablero.ClearSelection();
+
+			if(espectando)
+				return;
+
 			this.seleccionada = Pieza.Ninguna;
 
 			if(pieza.Color != this.turno)
@@ -184,11 +193,11 @@ namespace AjedrezSimple {
 			this.juego.IniciarNuevoTurno(this.turno);
 
 			if(this.turno == Pieza.ColorPieza.Blanco) {
-				this.btnMover.ForeColor = Color.Black;
-				this.btnMover.BackColor = Color.White;
+				this.btnMover.ForeColor = this.btnMover.BorderColor = Color.FromArgb(22, 22, 22);
+				this.btnMover.BackColor = Color.FromArgb(248, 248, 248);
 			} else {
-				this.btnMover.ForeColor = Color.White;
-				this.btnMover.BackColor = Color.Black;
+				this.btnMover.ForeColor = this.btnMover.BorderColor = Color.FromArgb(248, 248, 248);
+				this.btnMover.BackColor = Color.FromArgb(22, 22, 22);
 			}
 
 			if(this.juego.HaFinalizado) {
@@ -241,7 +250,8 @@ namespace AjedrezSimple {
 			//Formación para probar ambigüedades con alfiles: "8/8/2b1b3/8/2b1B3/8/8/8"
 			//Formación de Mate del Pastor: "r1bqkb1r/pppp1ppp/2n2n2/4p2Q/2B1P3/8/PPPP1PPP/RNB1K1NR"
 			//Formación para probar Rey Ahogado: "1N5k/p4Q1p/P6P/5N2/8/1p6/3N4/R1B1KB2"
-			this.juego = new Ajedrez("r3k2r/8/8/8/8/8/8/R3K2R");
+			//Formación para escenario de jaque de prueba 1: "3ppp2/3pkp2/3p1p2/rb4br/8/Q7/8/6K1"
+			this.juego = new Ajedrez("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
 			this.seleccionada = Pieza.Ninguna;
 			this.turno = Pieza.ColorPieza.Blanco;
 			this.ActualizarTablero();
@@ -270,7 +280,12 @@ namespace AjedrezSimple {
 			= this.cmbDestinoY.Visible
 				= activarJuego;
 
-			this.btnVolverMenu.Visible = !activarJuego;
+			this.btnVolverMenu.Visible = this.espectando = !activarJuego;
+			
+			if(this.espectando) {
+				this.dgvTablero.ClearSelection();
+				this.seleccionada = Pieza.Ninguna;
+			}
 		}
 	}
 }

@@ -28,7 +28,7 @@ namespace AjedrezSimple {
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FPrincipal));
-			this.btnMover = new System.Windows.Forms.Button();
+			this.btnMover = new ControLib.SleekButton();
 			this.lsbHistorialBlancas = new System.Windows.Forms.ListBox();
 			this.dgvTablero = new System.Windows.Forms.DataGridView();
 			this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,7 +41,7 @@ namespace AjedrezSimple {
 			this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.gbControl = new System.Windows.Forms.GroupBox();
-			this.btnVolverMenu = new System.Windows.Forms.Button();
+			this.btnVolverMenu = new ControLib.SleekButton();
 			this.tbNombrePieza = new System.Windows.Forms.TextBox();
 			this.lblPosicion = new System.Windows.Forms.Label();
 			this.cmbDestinoY = new System.Windows.Forms.ComboBox();
@@ -60,11 +60,15 @@ namespace AjedrezSimple {
 			// btnMover
 			// 
 			this.btnMover.BackColor = System.Drawing.Color.White;
+			this.btnMover.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+			this.btnMover.BorderRadius = 8F;
+			this.btnMover.BorderSize = 2F;
 			this.btnMover.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnMover.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnMover.ForeColor = System.Drawing.Color.Black;
 			this.btnMover.Location = new System.Drawing.Point(6, 19);
 			this.btnMover.Name = "btnMover";
+			this.btnMover.PercentualRadius = false;
 			this.btnMover.Size = new System.Drawing.Size(164, 23);
 			this.btnMover.TabIndex = 3;
 			this.btnMover.Text = "Mover...";
@@ -116,7 +120,7 @@ namespace AjedrezSimple {
 			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
 			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
 			dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
 			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
 			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
 			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
@@ -223,11 +227,18 @@ namespace AjedrezSimple {
 			this.btnVolverMenu.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnVolverMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(237)))), ((int)(((byte)(6)))));
+			this.btnVolverMenu.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(190)))), ((int)(((byte)(71)))));
+			this.btnVolverMenu.BorderRadius = 12F;
+			this.btnVolverMenu.BorderSize = 4F;
 			this.btnVolverMenu.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.btnVolverMenu.FlatAppearance.BorderSize = 0;
+			this.btnVolverMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnVolverMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnVolverMenu.ForeColor = System.Drawing.Color.Black;
+			this.btnVolverMenu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
 			this.btnVolverMenu.Location = new System.Drawing.Point(6, 19);
 			this.btnVolverMenu.Name = "btnVolverMenu";
+			this.btnVolverMenu.PercentualRadius = false;
 			this.btnVolverMenu.Size = new System.Drawing.Size(164, 54);
 			this.btnVolverMenu.TabIndex = 4;
 			this.btnVolverMenu.Text = "Volver al Menú";
@@ -237,6 +248,7 @@ namespace AjedrezSimple {
 			// 
 			// tbNombrePieza
 			// 
+			this.tbNombrePieza.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(220)))), ((int)(((byte)(226)))));
 			this.tbNombrePieza.Location = new System.Drawing.Point(6, 48);
 			this.tbNombrePieza.Name = "tbNombrePieza";
 			this.tbNombrePieza.ReadOnly = true;
@@ -355,11 +367,13 @@ namespace AjedrezSimple {
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(247)))), ((int)(((byte)(237)))));
 			this.CancelButton = this.btnVolverMenu;
 			this.ClientSize = new System.Drawing.Size(627, 445);
 			this.Controls.Add(this.gbHistorial);
 			this.Controls.Add(this.gbControl);
 			this.Controls.Add(this.dgvTablero);
+			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.KeyPreview = true;
@@ -381,7 +395,7 @@ namespace AjedrezSimple {
 
 		#endregion
 
-		private System.Windows.Forms.Button btnMover;
+		private ControLib.SleekButton btnMover;
 		private System.Windows.Forms.ListBox lsbHistorialBlancas;
 		private System.Windows.Forms.DataGridView dgvTablero;
 		private System.Windows.Forms.GroupBox gbControl;
@@ -403,7 +417,7 @@ namespace AjedrezSimple {
 		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label lblBlancas;
-		private System.Windows.Forms.Button btnVolverMenu;
+		private ControLib.SleekButton btnVolverMenu;
 	}
 }
 

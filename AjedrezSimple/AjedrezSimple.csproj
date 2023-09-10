@@ -35,7 +35,16 @@
   <PropertyGroup>
     <ApplicationIcon>game.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ControLib">
+      <HintPath>..\ControLib.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -55,24 +64,24 @@
     <Compile Include="Clases\Piezas\Alfil.cs" />
     <Compile Include="Clases\Piezas\Caballero.cs" />
     <Compile Include="Clases\Registro.cs" />
-    <Compile Include="FJuegoNuevo.cs">
+    <Compile Include="Formularios\FJuegoNuevo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FJuegoNuevo.Designer.cs">
+    <Compile Include="Formularios\FJuegoNuevo.Designer.cs">
       <DependentUpon>FJuegoNuevo.cs</DependentUpon>
     </Compile>
-    <Compile Include="FPrincipal.cs">
+    <Compile Include="Formularios\FPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FPrincipal.Designer.cs">
+    <Compile Include="Formularios\FPrincipal.Designer.cs">
       <DependentUpon>FPrincipal.cs</DependentUpon>
     </Compile>
     <Compile Include="Clases\Piezas\Peón.cs" />
     <Compile Include="Clases\Pieza.cs" />
-    <Compile Include="FPromoción.cs">
+    <Compile Include="Formularios\FPromoción.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FPromoción.Designer.cs">
+    <Compile Include="Formularios\FPromoción.Designer.cs">
       <DependentUpon>FPromoción.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -80,13 +89,13 @@
     <Compile Include="Clases\Piezas\Reina.cs" />
     <Compile Include="Clases\Piezas\Rey.cs" />
     <Compile Include="Clases\Piezas\Torre.cs" />
-    <EmbeddedResource Include="FJuegoNuevo.resx">
+    <EmbeddedResource Include="Formularios\FJuegoNuevo.resx">
       <DependentUpon>FJuegoNuevo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FPrincipal.resx">
+    <EmbeddedResource Include="Formularios\FPrincipal.resx">
       <DependentUpon>FPrincipal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FPromoción.resx">
+    <EmbeddedResource Include="Formularios\FPromoción.resx">
       <DependentUpon>FPromoción.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
