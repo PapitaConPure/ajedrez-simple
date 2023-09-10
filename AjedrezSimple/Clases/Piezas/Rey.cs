@@ -99,14 +99,14 @@ namespace AjedrezSimple {
 				return false;
 
 			Torre torre = pieza as Torre;
-			if(torre.SeHaMovido)
+			if(torre.SeHaMovido || torre.Y != this.y)
 				return false;
 
 			int dx = movimiento.DestinoX - dirección;
-			if(!torre.PuedeMover(new Movimiento(torre.X, this.Y, dx, this.y)))
+			if(!torre.PuedeMover(new Movimiento(torre.X, torre.Y, dx, this.y)))
 				return false;
 
-			if(!bajoPrueba) {
+			if(!this.bajoPrueba) {
 				if(dirección < 0)
 					movimiento.Enroque = Movimiento.TipoEnroque.Largo;
 				else
@@ -119,7 +119,7 @@ namespace AjedrezSimple {
 		}
 
 		protected override void EfectuarCambios(Movimiento movimiento) {
-			if(this.parejaDeEnroque is Torre)
+			if(movimiento.Enroque != Movimiento.TipoEnroque.Ninguno && this.parejaDeEnroque is Torre)
 				this.parejaDeEnroque.ConcluirEnroque(this.respuestaDeEnroque);
 
 			this.SeHaMovido = true;

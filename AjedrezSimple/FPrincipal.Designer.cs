@@ -24,9 +24,10 @@ namespace AjedrezSimple {
 		/// el contenido de este método con el editor de código.
 		/// </summary>
 		private void InitializeComponent() {
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FPrincipal));
 			this.btnMover = new System.Windows.Forms.Button();
 			this.lsbHistorialBlancas = new System.Windows.Forms.ListBox();
 			this.dgvTablero = new System.Windows.Forms.DataGridView();
@@ -40,6 +41,7 @@ namespace AjedrezSimple {
 			this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.gbControl = new System.Windows.Forms.GroupBox();
+			this.btnVolverMenu = new System.Windows.Forms.Button();
 			this.tbNombrePieza = new System.Windows.Forms.TextBox();
 			this.lblPosicion = new System.Windows.Forms.Label();
 			this.cmbDestinoY = new System.Windows.Forms.ComboBox();
@@ -49,7 +51,6 @@ namespace AjedrezSimple {
 			this.lblBlancas = new System.Windows.Forms.Label();
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.lsbHistorialNegras = new System.Windows.Forms.ListBox();
-			this.btnVolverMenu = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dgvTablero)).BeginInit();
 			this.gbControl.SuspendLayout();
 			this.gbHistorial.SuspendLayout();
@@ -92,14 +93,14 @@ namespace AjedrezSimple {
 			this.dgvTablero.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.dgvTablero.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
 			this.dgvTablero.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-			dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dgvTablero.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dgvTablero.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
 			this.dgvTablero.ColumnHeadersHeight = 30;
 			this.dgvTablero.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
 			this.dgvTablero.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -112,14 +113,14 @@ namespace AjedrezSimple {
             this.Column6,
             this.Column7,
             this.Column8});
-			dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-			dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-			dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dgvTablero.DefaultCellStyle = dataGridViewCellStyle11;
+			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dgvTablero.DefaultCellStyle = dataGridViewCellStyle2;
 			this.dgvTablero.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
 			this.dgvTablero.GridColor = System.Drawing.Color.DarkSlateGray;
 			this.dgvTablero.Location = new System.Drawing.Point(194, 12);
@@ -127,14 +128,14 @@ namespace AjedrezSimple {
 			this.dgvTablero.Name = "dgvTablero";
 			this.dgvTablero.ReadOnly = true;
 			this.dgvTablero.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-			dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dgvTablero.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dgvTablero.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
 			this.dgvTablero.RowHeadersVisible = false;
 			this.dgvTablero.RowHeadersWidth = 30;
 			this.dgvTablero.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
@@ -216,6 +217,23 @@ namespace AjedrezSimple {
 			this.gbControl.TabIndex = 0;
 			this.gbControl.TabStop = false;
 			this.gbControl.Text = "Control";
+			// 
+			// btnVolverMenu
+			// 
+			this.btnVolverMenu.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnVolverMenu.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+			this.btnVolverMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnVolverMenu.ForeColor = System.Drawing.Color.Black;
+			this.btnVolverMenu.Location = new System.Drawing.Point(6, 19);
+			this.btnVolverMenu.Name = "btnVolverMenu";
+			this.btnVolverMenu.Size = new System.Drawing.Size(164, 54);
+			this.btnVolverMenu.TabIndex = 4;
+			this.btnVolverMenu.Text = "Volver al Menú";
+			this.btnVolverMenu.UseVisualStyleBackColor = false;
+			this.btnVolverMenu.Visible = false;
+			this.btnVolverMenu.Click += new System.EventHandler(this.btnVolverMenu_Click);
 			// 
 			// tbNombrePieza
 			// 
@@ -333,23 +351,6 @@ namespace AjedrezSimple {
 			this.lsbHistorialNegras.TabIndex = 5;
 			this.lsbHistorialNegras.TabStop = false;
 			// 
-			// btnVolverMenu
-			// 
-			this.btnVolverMenu.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnVolverMenu.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-			this.btnVolverMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnVolverMenu.ForeColor = System.Drawing.Color.Black;
-			this.btnVolverMenu.Location = new System.Drawing.Point(6, 19);
-			this.btnVolverMenu.Name = "btnVolverMenu";
-			this.btnVolverMenu.Size = new System.Drawing.Size(164, 54);
-			this.btnVolverMenu.TabIndex = 4;
-			this.btnVolverMenu.Text = "Volver al Menú";
-			this.btnVolverMenu.UseVisualStyleBackColor = false;
-			this.btnVolverMenu.Visible = false;
-			this.btnVolverMenu.Click += new System.EventHandler(this.btnVolverMenu_Click);
-			// 
 			// FPrincipal
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -360,6 +361,7 @@ namespace AjedrezSimple {
 			this.Controls.Add(this.gbControl);
 			this.Controls.Add(this.dgvTablero);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.KeyPreview = true;
 			this.MaximizeBox = false;
 			this.Name = "FPrincipal";

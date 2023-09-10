@@ -166,21 +166,15 @@ namespace AjedrezSimple {
 
 		private void MoverPiezaSeleccionada(int dx, int dy) {
 			Pieza pieza = this.seleccionada;
-
-			if(pieza.Color != this.turno) {
-				this.dgvTablero.ClearSelection();
-				this.seleccionada = Pieza.Ninguna;
-				return;
-			}
-
-			if(!pieza.Mover(dx, dy)) {
-				this.dgvTablero.ClearSelection();
-				this.seleccionada = Pieza.Ninguna;
-				return;
-			}
-
 			this.dgvTablero.ClearSelection();
 			this.seleccionada = Pieza.Ninguna;
+
+			if(pieza.Color != this.turno)
+				return;
+
+			if(!pieza.Mover(dx, dy))
+				return;
+
 			this.ActualizarTablero();
 
 			if(pieza is Peón)
@@ -247,7 +241,7 @@ namespace AjedrezSimple {
 			//Formación para probar ambigüedades con alfiles: "8/8/2b1b3/8/2b1B3/8/8/8"
 			//Formación de Mate del Pastor: "r1bqkb1r/pppp1ppp/2n2n2/4p2Q/2B1P3/8/PPPP1PPP/RNB1K1NR"
 			//Formación para probar Rey Ahogado: "1N5k/p4Q1p/P6P/5N2/8/1p6/3N4/R1B1KB2"
-			this.juego = new Ajedrez("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
+			this.juego = new Ajedrez("r3k2r/8/8/8/8/8/8/R3K2R");
 			this.seleccionada = Pieza.Ninguna;
 			this.turno = Pieza.ColorPieza.Blanco;
 			this.ActualizarTablero();

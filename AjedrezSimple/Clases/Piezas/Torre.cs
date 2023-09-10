@@ -51,6 +51,7 @@ namespace AjedrezSimple {
 		}
 
 		internal void ConcluirEnroque(int destinoX) {
+			if(this.SeHaMovido) return;
 			this.SeHaMovido = true;
 			this.x = destinoX;
 		}
