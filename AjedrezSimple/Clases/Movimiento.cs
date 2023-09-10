@@ -15,15 +15,30 @@ namespace AjedrezSimple {
 		}
 
 		public Movimiento(int x, int y, int destinoX, int destinoY) {
+			destinoX = Math.Max(0, Math.Min(destinoX, 7));
+			destinoY = Math.Max(0, Math.Min(destinoY, 7));
 			this.diferenciaX = destinoX - x;
 			this.diferenciaY = destinoY - y;
 			this.destinoX = destinoX;
 			this.destinoY = destinoY;
 			this.distanciaX = Math.Abs(this.diferenciaX);
 			this.distanciaY = Math.Abs(this.diferenciaY);
-			this.Captura = this.Promoción = new NoPieza(x, y);
+			this.Captura = this.Promoción = Pieza.Ninguna;
 			this.Enroque = TipoEnroque.Ninguno;
 			this.EnPassant = false;
+		}
+
+		public Movimiento(Movimiento original) {
+			this.diferenciaX = original.DiferenciaX;
+			this.diferenciaY = original.DiferenciaY;
+			this.destinoX = original.DestinoX;
+			this.destinoY = original.DestinoY;
+			this.distanciaX = original.DistanciaX;
+			this.distanciaY = original.DistanciaY;
+			this.Captura = original.Captura;
+			this.Promoción = original.Promoción;
+			this.Enroque = original.Enroque;
+			this.EnPassant = original.EnPassant;
 		}
 
 		public Pieza Captura { get; set; }
@@ -98,11 +113,19 @@ namespace AjedrezSimple {
 			get { return this.distanciaX == this.distanciaY; }
 		}
 
-		public bool EsHaciaDelante(Pieza.ColorPieza color) {
-			return this.diferenciaY * this.DirecciónPieza(color) > 0;
+		public Movimiento Copia {
+			get { return new Movimiento(this); }
 		}
 
-		public int DirecciónPieza(Pieza.ColorPieza color) {
+		public Movimiento Desde(Pieza pieza) {
+			return new Movimiento(pieza.X, pieza.Y, this.destinoX, this.destinoY);
+		}
+
+		public bool EsAlFrente(Pieza.ColorPieza color) {
+			return this.diferenciaY * this.FrenteColor(color) > 0;
+		}
+
+		public int FrenteColor(Pieza.ColorPieza color) {
 			int dir = 0;
 
 			if(color == Pieza.ColorPieza.Blanco)
@@ -113,7 +136,7 @@ namespace AjedrezSimple {
 			return dir;
 		}
 
-		public void Dirección(out int h, out int v) {
+		public void Sentido(out int h, out int v) {
 			h = this.SentidoH;
 			v = this.SentidoV;
 		}

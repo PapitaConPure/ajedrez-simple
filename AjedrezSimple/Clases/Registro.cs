@@ -13,7 +13,7 @@
 				if(pieza == emisora || pieza.Color != emisora.Color || pieza.GetType() != emisora.GetType())
 					continue;
 
-				if(!pieza.ConfirmarMover(new Movimiento(pieza.X, pieza.Y, this.Movimiento.DestinoX, this.Movimiento.DestinoY)))
+				if(!pieza.PuedeMover(new Movimiento(pieza.X, pieza.Y, this.Movimiento.DestinoX, this.Movimiento.DestinoY)))
 					continue;
 
 				this.HayAmbiguedad = true;
@@ -25,6 +25,12 @@
 					this.DesambiguableY = false;
 			}
 		}
+
+		public bool EsJaque { get; internal set; }
+
+		public bool EsJaqueMate { get; internal set; }
+
+		public bool EsReyAhogado { get; internal set; }
 
 		public Pieza Emisora { get; private set; }
 
@@ -82,6 +88,11 @@
 				notación += "x";
 
 			notación += Pieza.ANotación(this.Movimiento.DestinoX, this.Movimiento.DestinoY);
+
+			if(this.EsJaqueMate)
+				notación += "#";
+			else if(this.EsJaque)
+				notación += "+";
 
 			if(this.EnPassant)
 				notación += " e.p";
