@@ -3,6 +3,8 @@ Una aplicación de Ajedrez sencilla para practicar herencia y polimorfismo en C#
 
 ![Demostración de Juego](https://github.com/PapitaConPure/ajedrez-simple/blob/main/Muestras/muestra1.gif)
 
+![Mate del Pastor](https://github.com/PapitaConPure/ajedrez-simple/blob/main/Muestras/muestra2.gif)
+
 ## Tecnologías
 * .NET Framework 4.7.2
 * WhiteStarUML 5.9.1.0
@@ -33,7 +35,10 @@ Esto significa que en lugar de usar las letras significativas de cada pieza, se 
 ![UML 1](https://github.com/PapitaConPure/ajedrez-simple/blob/main/Planificación/v1.jpg)
 
 **Primera revisión, con clase Registro y movimientos especiales**
-![UML 1](https://github.com/PapitaConPure/ajedrez-simple/blob/main/Planificación/v2.jpg)
+![UML 2](https://github.com/PapitaConPure/ajedrez-simple/blob/main/Planificación/v2.jpg)
+
+**Segunda revisión, con simulaciones de Movimientos y Finalizaciones de Partida**
+![UML 3](https://github.com/PapitaConPure/ajedrez-simple/blob/main/Planificación/v3.jpg)
 
 ## Tareas
 * [X] Implementar detección básica de movimientos válidos
@@ -42,10 +47,11 @@ Esto significa que en lugar de usar las letras significativas de cada pieza, se 
 * [X] Implementar Captura _En-Passant_ (Peón al Paso) para la clase Peón
 * [X] [Implementar Enroque Corto y Enroque Largo para la clase Rey](https://github.com/PapitaConPure/ajedrez-simple/issues/1)
 * [X] [Implementar Promoción para la clase Peón](https://github.com/PapitaConPure/ajedrez-simple/issues/2)
-* [ ] [Implementar Jaque y Jaque Mate](https://github.com/PapitaConPure/ajedrez-simple/issues/3)
-* [ ] Implementar Empate por Rey Ahogado
-* [ ] Implementar Empate por Tablas
+* [X] [Implementar Jaque y Jaque Mate](https://github.com/PapitaConPure/ajedrez-simple/issues/3)
+* [X] Implementar Empate por Rey Ahogado
+* [ ] Implementar Empate por Insuficiencia Material
 * [ ] Implementar Empate por Acuerdo
+* [ ] Implementar Reproductor de Partidas
 
 ## Desarrolladores
 * [@PapitaConPuré](https://github.com/PapitaConPure)
