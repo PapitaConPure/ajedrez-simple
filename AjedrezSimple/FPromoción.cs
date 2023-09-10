@@ -11,7 +11,7 @@ using System.Windows.Forms;
 namespace AjedrezSimple {
 	public partial class FPromoción: Form {
 		public FPromoción() {
-			InitializeComponent();
+			this.InitializeComponent();
 		}
 	}
 }

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections;
 
 namespace AjedrezSimple {
 	public class Peón: Pieza {
@@ -8,7 +8,7 @@ namespace AjedrezSimple {
 			this.HizoDobleEncaque = false;
 		}
 
-		public bool HizoDobleEncaque { get; set; }
+		public bool HizoDobleEncaque { get; private set; }
 
 		public bool EnPosiciónInicial {
 			get {
@@ -28,8 +28,30 @@ namespace AjedrezSimple {
 			}
 		}
 
-		public override bool ConfirmarMover(Movimiento movimiento) {
-			if(movimiento.EsSoloHorizontal || !movimiento.EsHaciaDelante(this.Color))
+		public override Pieza[] PasosVálidos {
+			get {
+				ArrayList pasos = new ArrayList();
+
+				int frente = 1;
+				if(this.Color == ColorPieza.Negro)
+					frente = -1;
+				Movimiento[] pruebas = new Movimiento[] {
+					new Movimiento(this.x, this.y, this.x, this.y + frente),
+					new Movimiento(this.x, this.y, this.x, this.y + frente * 2),
+					new Movimiento(this.x, this.y, this.x - 1, this.y + frente),
+					new Movimiento(this.x, this.y, this.x + 1, this.y + frente),
+				};
+
+				foreach(Movimiento prueba in pruebas)
+					if(this.PuedeMover(prueba))
+						pasos.Add(this.juego[prueba.DestinoX, prueba.DestinoY]);
+
+				return pasos.ToArray(typeof(Pieza)) as Pieza[];
+			}
+		}
+
+		public override bool PuedeMover(Movimiento movimiento) {
+			if(movimiento.EsSoloHorizontal || !movimiento.EsAlFrente(this.Color))
 				return false;
 
 			if(movimiento.DistanciaX > 1 || movimiento.DistanciaY > 2)
@@ -51,16 +73,18 @@ namespace AjedrezSimple {
 			} else if(movimiento.EsSoloVertical) {
 				if(this.juego.Colisiones(this.x, this.y, movimiento, true).Length > 0)
 					return false;
-
-				this.HizoDobleEncaque = movimiento.DistanciaY == 2;
 			} else
 				return false;
 
-			return true;
+			return this.VerificarNoFuturoJaque(movimiento);
+		}
+
+		public void OlvidarDobleEncaque() {
+			this.HizoDobleEncaque = false;
 		}
 
 		private bool ProcesarEnPassant(Movimiento movimiento) {
-			Pieza pieza = this.juego[movimiento.DestinoX, movimiento.DestinoY - movimiento.DirecciónPieza(this.Color), this.ColorContrario];
+			Pieza pieza = this.juego[movimiento.DestinoX, movimiento.DestinoY - movimiento.FrenteColor(this.Color), this.ColorContrario];
 
 			if(!(pieza is Peón))
 				return false;
@@ -71,6 +95,11 @@ namespace AjedrezSimple {
 			movimiento.Captura = pieza;
 			movimiento.EnPassant = true;
 			return true;
+		}
+
+		protected override void EfectuarCambios(Movimiento movimiento) {
+			this.HizoDobleEncaque = movimiento.DistanciaY == 2;
+			base.EfectuarCambios(movimiento);
 		}
 	}
 }

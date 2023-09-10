@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections;
 
 namespace AjedrezSimple {
 	public abstract class Pieza {
 		protected int x;
 		protected int y;
 		protected Ajedrez juego;
+		private ArrayList simulaciones;
 
 		public enum ColorPieza {
 			Ninguno = -1,
@@ -17,6 +19,11 @@ namespace AjedrezSimple {
 			this.y = y;
 			this.Color = color;
 			this.juego = juego;
+			this.simulaciones = new ArrayList();
+		}
+
+		public static Pieza Ninguna {
+			get { return new NoPieza(); }
 		}
 
 		public int X {
@@ -45,6 +52,14 @@ namespace AjedrezSimple {
 
 		public string Nombre { get; protected set; }
 
+		public bool EsVacía {
+			get { return this is NoPieza; }
+		}
+
+		public bool EsCapturadaEnSimulación { get; private set; }
+
+		public abstract Pieza[] PasosVálidos { get; }
+
 		public static string ANotación(int x, int y) {
 			return $"{(char)('a' + x)}{1 + y}";
 		}
@@ -59,34 +74,115 @@ namespace AjedrezSimple {
 		public bool Mover(int destinoX, int destinoY) {
 			Movimiento movimiento = new Movimiento(this.x, this.y, destinoX, destinoY);
 
-			if(!this.ConfirmarMover(movimiento))
+			if(!this.PuedeMover(movimiento))
 				return false;
 
-			this.Registrar(movimiento);
-			this.x = destinoX;
-			this.y = destinoY;
+			this.EfectuarCambios(movimiento);
+
 			return true;
 		}
 
-		public Registro Registrar(Movimiento movimiento) {
-			Registro registro = new Registro(this, movimiento, this.juego);
-
-			this.juego.Registrar(registro);
-
-			return registro;
+		public void ComenzarSimulación() {
+			this.simulaciones.Add(new ArrayList());
 		}
 
-		protected bool AnalizarCamino(Movimiento movimiento) {
+		public void Simular(Movimiento movimiento) {
+			ArrayList simulación = this.simulaciones[this.simulaciones.Count - 1] as ArrayList;
+			movimiento = movimiento.Copia;
+			movimiento.Captura = Ninguna;
+
+			this.x = movimiento.DestinoX;
+			this.y = movimiento.DestinoY;
+			simulación.Add(movimiento);
+
+			Pieza[] atacadas = this.juego.VerPiezas(movimiento.DestinoX, movimiento.DestinoY, this.ColorContrario);
+			Pieza atacada = null;
+			int c = 0;
+
+			while(c < atacadas.Length && atacada == null) {
+				atacada = atacadas[c++];
+				if(atacada.EsCapturadaEnSimulación)
+					atacada = null;
+			}
+
+			if(atacadas.Length == 0)
+				return;
+
+			atacada.EsCapturadaEnSimulación = true;
+			movimiento.Captura = atacada;
+		}
+
+		public void Desimular() {
+			ArrayList simulación = this.simulaciones[this.simulaciones.Count - 1] as ArrayList;
+
+			int último = simulación.Count - 1;
+			Movimiento movimiento = simulación[último] as Movimiento;
+			this.x -= movimiento.DiferenciaX;
+			this.y -= movimiento.DiferenciaY;
+			movimiento.Captura.EsCapturadaEnSimulación = false;
+			simulación.RemoveAt(último);
+		}
+
+		public void DetenerSimulación() {
+			ArrayList simulación = this.simulaciones[this.simulaciones.Count - 1] as ArrayList;
+
+			int cnt = simulación.Count;
+			Movimiento movimiento;
+			while(cnt-- > 0) {
+				movimiento = simulación[cnt] as Movimiento;
+				this.x -= movimiento.DiferenciaX;
+				this.y -= movimiento.DiferenciaY;
+				movimiento.Captura.EsCapturadaEnSimulación = false;
+			}
+
+			this.simulaciones.Remove(simulación);
+		}
+
+		internal Pieza[] PasosHasta(Movimiento movimiento, bool hastaColisión = false) {
+			if(!movimiento.EsOrtogonal && !movimiento.EsDiagonal)
+				return new Pieza[0];
+
+			int ox = this.x;
+			int oy = this.y;
+			int m = movimiento.Magnitud;
+
+			if(m == 0)
+				return new Pieza[0];
+
+			int dx, dy;
+			Pieza[] pasos = new Pieza[m];
+			Pieza aux;
+			for(int i = 0; i < m; i++) {
+				dx = ox + movimiento.SentidoH * (i + 1);
+				dy = oy + movimiento.SentidoV * (i + 1);
+				aux = this.juego[dx, dy];
+
+				if(ox < 0 || ox > 7 || oy < 0 || oy > 7 || (hastaColisión && !this.PuedeMover(new Movimiento(ox, oy, dx, dy))))
+					m = i;
+				else
+					pasos[i] = aux;
+			}
+
+			Pieza[] resultado = new Pieza[m];
+			Array.Copy(pasos, 0, resultado, 0, m);
+			return resultado;
+		}
+
+		internal Pieza[] PasosHasta(int destinoX, int destinoY, bool hastaColisión = false) {
+			return this.PasosHasta(new Movimiento(this.x, this.y, destinoX, destinoY), hastaColisión);
+		}
+
+		protected bool ProcesarCamino(Movimiento movimiento) {
 			if(this.juego.Colisiones(this.x, this.y, movimiento).Length > 0)
 				return false;
 
-			return this.AnalizarDestino(movimiento);
+			return this.ProcesarDestino(movimiento);
 		}
 
-		protected bool AnalizarDestino(Movimiento movimiento) {
+		protected bool ProcesarDestino(Movimiento movimiento) {
 			Pieza piezaDestino = this.juego[movimiento.DestinoX, movimiento.DestinoY];
 
-			if(piezaDestino.Color == this.Color)
+			if(piezaDestino.Color == this.Color && !piezaDestino.EsCapturadaEnSimulación)
 				return false;
 
 			if(piezaDestino.Color == this.ColorContrario)
@@ -95,7 +191,28 @@ namespace AjedrezSimple {
 			return true;
 		}
 
-		public abstract bool ConfirmarMover(Movimiento movimiento);
+		protected bool VerificarNoFuturoJaque(Movimiento movimiento) {
+			this.ComenzarSimulación();
+
+			this.Simular(movimiento);
+			bool reyEstáSeguro = true;
+			if(this.juego.JaquesHacia(this.Color, true).Length > 0)
+				reyEstáSeguro = false;
+
+			this.DetenerSimulación();
+
+			return reyEstáSeguro;
+		}
+
+		protected virtual void EfectuarCambios(Movimiento movimiento) {
+			Registro registro = new Registro(this, movimiento, this.juego);
+			this.x = movimiento.DestinoX;
+			this.y = movimiento.DestinoY;
+
+			this.juego.Registrar(registro);
+		}
+
+		public abstract bool PuedeMover(Movimiento movimiento);
 
 		public override string ToString() {
 			return $"{this.Ícono} ({ANotación(this.x, this.y)})";

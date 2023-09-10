@@ -1,5 +1,5 @@
 ﻿namespace AjedrezSimple {
-	public class NoPieza: Pieza {
+	public sealed class NoPieza: Pieza {
 		public NoPieza(int x, int y): base(x, y, ColorPieza.Ninguno, null) {
 			this.Ícono = this.Nombre = "";
 		}
@@ -7,7 +7,13 @@
 			this.Ícono = this.Nombre = "";
 		}
 
-		public override bool ConfirmarMover(Movimiento m) {
+		public override Pieza[] PasosVálidos {
+			get {
+				return new Pieza[0];
+			}
+		}
+
+		public override bool PuedeMover(Movimiento m) {
 			return false;
 		}
 
