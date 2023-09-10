@@ -20,15 +20,7 @@ namespace AjedrezSimple {
 		public FPrincipal() {
 			this.InitializeComponent();
 
-			//Formación estándar: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"
-			//Formación para probar ambigüedades con caballos: "8/2n5/8/8/5n2/2n5/8/8"
-			//Formación para probar ambigüedades con alfiles: "8/8/2b1b3/8/2b1B3/8/8/8"
-			this.juego = new Ajedrez("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
-			this.seleccionada = new NoPieza();
-			this.turno = Pieza.ColorPieza.Blanco;
-
 			this.dgvTablero.Rows.Add(8);
-			this.ActualizarTablero();
 
 			int alturaTotal = this.dgvTablero.Height - this.dgvTablero.ColumnHeadersHeight;
 			int alturaFila = (int)Math.Round(1d * alturaTotal / this.dgvTablero.RowCount);
@@ -71,6 +63,10 @@ namespace AjedrezSimple {
 			this.cmbDestinoX.SelectedIndex = this.cmbDestinoY.SelectedIndex = 0;
 		}
 
+		private void FPrincipal_Load(object sender, EventArgs e) {
+			this.NuevaPartida("Comenzar Juego", "Este será el primer Juego de hoy. Puedes comenzar cuando quieras");
+		}
+
 		private void btnMover_Click(object sender, EventArgs e) {
 			this.MoverPiezaSeleccionada(this.cmbDestinoX.SelectedIndex, this.cmbDestinoY.SelectedIndex);
 		}
@@ -81,8 +77,11 @@ namespace AjedrezSimple {
 			if(celda == null)
 				return;
 
-			if(celda.State != DataGridViewElementStates.Selected)
+			if(celda.State != DataGridViewElementStates.Selected) {
+				if(this.juego != null)
+					this.ActualizarTablero();
 				return;
+			}
 
 			if(celda.ColumnIndex == 0) {
 				this.dgvTablero.ClearSelection();
@@ -96,6 +95,7 @@ namespace AjedrezSimple {
 				Pieza pieza = this.juego[celda.ColumnIndex - 1, 7 - celda.RowIndex];
 				this.seleccionada = pieza;
 				this.tbNombrePieza.Text = pieza.Nombre;
+				this.ActualizarTablero();
 			} else {
 				int dx = celda.ColumnIndex - 1;
 				int dy = 7 - celda.RowIndex;
@@ -113,15 +113,31 @@ namespace AjedrezSimple {
 						c.Value = "";
 
 			DataGridViewCell celda;
+			Color colorCelda;
 			foreach(Pieza pieza in this.juego.Piezas) {
 				celda = dgvTablero[pieza.X + 1, 7 - pieza.Y];
 
 				celda.Value = pieza.Ícono;
 				if(pieza.Color == Pieza.ColorPieza.Blanco)
-					celda.Style = new DataGridViewCellStyle(celda.Style) { ForeColor = Color.White };
+					colorCelda = Color.White;
 				else
-					celda.Style = new DataGridViewCellStyle(celda.Style) { ForeColor = Color.Black };
+					colorCelda = Color.Black;
+				celda.Style = new DataGridViewCellStyle(celda.Style) { ForeColor = colorCelda };
 			}
+
+			if(this.seleccionada.Color == this.turno)
+				foreach(Pieza paso in this.seleccionada.PasosVálidos) {
+					celda = dgvTablero[paso.X + 1, 7 - paso.Y];
+
+					if(paso.EsVacía) {
+						celda.Value = "•";
+						colorCelda = Color.Blue;
+					} else {
+						celda.Value = paso.Ícono;
+						colorCelda = Color.Red;
+					}
+					celda.Style = new DataGridViewCellStyle(celda.Style) { ForeColor = colorCelda };
+				}
 
 			this.lsbHistorialBlancas.Items.Clear();
 			this.lsbHistorialNegras.Items.Clear();
@@ -153,19 +169,19 @@ namespace AjedrezSimple {
 
 			if(pieza.Color != this.turno) {
 				this.dgvTablero.ClearSelection();
-				this.seleccionada = new NoPieza();
+				this.seleccionada = Pieza.Ninguna;
 				return;
 			}
 
 			if(!pieza.Mover(dx, dy)) {
 				this.dgvTablero.ClearSelection();
-				this.seleccionada = new NoPieza();
+				this.seleccionada = Pieza.Ninguna;
 				return;
 			}
 
-			this.ActualizarTablero();
 			this.dgvTablero.ClearSelection();
-			this.seleccionada = new NoPieza();
+			this.seleccionada = Pieza.Ninguna;
+			this.ActualizarTablero();
 
 			if(pieza is Peón)
 				this.PromocionarPeón(pieza as Peón);
@@ -179,6 +195,13 @@ namespace AjedrezSimple {
 			} else {
 				this.btnMover.ForeColor = Color.White;
 				this.btnMover.BackColor = Color.Black;
+			}
+
+			if(this.juego.HaFinalizado) {
+				if(this.juego.Ganador != Pieza.ColorPieza.Ninguno)
+					this.NuevaPartida("¡Jaque Mate!", $"Ganó el Equipo {this.juego.Ganador}");
+				else
+					this.NuevaPartida("¡Es un Empate!", $"La partida finalizó por {this.juego.Empate}");
 			}
 		}
 
@@ -204,6 +227,56 @@ namespace AjedrezSimple {
 
 			this.juego.PromocionarPeón(peón, opción);
 			this.ActualizarTablero();
+		}
+
+		private void NuevaPartida(string título, string estado) {
+			FJuegoNuevo fJuegoNuevo = new FJuegoNuevo(título, estado);
+			DialogResult resultado = fJuegoNuevo.ShowDialog();
+			switch(resultado) {
+			case DialogResult.Ignore:
+				this.AlternarControl(false);
+				return;
+			case DialogResult.Cancel:
+				Application.Exit();
+				return;
+			}
+
+			//Formación estándar: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"
+			//Formación sin peones: "r2qk2r/1bn2nb1/8/8/8/8/1BN2NB1/R2QK2R"
+			//Formación para probar ambigüedades con caballos: "8/2n5/8/8/5n2/2n5/8/8"
+			//Formación para probar ambigüedades con alfiles: "8/8/2b1b3/8/2b1B3/8/8/8"
+			//Formación de Mate del Pastor: "r1bqkb1r/pppp1ppp/2n2n2/4p2Q/2B1P3/8/PPPP1PPP/RNB1K1NR"
+			//Formación para probar Rey Ahogado: "1N5k/p4Q1p/P6P/5N2/8/1p6/3N4/R1B1KB2"
+			this.juego = new Ajedrez("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
+			this.seleccionada = Pieza.Ninguna;
+			this.turno = Pieza.ColorPieza.Blanco;
+			this.ActualizarTablero();
+			this.AlternarControl(true);
+		}
+
+		private void btnVolverMenu_Click(object sender, EventArgs e) {
+			if(this.juego == null) {
+				this.NuevaPartida("Menú", "Comienza la partida o sal cuando gustes.");
+				return;
+			}
+
+			if(this.juego.HaFinalizado) {
+				if(this.juego.Ganador != Pieza.ColorPieza.Ninguno)
+					this.NuevaPartida("¡Jaque Mate!", $"Ganó el Equipo {this.juego.Ganador}");
+				else
+					this.NuevaPartida("¡Es un Empate!", $"La partida finalizó por {this.juego.Empate}");
+			}
+		}
+
+		private void AlternarControl(bool activarJuego) {
+			this.btnMover.Visible
+			= this.tbNombrePieza.Visible
+			= this.lblPosicion.Visible
+			= this.cmbDestinoX.Visible
+			= this.cmbDestinoY.Visible
+				= activarJuego;
+
+			this.btnVolverMenu.Visible = !activarJuego;
 		}
 	}
 }
