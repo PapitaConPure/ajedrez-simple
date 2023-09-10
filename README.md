@@ -48,7 +48,7 @@ Esto significa que en lugar de usar las letras significativas de cada pieza, se 
 * [X] [Implementar Enroque Corto y Enroque Largo para la clase Rey](https://github.com/PapitaConPure/ajedrez-simple/issues/1)
 * [X] [Implementar Promoción para la clase Peón](https://github.com/PapitaConPure/ajedrez-simple/issues/2)
 * [X] [Implementar Jaque y Jaque Mate](https://github.com/PapitaConPure/ajedrez-simple/issues/3)
-* [X] Implementar Empate por Rey Ahogado
+* [X] [Implementar Empate por Rey Ahogado](https://github.com/PapitaConPure/ajedrez-simple/issues/4)
 * [ ] Implementar Empate por Insuficiencia Material
 * [ ] Implementar Empate por Acuerdo
 * [ ] Implementar Reproductor de Partidas
