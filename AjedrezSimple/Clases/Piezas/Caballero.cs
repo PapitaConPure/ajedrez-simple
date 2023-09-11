@@ -14,7 +14,7 @@ namespace AjedrezSimple {
 
 				int dx, dy;
 				for(int xx = -2; xx <= 2; xx++) {
-					if(x == 0)
+					if(xx == 0)
 						continue;
 
 					for(int yy = -2; yy <= 2; yy++) {

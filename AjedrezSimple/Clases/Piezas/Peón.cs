@@ -66,7 +66,7 @@ namespace AjedrezSimple {
 
 				Pieza atacadaDirecta = this.juego[movimiento.DestinoX, movimiento.DestinoY, this.ColorContrario];
 
-				if(!(atacadaDirecta is NoPieza))
+				if(!atacadaDirecta.EsVacía)
 					movimiento.Captura = atacadaDirecta;
 				else if(!this.ProcesarEnPassant(movimiento))
 					return false;
