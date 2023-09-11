@@ -16,7 +16,7 @@ namespace AjedrezSimple {
 			Reina
 		}
 
-		public Ajedrez(string formacion = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR") {
+		public Ajedrez(string formacion) {
 			this.piezas = new ArrayList();
 			this.historial = new ArrayList();
 
@@ -62,6 +62,8 @@ namespace AjedrezSimple {
 				}
 			}
 		}
+
+		public Ajedrez(): this("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR") {}
 
 		public bool HaFinalizado { get; private set; }
 
@@ -149,21 +151,34 @@ namespace AjedrezSimple {
 			Pieza nueva;
 
 			switch(opción) {
-			case OpciónPromoción.Torre:     nueva = new Torre(peón.X, peón.Y, peón.Color, this);     break;
+			case OpciónPromoción.Torre:     nueva = new Torre    (peón.X, peón.Y, peón.Color, this); break;
 			case OpciónPromoción.Caballero: nueva = new Caballero(peón.X, peón.Y, peón.Color, this); break;
-			case OpciónPromoción.Alfil:     nueva = new Alfil(peón.X, peón.Y, peón.Color, this);     break;
-			case OpciónPromoción.Reina:     nueva = new Reina(peón.X, peón.Y, peón.Color, this);     break;
+			case OpciónPromoción.Alfil:     nueva = new Alfil    (peón.X, peón.Y, peón.Color, this); break;
+			case OpciónPromoción.Reina:     nueva = new Reina    (peón.X, peón.Y, peón.Color, this); break;
 			default: return false;
 			}
 
+			#region Insertar nueva pieza en el lugar del Peón
 			int índice = this.piezas.IndexOf(peón);
 
 			if(índice < 0)
 				return false;
 
 			this.piezas[índice] = nueva;
-			Registro últimoRegistro = this.historial[this.historial.Count - 1] as Registro;
-			últimoRegistro.Movimiento.Promoción = nueva;
+			#endregion
+
+			Registro registro = this.historial[this.historial.Count - 1] as Registro;
+			registro.Movimiento.Promoción = nueva;
+
+			Pieza[] jaques = this.JaquesHacia(peón.ColorContrario);
+			if(jaques.Length > 0) {
+				registro.EsJaque = true;
+				if(this.ComprobarJaqueMate(jaques)) {
+					registro.EsJaqueMate = true;
+					this.HaFinalizado = true;
+					this.Ganador = registro.Emisora.Color;
+				}
+			}
 
 			return true;
 		}
@@ -233,52 +248,40 @@ namespace AjedrezSimple {
 		public bool ComprobarJaqueMate(Pieza[] jaques) {
 			Rey rey = this.VerRey(jaques[0].ColorContrario);
 
-			#region Comprobar si se puede escapar por movimiento directo del Rey en Jaque
-			bool puedeEscapar = false;
-			foreach(Pieza paso in rey.PasosVálidos)
-				if(rey.PuedeMover(new Movimiento(rey.X, rey.Y, paso.X, paso.Y)))
-					puedeEscapar = true;
-			#endregion
-
-			if(puedeEscapar)
+			if(rey.PasosVálidos.Length > 0)
 				return false;
 
-			#region Comprobar si se pueden capturar las piezas que ocasionan el Jaque inmediato
-			bool puedeCapturar = false;
-			Pieza[] contraAtacantes;
-			foreach(Pieza jaque in jaques) {
-				contraAtacantes = this.Atacantes(jaque);
-				Movimiento contraAtaque = new Movimiento(0, 0, jaque.X, jaque.Y);
-				foreach(Pieza contraAtacante in contraAtacantes) {
-					contraAtacante.ComenzarSimulación();
-
-					contraAtaque = contraAtaque.Desde(contraAtacante);
-					if(!contraAtacante.PuedeMover(contraAtaque))
-						continue;
-
-					contraAtacante.Simular(contraAtaque);
-					if(this.Atacantes(rey).Length == 0)
-						puedeCapturar = true;
-
-					contraAtacante.DetenerSimulación();
-				}
-			}
-			#endregion
-
-			if(puedeCapturar)
+			if(jaques.Length == 1 && this.Atacantes(jaques[0], 1).Length > 0)
 				return false;
 
 			#region Comprobar si se puede bloquear el camino de las piezas que ocasionan el Jaque inmediato
-			bool puedeBloquear = false;
+			bool puedeBloquearTodo = true;
+			bool puedeBloquear;
 			Movimiento conclusivo = new Movimiento(0, 0, rey.X, rey.Y);
-			foreach(Pieza aliada in this.VerPiezas(rey.Color))
-				foreach(Pieza atacante in jaques)
-					foreach(Pieza bloqueable in atacante.PasosHasta(conclusivo.Desde(atacante)))
-						if(aliada.PuedeMover(new Movimiento(aliada.X, aliada.Y, bloqueable.X, bloqueable.Y)))
+			Pieza[] pasos;
+			Pieza paso;
+			Pieza[] aliadas = this.VerPiezas(rey.Color);
+			Pieza defensora;
+			foreach(Pieza jaque in jaques) {
+				puedeBloquear = false;
+				pasos = jaque.PasosHasta(conclusivo.Desde(jaque));
+
+				for(int p = 0; p < pasos.Length && !puedeBloquear; p++) {
+					paso = pasos[p];
+					for(int a = 0; a < aliadas.Length && !puedeBloquear; a++) {
+						defensora = aliadas[a];
+
+						if(defensora.PuedeMover(new Movimiento(defensora.X, defensora.Y, paso.X, paso.Y)))
 							puedeBloquear = true;
+					}
+				}
+
+				if(!puedeBloquear)
+					puedeBloquearTodo = false;
+			}
 			#endregion
 
-			return !puedeBloquear;
+			return !puedeBloquearTodo;
 		}
 
 		public Pieza[] Colisiones(int ox, int oy, Movimiento m, bool contarColisiónFinal = false) {
@@ -319,24 +322,15 @@ namespace AjedrezSimple {
 
 		public Pieza[] JaquesHacia(Pieza.ColorPieza colorReyAtacado, bool considerarSimulado = false) {
 			Rey rey = this.VerRey(colorReyAtacado);
-			return this.Atacantes(rey, considerarSimulado);
+			return this.Atacantes(rey, 2, considerarSimulado);
 		}
 
-		public Pieza[] Atacantes(int destinoX, int destinoY, Pieza.ColorPieza atacado, bool considerarSimulado = false) {
-			Pieza atacada = this[destinoX, destinoY, atacado];
-
-			if(atacada is NoPieza)
-				return new Pieza[0];
-
-			return this.Atacantes(atacada, considerarSimulado);
-		}
-
-		public Pieza[] Atacantes(Pieza atacada, bool considerarSimulado = false) {
+		public Pieza[] Atacantes(Pieza atacada, int límiteAtacantes = 16, bool considerarSimulado = false) {
 			Pieza[] posiblesAtacantes = this.VerPiezas(atacada.ColorContrario);
 			ArrayList atacantes = new ArrayList();
 			Pieza atacante;
 
-			for(int i = 0; i < posiblesAtacantes.Length && atacantes.Count < 2; i++) {
+			for(int i = 0; i < posiblesAtacantes.Length && atacantes.Count < límiteAtacantes; i++) {
 				atacante = posiblesAtacantes[i];
 
 				if((!considerarSimulado || (!atacante.EsCapturadaEnSimulación && !atacada.EsCapturadaEnSimulación))
@@ -348,7 +342,7 @@ namespace AjedrezSimple {
 		}
 
 		internal void Registrar(Registro registro) {
-			if(!(registro.Captura is NoPieza))
+			if(!registro.Captura.EsVacía)
 				this.piezas.Remove(registro.Captura);
 
 			Pieza[] jaques = this.JaquesHacia(registro.Emisora.ColorContrario);
