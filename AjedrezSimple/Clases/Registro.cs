@@ -84,10 +84,13 @@
 					notación += notaciónOrigen;
 			}
 
-			if(!(this.Captura is NoPieza))
+			if(!this.Promoción.EsVacía)
 				notación += "x";
 
 			notación += Pieza.ANotación(this.Movimiento.DestinoX, this.Movimiento.DestinoY);
+
+			if(!this.Promoción.EsVacía)
+				notación += $"={this.Promoción.Ícono}";
 
 			if(this.EsJaqueMate)
 				notación += "#";
@@ -96,9 +99,6 @@
 
 			if(this.EnPassant)
 				notación += " e.p";
-
-			if(!(this.Promoción is NoPieza))
-				notación += $"={this.Promoción.Ícono}";
 
 			return notación;
 		}
