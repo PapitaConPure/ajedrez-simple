@@ -41,58 +41,81 @@ namespace AjedrezSimple {
 			// 
 			// lblCandidato
 			// 
-			this.lblCandidato.AutoSize = true;
-			this.lblCandidato.Location = new System.Drawing.Point(12, 41);
+			this.lblCandidato.Location = new System.Drawing.Point(12, 42);
 			this.lblCandidato.Name = "lblCandidato";
-			this.lblCandidato.Size = new System.Drawing.Size(55, 13);
+			this.lblCandidato.Size = new System.Drawing.Size(55, 24);
 			this.lblCandidato.TabIndex = 0;
 			this.lblCandidato.Text = "Candidato";
+			this.lblCandidato.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// tbCandidato
 			// 
 			this.tbCandidato.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.tbCandidato.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(220)))), ((int)(((byte)(226)))));
+			this.tbCandidato.BackColor = System.Drawing.SystemColors.Window;
 			this.tbCandidato.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
 			this.tbCandidato.BorderRadius = 100F;
-			this.tbCandidato.BorderSize = 2F;
-			this.tbCandidato.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.tbCandidato.Font = new System.Drawing.Font("Segoe UI", 11F);
+			this.tbCandidato.BorderSize = 0F;
+			this.tbCandidato.Cursor = System.Windows.Forms.Cursors.IBeam;
+			this.tbCandidato.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.tbCandidato.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
-			this.tbCandidato.Location = new System.Drawing.Point(73, 38);
+			this.tbCandidato.InputText = "Candidato";
+			this.tbCandidato.Location = new System.Drawing.Point(73, 42);
+			this.tbCandidato.MinimumSize = new System.Drawing.Size(20, 24);
 			this.tbCandidato.Multiline = true;
 			this.tbCandidato.Name = "tbCandidato";
+			this.tbCandidato.PasswordChar = '\0';
 			this.tbCandidato.PercentualRadius = true;
-			this.tbCandidato.ReadOnly = true;
-			this.tbCandidato.Size = new System.Drawing.Size(96, 20);
+			this.tbCandidato.PlaceHolder = "Candidato";
+			this.tbCandidato.PlaceHolderColor = System.Drawing.Color.DimGray;
+			this.tbCandidato.ReadOnly = false;
+			this.tbCandidato.SelectAllOnClick = true;
+			this.tbCandidato.Size = new System.Drawing.Size(96, 24);
+			this.tbCandidato.Style = ControLib.SleekTextBox.TextBoxStyle.RoundRect;
 			this.tbCandidato.TabIndex = 1;
 			this.tbCandidato.TabStop = false;
 			this.tbCandidato.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.tbCandidato.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+			this.tbCandidato.WordWrap = true;
 			// 
 			// lblEquipo
 			// 
-			this.lblEquipo.AutoSize = true;
 			this.lblEquipo.Location = new System.Drawing.Point(12, 15);
 			this.lblEquipo.Name = "lblEquipo";
-			this.lblEquipo.Size = new System.Drawing.Size(40, 13);
+			this.lblEquipo.Size = new System.Drawing.Size(55, 21);
 			this.lblEquipo.TabIndex = 0;
 			this.lblEquipo.Text = "Equipo";
+			this.lblEquipo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// tbEquipo
 			// 
 			this.tbEquipo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.tbEquipo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(220)))), ((int)(((byte)(226)))));
-			this.tbEquipo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.tbEquipo.BackColor = System.Drawing.SystemColors.Window;
+			this.tbEquipo.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+			this.tbEquipo.BorderRadius = 100F;
+			this.tbEquipo.BorderSize = 0F;
+			this.tbEquipo.Cursor = System.Windows.Forms.Cursors.IBeam;
+			this.tbEquipo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.tbEquipo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
+			this.tbEquipo.InputText = "Equipo";
 			this.tbEquipo.Location = new System.Drawing.Point(73, 12);
+			this.tbEquipo.MinimumSize = new System.Drawing.Size(20, 24);
 			this.tbEquipo.Multiline = true;
 			this.tbEquipo.Name = "tbEquipo";
-			this.tbEquipo.ReadOnly = true;
-			this.tbEquipo.Size = new System.Drawing.Size(96, 20);
+			this.tbEquipo.PasswordChar = '\0';
+			this.tbEquipo.PercentualRadius = true;
+			this.tbEquipo.PlaceHolder = "Equipo";
+			this.tbEquipo.PlaceHolderColor = System.Drawing.Color.DimGray;
+			this.tbEquipo.ReadOnly = false;
+			this.tbEquipo.SelectAllOnClick = true;
+			this.tbEquipo.Size = new System.Drawing.Size(96, 24);
+			this.tbEquipo.Style = ControLib.SleekTextBox.TextBoxStyle.RoundRect;
 			this.tbEquipo.TabIndex = 1;
 			this.tbEquipo.TabStop = false;
 			this.tbEquipo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.tbEquipo.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+			this.tbEquipo.WordWrap = true;
 			// 
 			// gbPromoción
 			// 
@@ -100,9 +123,9 @@ namespace AjedrezSimple {
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.gbPromoción.Controls.Add(this.tableLayoutPanel1);
-			this.gbPromoción.Location = new System.Drawing.Point(12, 64);
+			this.gbPromoción.Location = new System.Drawing.Point(12, 72);
 			this.gbPromoción.Name = "gbPromoción";
-			this.gbPromoción.Size = new System.Drawing.Size(157, 112);
+			this.gbPromoción.Size = new System.Drawing.Size(157, 111);
 			this.gbPromoción.TabIndex = 0;
 			this.gbPromoción.TabStop = false;
 			this.gbPromoción.Text = "Selecciona una Promoción";
@@ -123,7 +146,7 @@ namespace AjedrezSimple {
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-			this.tableLayoutPanel1.Size = new System.Drawing.Size(151, 93);
+			this.tableLayoutPanel1.Size = new System.Drawing.Size(151, 92);
 			this.tableLayoutPanel1.TabIndex = 4;
 			// 
 			// rbReina
@@ -183,7 +206,7 @@ namespace AjedrezSimple {
 			this.btnPromocionar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnPromocionar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnPromocionar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
-			this.btnPromocionar.Location = new System.Drawing.Point(12, 182);
+			this.btnPromocionar.Location = new System.Drawing.Point(12, 189);
 			this.btnPromocionar.Name = "btnPromocionar";
 			this.btnPromocionar.PercentualRadius = false;
 			this.btnPromocionar.Size = new System.Drawing.Size(157, 44);
@@ -196,7 +219,7 @@ namespace AjedrezSimple {
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(247)))), ((int)(((byte)(237)))));
-			this.ClientSize = new System.Drawing.Size(181, 238);
+			this.ClientSize = new System.Drawing.Size(181, 245);
 			this.ControlBox = false;
 			this.Controls.Add(this.btnPromocionar);
 			this.Controls.Add(this.gbPromoción);
@@ -213,7 +236,6 @@ namespace AjedrezSimple {
 			this.tableLayoutPanel1.ResumeLayout(false);
 			this.tableLayoutPanel1.PerformLayout();
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
 		}
 

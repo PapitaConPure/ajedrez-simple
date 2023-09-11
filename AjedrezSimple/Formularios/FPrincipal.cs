@@ -213,8 +213,8 @@ namespace AjedrezSimple {
 				return;
 
 			FPromoción fPromoción = new FPromoción();
-			fPromoción.tbEquipo.Text = peón.Color.ToString();
-			fPromoción.tbCandidato.Text = peón.ToString();
+			fPromoción.tbEquipo.InputText = peón.Color.ToString();
+			fPromoción.tbCandidato.InputText = peón.ToString();
 			fPromoción.ShowDialog();
 
 			Ajedrez.OpciónPromoción opción = Ajedrez.OpciónPromoción.Ninguno;
@@ -251,7 +251,9 @@ namespace AjedrezSimple {
 			//Formación de Mate del Pastor: "r1bqkb1r/pppp1ppp/2n2n2/4p2Q/2B1P3/8/PPPP1PPP/RNB1K1NR"
 			//Formación para probar Rey Ahogado: "1N5k/p4Q1p/P6P/5N2/8/1p6/3N4/R1B1KB2"
 			//Formación para escenario de jaque de prueba 1: "3ppp2/3pkp2/3p1p2/rb4br/8/Q7/8/6K1"
-			this.juego = new Ajedrez("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR");
+			//Formación para escenario de jaque de prueba 2: "3ppp2/3pkp2/3p1p2/rb4br/8/Q7/8/6K1"
+			//Formación para promoción seguida de jaque mate: "k7/pppppp1P/8/8/8/8/8/K7"
+			this.juego = new Ajedrez();
 			this.seleccionada = Pieza.Ninguna;
 			this.turno = Pieza.ColorPieza.Blanco;
 			this.ActualizarTablero();

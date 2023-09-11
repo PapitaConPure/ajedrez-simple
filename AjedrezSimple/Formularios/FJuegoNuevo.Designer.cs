@@ -170,7 +170,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(247)))), ((int)(((byte)(237)))));
 			this.CancelButton = this.btnSalir;
-			this.ClientSize = new System.Drawing.Size(517, 164);
+			this.ClientSize = new System.Drawing.Size(513, 160);
 			this.ControlBox = false;
 			this.Controls.Add(this.splcPrincipal);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
