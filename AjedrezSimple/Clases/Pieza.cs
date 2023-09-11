@@ -3,6 +3,7 @@ using System.Collections;
 
 namespace AjedrezSimple {
 	public abstract class Pieza {
+		private static int totalSimulacionesApiladas = 0;
 		protected int x;
 		protected int y;
 		protected Ajedrez juego;
@@ -84,6 +85,7 @@ namespace AjedrezSimple {
 
 		public void ComenzarSimulación() {
 			this.simulaciones.Add(new ArrayList());
+			totalSimulacionesApiladas++;
 		}
 
 		public void Simular(Movimiento movimiento) {
@@ -136,6 +138,7 @@ namespace AjedrezSimple {
 			}
 
 			this.simulaciones.Remove(simulación);
+			totalSimulacionesApiladas--;
 		}
 
 		internal Pieza[] PasosHasta(Movimiento movimiento, bool hastaColisión = false) {
@@ -192,6 +195,9 @@ namespace AjedrezSimple {
 		}
 
 		protected bool VerificarNoFuturoJaque(Movimiento movimiento) {
+			if(totalSimulacionesApiladas > 0)
+				return true;
+
 			this.ComenzarSimulación();
 
 			this.Simular(movimiento);
