@@ -84,7 +84,7 @@ namespace AjedrezSimple {
 			this.parejaDeEnroque = null;
 			this.respuestaDeEnroque = 0;
 
-			if(this.SeHaMovido)
+			if(this.SeHaMovido || this.juego.Atacantes(this, 1).Length > 0)
 				return false;
 
 			int dirección = movimiento.SentidoH;
