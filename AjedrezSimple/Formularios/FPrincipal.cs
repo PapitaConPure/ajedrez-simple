@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AjedrezSimple {
 	public partial class FPrincipal: Form {
 		private static readonly Font fuentePiezas = new Font("Arial", 28);
+		Color colorBotónBlanco;
+		Color colorBotónNegro;
 
 		private DataGridViewCell ultimaCeldaSeleccionada;
 		private Ajedrez juego;
@@ -58,13 +54,15 @@ namespace AjedrezSimple {
 			}
 
 			DataGridViewRow ultima = this.dgvTablero.Rows[this.dgvTablero.RowCount - 1];
-			ultima.Height = alturaTotal - alturaFila * (this.dgvTablero.RowCount - 1) - 2;
+			ultima.Height = alturaTotal - alturaFila * (this.dgvTablero.RowCount - 1);
 			this.dgvTablero.ClearSelection();
 
 			this.cmbDestinoX.SelectedIndex = this.cmbDestinoY.SelectedIndex = 0;
 		}
 
 		private void FPrincipal_Load(object sender, EventArgs e) {
+			this.colorBotónBlanco = this.btnMover.BackColor;
+			this.colorBotónNegro = this.btnMover.ForeColor;
 			this.NuevaPartida("Comenzar Juego", "Este será el primer Juego de hoy. Puedes comenzar cuando quieras");
 		}
 
@@ -99,7 +97,7 @@ namespace AjedrezSimple {
 			if(this.seleccionada is NoPieza) {
 				Pieza pieza = this.juego[celda.ColumnIndex - 1, 7 - celda.RowIndex];
 				this.seleccionada = pieza;
-				this.tbNombrePieza.Text = pieza.Nombre;
+				this.tbNombrePieza.InputText = pieza.Nombre;
 				this.ActualizarTablero();
 			} else {
 				int dx = celda.ColumnIndex - 1;
@@ -107,6 +105,7 @@ namespace AjedrezSimple {
 
 				this.cmbDestinoX.SelectedIndex = dx;
 				this.cmbDestinoY.SelectedIndex = dy;
+				this.tbNombrePieza.InputText = "";
 				this.MoverPiezaSeleccionada(dx, dy);
 			}
 		}
@@ -193,11 +192,11 @@ namespace AjedrezSimple {
 			this.juego.IniciarNuevoTurno(this.turno);
 
 			if(this.turno == Pieza.ColorPieza.Blanco) {
-				this.btnMover.ForeColor = this.btnMover.BorderColor = Color.FromArgb(22, 22, 22);
-				this.btnMover.BackColor = Color.FromArgb(248, 248, 248);
+				this.btnMover.BackColor = this.colorBotónBlanco;
+				this.btnMover.ForeColor = this.colorBotónNegro;
 			} else {
-				this.btnMover.ForeColor = this.btnMover.BorderColor = Color.FromArgb(248, 248, 248);
-				this.btnMover.BackColor = Color.FromArgb(22, 22, 22);
+				this.btnMover.BackColor = this.colorBotónNegro;
+				this.btnMover.ForeColor = this.colorBotónBlanco;
 			}
 
 			if(this.juego.HaFinalizado) {
@@ -234,6 +233,7 @@ namespace AjedrezSimple {
 
 		private void NuevaPartida(string título, string estado) {
 			FJuegoNuevo fJuegoNuevo = new FJuegoNuevo(título, estado);
+			fJuegoNuevo.btnVerPartida.Enabled = this.juego != null;
 			DialogResult resultado = fJuegoNuevo.ShowDialog();
 			switch(resultado) {
 			case DialogResult.Ignore:

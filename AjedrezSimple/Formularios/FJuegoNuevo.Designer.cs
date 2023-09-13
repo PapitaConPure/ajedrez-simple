@@ -41,10 +41,10 @@
 			// 
 			// btnComenzar
 			// 
-			this.btnComenzar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(237)))), ((int)(((byte)(6)))));
+			this.btnComenzar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(237)))), ((int)(((byte)(23)))));
 			this.btnComenzar.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(190)))), ((int)(((byte)(71)))));
 			this.btnComenzar.BorderRadius = 50F;
-			this.btnComenzar.BorderSize = 4F;
+			this.btnComenzar.BorderSize = 0F;
 			this.btnComenzar.DialogResult = System.Windows.Forms.DialogResult.OK;
 			this.btnComenzar.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.btnComenzar.FlatAppearance.BorderSize = 0;
@@ -54,27 +54,27 @@
 			this.btnComenzar.Location = new System.Drawing.Point(3, 3);
 			this.btnComenzar.Name = "btnComenzar";
 			this.btnComenzar.PercentualRadius = true;
-			this.btnComenzar.Size = new System.Drawing.Size(109, 41);
+			this.btnComenzar.Size = new System.Drawing.Size(105, 41);
 			this.btnComenzar.TabIndex = 0;
 			this.btnComenzar.Text = "Juego Nuevo";
 			this.btnComenzar.UseVisualStyleBackColor = false;
 			// 
 			// btnSalir
 			// 
-			this.btnSalir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(220)))), ((int)(((byte)(226)))));
+			this.btnSalir.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(61)))), ((int)(((byte)(109)))));
 			this.btnSalir.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
 			this.btnSalir.BorderRadius = 50F;
-			this.btnSalir.BorderSize = 2F;
+			this.btnSalir.BorderSize = 0F;
 			this.btnSalir.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.btnSalir.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.btnSalir.FlatAppearance.BorderSize = 0;
 			this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnSalir.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
-			this.btnSalir.Location = new System.Drawing.Point(233, 3);
+			this.btnSalir.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+			this.btnSalir.Location = new System.Drawing.Point(225, 3);
 			this.btnSalir.Name = "btnSalir";
 			this.btnSalir.PercentualRadius = true;
-			this.btnSalir.Size = new System.Drawing.Size(109, 41);
+			this.btnSalir.Size = new System.Drawing.Size(105, 41);
 			this.btnSalir.TabIndex = 2;
 			this.btnSalir.Text = "Salir";
 			this.btnSalir.UseVisualStyleBackColor = false;
@@ -86,7 +86,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
 			this.lblEstado.Location = new System.Drawing.Point(3, 0);
 			this.lblEstado.Name = "lblEstado";
-			this.lblEstado.Size = new System.Drawing.Size(339, 93);
+			this.lblEstado.Size = new System.Drawing.Size(327, 81);
 			this.lblEstado.TabIndex = 2;
 			this.lblEstado.Text = "Estado de la última partida.";
 			this.lblEstado.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -102,30 +102,30 @@
 			this.tlpBotones.Controls.Add(this.btnComenzar, 0, 0);
 			this.tlpBotones.Controls.Add(this.btnSalir, 2, 0);
 			this.tlpBotones.Controls.Add(this.btnVerPartida, 1, 0);
-			this.tlpBotones.Location = new System.Drawing.Point(0, 93);
+			this.tlpBotones.Location = new System.Drawing.Point(0, 81);
 			this.tlpBotones.Margin = new System.Windows.Forms.Padding(0);
 			this.tlpBotones.Name = "tlpBotones";
 			this.tlpBotones.RowCount = 1;
 			this.tlpBotones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.tlpBotones.Size = new System.Drawing.Size(345, 47);
+			this.tlpBotones.Size = new System.Drawing.Size(333, 47);
 			this.tlpBotones.TabIndex = 3;
 			// 
 			// btnVerPartida
 			// 
-			this.btnVerPartida.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(220)))), ((int)(((byte)(226)))));
+			this.btnVerPartida.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(61)))), ((int)(((byte)(109)))));
 			this.btnVerPartida.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
 			this.btnVerPartida.BorderRadius = 50F;
-			this.btnVerPartida.BorderSize = 2F;
+			this.btnVerPartida.BorderSize = 0F;
 			this.btnVerPartida.DialogResult = System.Windows.Forms.DialogResult.Ignore;
 			this.btnVerPartida.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.btnVerPartida.FlatAppearance.BorderSize = 0;
 			this.btnVerPartida.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnVerPartida.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnVerPartida.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
-			this.btnVerPartida.Location = new System.Drawing.Point(118, 3);
+			this.btnVerPartida.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+			this.btnVerPartida.Location = new System.Drawing.Point(114, 3);
 			this.btnVerPartida.Name = "btnVerPartida";
 			this.btnVerPartida.PercentualRadius = true;
-			this.btnVerPartida.Size = new System.Drawing.Size(109, 41);
+			this.btnVerPartida.Size = new System.Drawing.Size(105, 41);
 			this.btnVerPartida.TabIndex = 1;
 			this.btnVerPartida.Text = "Ver Partida";
 			this.btnVerPartida.UseVisualStyleBackColor = false;
@@ -137,7 +137,7 @@
 			this.pcbÍcono.Image = global::AjedrezSimple.Properties.Resources.game;
 			this.pcbÍcono.Location = new System.Drawing.Point(0, 0);
 			this.pcbÍcono.Name = "pcbÍcono";
-			this.pcbÍcono.Size = new System.Drawing.Size(147, 140);
+			this.pcbÍcono.Size = new System.Drawing.Size(150, 133);
 			this.pcbÍcono.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.pcbÍcono.TabIndex = 4;
 			this.pcbÍcono.TabStop = false;
@@ -159,8 +159,8 @@
 			// splcPrincipal.Panel2
 			// 
 			this.splcPrincipal.Panel2.Controls.Add(this.pcbÍcono);
-			this.splcPrincipal.Size = new System.Drawing.Size(493, 140);
-			this.splcPrincipal.SplitterDistance = 342;
+			this.splcPrincipal.Size = new System.Drawing.Size(484, 133);
+			this.splcPrincipal.SplitterDistance = 330;
 			this.splcPrincipal.TabIndex = 5;
 			// 
 			// FJuegoNuevo
@@ -168,12 +168,13 @@
 			this.AcceptButton = this.btnComenzar;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(247)))), ((int)(((byte)(237)))));
+			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(42)))));
 			this.CancelButton = this.btnSalir;
-			this.ClientSize = new System.Drawing.Size(513, 160);
+			this.ClientSize = new System.Drawing.Size(508, 157);
 			this.ControlBox = false;
 			this.Controls.Add(this.splcPrincipal);
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "FJuegoNuevo";
 			this.ShowIcon = false;
@@ -195,8 +196,8 @@
 		private ControLib.SleekButton btnSalir;
 		private System.Windows.Forms.Label lblEstado;
 		private System.Windows.Forms.TableLayoutPanel tlpBotones;
-		private ControLib.SleekButton btnVerPartida;
 		private System.Windows.Forms.PictureBox pcbÍcono;
 		private System.Windows.Forms.SplitContainer splcPrincipal;
+		public ControLib.SleekButton btnVerPartida;
 	}
 }

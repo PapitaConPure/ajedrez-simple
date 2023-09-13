@@ -25,8 +25,9 @@ namespace AjedrezSimple {
 		/// </summary>
 		private void InitializeComponent() {
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FPrincipal));
 			this.btnMover = new ControLib.SleekButton();
 			this.lsbHistorialBlancas = new System.Windows.Forms.ListBox();
@@ -40,36 +41,41 @@ namespace AjedrezSimple {
 			this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.gbControl = new System.Windows.Forms.GroupBox();
 			this.btnVolverMenu = new ControLib.SleekButton();
-			this.tbNombrePieza = new System.Windows.Forms.TextBox();
+			this.tbNombrePieza = new ControLib.SleekTextBox();
 			this.lblPosicion = new System.Windows.Forms.Label();
 			this.cmbDestinoY = new System.Windows.Forms.ComboBox();
 			this.cmbDestinoX = new System.Windows.Forms.ComboBox();
-			this.gbHistorial = new System.Windows.Forms.GroupBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.lblBlancas = new System.Windows.Forms.Label();
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.lsbHistorialNegras = new System.Windows.Forms.ListBox();
+			this.panelIzquierdo = new System.Windows.Forms.Panel();
+			this.panelHistorial = new System.Windows.Forms.Panel();
+			this.panelControl = new System.Windows.Forms.Panel();
 			((System.ComponentModel.ISupportInitialize)(this.dgvTablero)).BeginInit();
-			this.gbControl.SuspendLayout();
-			this.gbHistorial.SuspendLayout();
 			this.tableLayoutPanel1.SuspendLayout();
+			this.panelIzquierdo.SuspendLayout();
+			this.panelHistorial.SuspendLayout();
+			this.panelControl.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// btnMover
 			// 
-			this.btnMover.BackColor = System.Drawing.Color.White;
-			this.btnMover.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
-			this.btnMover.BorderRadius = 8F;
+			this.btnMover.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnMover.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
+			this.btnMover.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
+			this.btnMover.BorderRadius = 12F;
 			this.btnMover.BorderSize = 2F;
 			this.btnMover.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnMover.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnMover.ForeColor = System.Drawing.Color.Black;
-			this.btnMover.Location = new System.Drawing.Point(6, 19);
+			this.btnMover.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
+			this.btnMover.Location = new System.Drawing.Point(12, 12);
 			this.btnMover.Name = "btnMover";
 			this.btnMover.PercentualRadius = false;
-			this.btnMover.Size = new System.Drawing.Size(164, 23);
+			this.btnMover.Size = new System.Drawing.Size(165, 27);
 			this.btnMover.TabIndex = 3;
 			this.btnMover.Text = "Mover...";
 			this.btnMover.UseVisualStyleBackColor = false;
@@ -77,14 +83,17 @@ namespace AjedrezSimple {
 			// 
 			// lsbHistorialBlancas
 			// 
+			this.lsbHistorialBlancas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(61)))), ((int)(((byte)(101)))));
+			this.lsbHistorialBlancas.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.lsbHistorialBlancas.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.lsbHistorialBlancas.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+			this.lsbHistorialBlancas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
 			this.lsbHistorialBlancas.FormattingEnabled = true;
 			this.lsbHistorialBlancas.IntegralHeight = false;
 			this.lsbHistorialBlancas.ItemHeight = 15;
 			this.lsbHistorialBlancas.Location = new System.Drawing.Point(3, 3);
 			this.lsbHistorialBlancas.Name = "lsbHistorialBlancas";
-			this.lsbHistorialBlancas.Size = new System.Drawing.Size(76, 292);
+			this.lsbHistorialBlancas.Size = new System.Drawing.Size(76, 323);
 			this.lsbHistorialBlancas.TabIndex = 4;
 			this.lsbHistorialBlancas.TabStop = false;
 			// 
@@ -95,10 +104,11 @@ namespace AjedrezSimple {
 			this.dgvTablero.AllowUserToResizeColumns = false;
 			this.dgvTablero.AllowUserToResizeRows = false;
 			this.dgvTablero.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+			this.dgvTablero.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(48)))), ((int)(((byte)(80)))));
+			this.dgvTablero.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.dgvTablero.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
 			this.dgvTablero.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
 			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
 			dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
 			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
@@ -117,36 +127,37 @@ namespace AjedrezSimple {
             this.Column6,
             this.Column7,
             this.Column8});
-			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-			dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
-			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dgvTablero.DefaultCellStyle = dataGridViewCellStyle2;
+			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+			dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(42)))));
+			dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dgvTablero.DefaultCellStyle = dataGridViewCellStyle3;
+			this.dgvTablero.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dgvTablero.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
 			this.dgvTablero.GridColor = System.Drawing.Color.DarkSlateGray;
-			this.dgvTablero.Location = new System.Drawing.Point(194, 12);
+			this.dgvTablero.Location = new System.Drawing.Point(189, 0);
 			this.dgvTablero.MultiSelect = false;
 			this.dgvTablero.Name = "dgvTablero";
 			this.dgvTablero.ReadOnly = true;
 			this.dgvTablero.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dgvTablero.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+			dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(48)))), ((int)(((byte)(80)))));
+			dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dgvTablero.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
 			this.dgvTablero.RowHeadersVisible = false;
 			this.dgvTablero.RowHeadersWidth = 30;
 			this.dgvTablero.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
 			this.dgvTablero.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
 			this.dgvTablero.ScrollBars = System.Windows.Forms.ScrollBars.None;
 			this.dgvTablero.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-			this.dgvTablero.Size = new System.Drawing.Size(421, 421);
+			this.dgvTablero.Size = new System.Drawing.Size(445, 445);
 			this.dgvTablero.StandardTab = true;
 			this.dgvTablero.TabIndex = 0;
 			this.dgvTablero.CellStateChanged += new System.Windows.Forms.DataGridViewCellStateChangedEventHandler(this.dgvTablero_CellStateChanged);
@@ -161,6 +172,8 @@ namespace AjedrezSimple {
 			// 
 			// Column1
 			// 
+			dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(48)))), ((int)(((byte)(80)))));
+			this.Column1.DefaultCellStyle = dataGridViewCellStyle2;
 			this.Column1.HeaderText = "A";
 			this.Column1.Name = "Column1";
 			this.Column1.ReadOnly = true;
@@ -207,39 +220,24 @@ namespace AjedrezSimple {
 			this.Column8.Name = "Column8";
 			this.Column8.ReadOnly = true;
 			// 
-			// gbControl
-			// 
-			this.gbControl.Controls.Add(this.btnVolverMenu);
-			this.gbControl.Controls.Add(this.tbNombrePieza);
-			this.gbControl.Controls.Add(this.lblPosicion);
-			this.gbControl.Controls.Add(this.cmbDestinoY);
-			this.gbControl.Controls.Add(this.cmbDestinoX);
-			this.gbControl.Controls.Add(this.btnMover);
-			this.gbControl.Location = new System.Drawing.Point(12, 12);
-			this.gbControl.Name = "gbControl";
-			this.gbControl.Size = new System.Drawing.Size(176, 79);
-			this.gbControl.TabIndex = 0;
-			this.gbControl.TabStop = false;
-			this.gbControl.Text = "Control";
-			// 
 			// btnVolverMenu
 			// 
 			this.btnVolverMenu.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.btnVolverMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(237)))), ((int)(((byte)(6)))));
+			this.btnVolverMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(237)))), ((int)(((byte)(23)))));
 			this.btnVolverMenu.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(190)))), ((int)(((byte)(71)))));
 			this.btnVolverMenu.BorderRadius = 12F;
-			this.btnVolverMenu.BorderSize = 4F;
+			this.btnVolverMenu.BorderSize = 0F;
 			this.btnVolverMenu.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.btnVolverMenu.FlatAppearance.BorderSize = 0;
 			this.btnVolverMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnVolverMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnVolverMenu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
-			this.btnVolverMenu.Location = new System.Drawing.Point(6, 19);
+			this.btnVolverMenu.Location = new System.Drawing.Point(12, 12);
 			this.btnVolverMenu.Name = "btnVolverMenu";
 			this.btnVolverMenu.PercentualRadius = false;
-			this.btnVolverMenu.Size = new System.Drawing.Size(164, 54);
+			this.btnVolverMenu.Size = new System.Drawing.Size(165, 54);
 			this.btnVolverMenu.TabIndex = 4;
 			this.btnVolverMenu.Text = "Volver al Menú";
 			this.btnVolverMenu.UseVisualStyleBackColor = false;
@@ -248,20 +246,40 @@ namespace AjedrezSimple {
 			// 
 			// tbNombrePieza
 			// 
-			this.tbNombrePieza.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(220)))), ((int)(((byte)(226)))));
-			this.tbNombrePieza.Location = new System.Drawing.Point(6, 48);
+			this.tbNombrePieza.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.tbNombrePieza.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(48)))), ((int)(((byte)(80)))));
+			this.tbNombrePieza.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
+			this.tbNombrePieza.BorderRadius = 10F;
+			this.tbNombrePieza.BorderSize = 0F;
+			this.tbNombrePieza.Cursor = System.Windows.Forms.Cursors.Default;
+			this.tbNombrePieza.FocusColor = System.Drawing.Color.Empty;
+			this.tbNombrePieza.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.tbNombrePieza.ForeColor = System.Drawing.SystemColors.WindowText;
+			this.tbNombrePieza.InputColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(222)))), ((int)(((byte)(239)))));
+			this.tbNombrePieza.InputText = "";
+			this.tbNombrePieza.Location = new System.Drawing.Point(12, 46);
+			this.tbNombrePieza.MinimumSize = new System.Drawing.Size(20, 20);
+			this.tbNombrePieza.Multiline = false;
 			this.tbNombrePieza.Name = "tbNombrePieza";
+			this.tbNombrePieza.PasswordChar = '\0';
+			this.tbNombrePieza.PercentualRadius = false;
+			this.tbNombrePieza.PlaceHolder = "Pieza";
+			this.tbNombrePieza.PlaceHolderColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(88)))), ((int)(((byte)(116)))));
 			this.tbNombrePieza.ReadOnly = true;
-			this.tbNombrePieza.Size = new System.Drawing.Size(65, 20);
+			this.tbNombrePieza.SelectAllOnClick = true;
+			this.tbNombrePieza.Size = new System.Drawing.Size(66, 21);
+			this.tbNombrePieza.Style = ControLib.SleekTextBox.TextBoxStyle.RoundRect;
 			this.tbNombrePieza.TabIndex = 0;
 			this.tbNombrePieza.TabStop = false;
-			this.tbNombrePieza.Text = "Pieza";
 			this.tbNombrePieza.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+			this.tbNombrePieza.WordWrap = true;
 			// 
 			// lblPosicion
 			// 
+			this.lblPosicion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.lblPosicion.AutoSize = true;
-			this.lblPosicion.Location = new System.Drawing.Point(77, 51);
+			this.lblPosicion.Location = new System.Drawing.Point(84, 48);
 			this.lblPosicion.Name = "lblPosicion";
 			this.lblPosicion.Size = new System.Drawing.Size(19, 13);
 			this.lblPosicion.TabIndex = 3;
@@ -269,6 +287,7 @@ namespace AjedrezSimple {
 			// 
 			// cmbDestinoY
 			// 
+			this.cmbDestinoY.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cmbDestinoY.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cmbDestinoY.FormattingEnabled = true;
 			this.cmbDestinoY.Items.AddRange(new object[] {
@@ -280,13 +299,14 @@ namespace AjedrezSimple {
             "6",
             "7",
             "8"});
-			this.cmbDestinoY.Location = new System.Drawing.Point(139, 48);
+			this.cmbDestinoY.Location = new System.Drawing.Point(146, 45);
 			this.cmbDestinoY.Name = "cmbDestinoY";
 			this.cmbDestinoY.Size = new System.Drawing.Size(31, 21);
 			this.cmbDestinoY.TabIndex = 2;
 			// 
 			// cmbDestinoX
 			// 
+			this.cmbDestinoX.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cmbDestinoX.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cmbDestinoX.FormattingEnabled = true;
 			this.cmbDestinoX.Items.AddRange(new object[] {
@@ -298,28 +318,17 @@ namespace AjedrezSimple {
             "F",
             "G",
             "H"});
-			this.cmbDestinoX.Location = new System.Drawing.Point(102, 48);
+			this.cmbDestinoX.Location = new System.Drawing.Point(109, 45);
 			this.cmbDestinoX.Name = "cmbDestinoX";
 			this.cmbDestinoX.Size = new System.Drawing.Size(31, 21);
 			this.cmbDestinoX.TabIndex = 1;
-			// 
-			// gbHistorial
-			// 
-			this.gbHistorial.Controls.Add(this.label1);
-			this.gbHistorial.Controls.Add(this.lblBlancas);
-			this.gbHistorial.Controls.Add(this.tableLayoutPanel1);
-			this.gbHistorial.Location = new System.Drawing.Point(12, 97);
-			this.gbHistorial.Name = "gbHistorial";
-			this.gbHistorial.Size = new System.Drawing.Size(176, 336);
-			this.gbHistorial.TabIndex = 0;
-			this.gbHistorial.TabStop = false;
-			this.gbHistorial.Text = "Historial";
 			// 
 			// label1
 			// 
 			this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(129, 16);
+			this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(117)))), ((int)(((byte)(223)))));
+			this.label1.Location = new System.Drawing.Point(136, 9);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(41, 13);
 			this.label1.TabIndex = 2;
@@ -329,7 +338,8 @@ namespace AjedrezSimple {
 			// lblBlancas
 			// 
 			this.lblBlancas.AutoSize = true;
-			this.lblBlancas.Location = new System.Drawing.Point(6, 16);
+			this.lblBlancas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(117)))), ((int)(((byte)(223)))));
+			this.lblBlancas.Location = new System.Drawing.Point(12, 9);
 			this.lblBlancas.Name = "lblBlancas";
 			this.lblBlancas.Size = new System.Drawing.Size(45, 13);
 			this.lblBlancas.TabIndex = 2;
@@ -337,43 +347,91 @@ namespace AjedrezSimple {
 			// 
 			// tableLayoutPanel1
 			// 
+			this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.tableLayoutPanel1.ColumnCount = 2;
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
 			this.tableLayoutPanel1.Controls.Add(this.lsbHistorialBlancas, 0, 0);
 			this.tableLayoutPanel1.Controls.Add(this.lsbHistorialNegras, 1, 0);
-			this.tableLayoutPanel1.Location = new System.Drawing.Point(6, 32);
+			this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 25);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
 			this.tableLayoutPanel1.RowCount = 1;
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.tableLayoutPanel1.Size = new System.Drawing.Size(164, 298);
+			this.tableLayoutPanel1.Size = new System.Drawing.Size(165, 329);
 			this.tableLayoutPanel1.TabIndex = 1;
 			// 
 			// lsbHistorialNegras
 			// 
+			this.lsbHistorialNegras.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(61)))), ((int)(((byte)(101)))));
+			this.lsbHistorialNegras.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.lsbHistorialNegras.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.lsbHistorialNegras.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+			this.lsbHistorialNegras.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
 			this.lsbHistorialNegras.FormattingEnabled = true;
 			this.lsbHistorialNegras.IntegralHeight = false;
 			this.lsbHistorialNegras.ItemHeight = 15;
 			this.lsbHistorialNegras.Location = new System.Drawing.Point(85, 3);
 			this.lsbHistorialNegras.Name = "lsbHistorialNegras";
-			this.lsbHistorialNegras.Size = new System.Drawing.Size(76, 292);
+			this.lsbHistorialNegras.Size = new System.Drawing.Size(77, 323);
 			this.lsbHistorialNegras.TabIndex = 5;
 			this.lsbHistorialNegras.TabStop = false;
+			// 
+			// panelIzquierdo
+			// 
+			this.panelIzquierdo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(42)))));
+			this.panelIzquierdo.Controls.Add(this.panelHistorial);
+			this.panelIzquierdo.Controls.Add(this.panelControl);
+			this.panelIzquierdo.Dock = System.Windows.Forms.DockStyle.Left;
+			this.panelIzquierdo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
+			this.panelIzquierdo.Location = new System.Drawing.Point(0, 0);
+			this.panelIzquierdo.Margin = new System.Windows.Forms.Padding(9);
+			this.panelIzquierdo.Name = "panelIzquierdo";
+			this.panelIzquierdo.Size = new System.Drawing.Size(189, 445);
+			this.panelIzquierdo.TabIndex = 1;
+			// 
+			// panelHistorial
+			// 
+			this.panelHistorial.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(48)))), ((int)(((byte)(80)))));
+			this.panelHistorial.Controls.Add(this.label1);
+			this.panelHistorial.Controls.Add(this.lblBlancas);
+			this.panelHistorial.Controls.Add(this.tableLayoutPanel1);
+			this.panelHistorial.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.panelHistorial.Location = new System.Drawing.Point(0, 79);
+			this.panelHistorial.Name = "panelHistorial";
+			this.panelHistorial.Padding = new System.Windows.Forms.Padding(9);
+			this.panelHistorial.Size = new System.Drawing.Size(189, 366);
+			this.panelHistorial.TabIndex = 1;
+			// 
+			// panelControl
+			// 
+			this.panelControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(42)))));
+			this.panelControl.Controls.Add(this.btnVolverMenu);
+			this.panelControl.Controls.Add(this.tbNombrePieza);
+			this.panelControl.Controls.Add(this.lblPosicion);
+			this.panelControl.Controls.Add(this.btnMover);
+			this.panelControl.Controls.Add(this.cmbDestinoY);
+			this.panelControl.Controls.Add(this.cmbDestinoX);
+			this.panelControl.Dock = System.Windows.Forms.DockStyle.Top;
+			this.panelControl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
+			this.panelControl.Location = new System.Drawing.Point(0, 0);
+			this.panelControl.Name = "panelControl";
+			this.panelControl.Padding = new System.Windows.Forms.Padding(9);
+			this.panelControl.Size = new System.Drawing.Size(189, 79);
+			this.panelControl.TabIndex = 0;
 			// 
 			// FPrincipal
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(247)))), ((int)(((byte)(237)))));
+			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
 			this.CancelButton = this.btnVolverMenu;
-			this.ClientSize = new System.Drawing.Size(627, 445);
-			this.Controls.Add(this.gbHistorial);
-			this.Controls.Add(this.gbControl);
+			this.ClientSize = new System.Drawing.Size(634, 445);
 			this.Controls.Add(this.dgvTablero);
-			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
+			this.Controls.Add(this.panelIzquierdo);
+			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(42)))));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.KeyPreview = true;
@@ -384,11 +442,12 @@ namespace AjedrezSimple {
 			this.Load += new System.EventHandler(this.FPrincipal_Load);
 			this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FPrincipal_KeyPress);
 			((System.ComponentModel.ISupportInitialize)(this.dgvTablero)).EndInit();
-			this.gbControl.ResumeLayout(false);
-			this.gbControl.PerformLayout();
-			this.gbHistorial.ResumeLayout(false);
-			this.gbHistorial.PerformLayout();
 			this.tableLayoutPanel1.ResumeLayout(false);
+			this.panelIzquierdo.ResumeLayout(false);
+			this.panelHistorial.ResumeLayout(false);
+			this.panelHistorial.PerformLayout();
+			this.panelControl.ResumeLayout(false);
+			this.panelControl.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -398,11 +457,15 @@ namespace AjedrezSimple {
 		private ControLib.SleekButton btnMover;
 		private System.Windows.Forms.ListBox lsbHistorialBlancas;
 		private System.Windows.Forms.DataGridView dgvTablero;
-		private System.Windows.Forms.GroupBox gbControl;
 		private System.Windows.Forms.ComboBox cmbDestinoX;
 		private System.Windows.Forms.ComboBox cmbDestinoY;
 		private System.Windows.Forms.Label lblPosicion;
-		private System.Windows.Forms.TextBox tbNombrePieza;
+		private ControLib.SleekTextBox tbNombrePieza;
+		private System.Windows.Forms.ListBox lsbHistorialNegras;
+		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label lblBlancas;
+		private ControLib.SleekButton btnVolverMenu;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
@@ -412,12 +475,9 @@ namespace AjedrezSimple {
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-		private System.Windows.Forms.GroupBox gbHistorial;
-		private System.Windows.Forms.ListBox lsbHistorialNegras;
-		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Label lblBlancas;
-		private ControLib.SleekButton btnVolverMenu;
+		private System.Windows.Forms.Panel panelIzquierdo;
+		private System.Windows.Forms.Panel panelControl;
+		private System.Windows.Forms.Panel panelHistorial;
 	}
 }
 
