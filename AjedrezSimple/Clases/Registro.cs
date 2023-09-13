@@ -84,7 +84,7 @@
 					notación += notaciónOrigen;
 			}
 
-			if(!this.Promoción.EsVacía)
+			if(!this.Captura.EsVacía)
 				notación += "x";
 
 			notación += Pieza.ANotación(this.Movimiento.DestinoX, this.Movimiento.DestinoY);
