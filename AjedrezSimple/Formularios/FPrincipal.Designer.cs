@@ -72,7 +72,7 @@ namespace AjedrezSimple {
 			this.btnMover.BorderRadius = 12F;
 			this.btnMover.BorderSize = 2F;
 			this.btnMover.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnMover.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnMover.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnMover.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
 			this.btnMover.Location = new System.Drawing.Point(12, 12);
 			this.btnMover.Name = "btnMover";
@@ -220,12 +220,12 @@ namespace AjedrezSimple {
 			this.btnVolverMenu.DialogResult = System.Windows.Forms.DialogResult.Cancel;
 			this.btnVolverMenu.FlatAppearance.BorderSize = 0;
 			this.btnVolverMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnVolverMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnVolverMenu.Font = new System.Drawing.Font("Segoe UI Black", 13F);
 			this.btnVolverMenu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
 			this.btnVolverMenu.Location = new System.Drawing.Point(12, 12);
 			this.btnVolverMenu.Name = "btnVolverMenu";
 			this.btnVolverMenu.PercentualRadius = false;
-			this.btnVolverMenu.Size = new System.Drawing.Size(165, 55);
+			this.btnVolverMenu.Size = new System.Drawing.Size(165, 54);
 			this.btnVolverMenu.TabIndex = 4;
 			this.btnVolverMenu.Text = "Volver al Menú";
 			this.btnVolverMenu.UseVisualStyleBackColor = false;
@@ -242,11 +242,11 @@ namespace AjedrezSimple {
 			this.tbNombrePieza.BorderSize = 0F;
 			this.tbNombrePieza.Cursor = System.Windows.Forms.Cursors.Default;
 			this.tbNombrePieza.FocusColor = System.Drawing.Color.Empty;
-			this.tbNombrePieza.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+			this.tbNombrePieza.Font = new System.Drawing.Font("Segoe UI", 8F);
 			this.tbNombrePieza.ForeColor = System.Drawing.SystemColors.WindowText;
 			this.tbNombrePieza.InputColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(222)))), ((int)(((byte)(239)))));
 			this.tbNombrePieza.InputText = "";
-			this.tbNombrePieza.Location = new System.Drawing.Point(12, 46);
+			this.tbNombrePieza.Location = new System.Drawing.Point(12, 45);
 			this.tbNombrePieza.MinimumSize = new System.Drawing.Size(20, 20);
 			this.tbNombrePieza.Multiline = false;
 			this.tbNombrePieza.Name = "tbNombrePieza";
@@ -256,7 +256,7 @@ namespace AjedrezSimple {
 			this.tbNombrePieza.PlaceHolderColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(88)))), ((int)(((byte)(116)))));
 			this.tbNombrePieza.ReadOnly = true;
 			this.tbNombrePieza.SelectAllOnClick = true;
-			this.tbNombrePieza.Size = new System.Drawing.Size(66, 21);
+			this.tbNombrePieza.Size = new System.Drawing.Size(66, 22);
 			this.tbNombrePieza.Style = ControLib.SleekTextBox.TextBoxStyle.RoundRect;
 			this.tbNombrePieza.TabIndex = 0;
 			this.tbNombrePieza.TabStop = false;
@@ -267,6 +267,7 @@ namespace AjedrezSimple {
 			// 
 			this.lblPosicion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.lblPosicion.AutoSize = true;
+			this.lblPosicion.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblPosicion.Location = new System.Drawing.Point(84, 48);
 			this.lblPosicion.Name = "lblPosicion";
 			this.lblPosicion.Size = new System.Drawing.Size(19, 13);
@@ -277,6 +278,7 @@ namespace AjedrezSimple {
 			// 
 			this.cmbDestinoY.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cmbDestinoY.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cmbDestinoY.Font = new System.Drawing.Font("Segoe UI", 8F);
 			this.cmbDestinoY.FormattingEnabled = true;
 			this.cmbDestinoY.Items.AddRange(new object[] {
             "1",
@@ -296,6 +298,7 @@ namespace AjedrezSimple {
 			// 
 			this.cmbDestinoX.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.cmbDestinoX.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.cmbDestinoX.Font = new System.Drawing.Font("Segoe UI", 8F);
 			this.cmbDestinoX.FormattingEnabled = true;
 			this.cmbDestinoX.Items.AddRange(new object[] {
             "A",

@@ -337,8 +337,10 @@ namespace AjedrezSimple {
 			//Formación para escenario de jaque de prueba 1: "3ppp2/3pkp2/3p1p2/rb4br/8/Q7/8/6K1"
 			//Formación para escenario de jaque de prueba 2: "3ppp2/3pkp2/3p1p2/rb4br/8/Q7/8/6K1"
 			//Formación para promoción seguida de jaque mate: "k7/pppppp1P/8/8/8/8/8/K7"
-			//Formación para Insuficiencia Material: "k7/8/8/3n4/8/5P2/8/K7"
-			this.juego = new Ajedrez("kkkKKK");
+			//Formación para Insuficiencia Material 1: "k7/8/8/3n4/8/5P2/8/K7"
+			//Formación para Insuficiencia Material 2: "8/3k4/8/2bbbb2/2BBBB2/8/3K4/8"
+			//Formación para Insuficiencia Material 2: "8/3k4/8/2p5/5P2/8/3K4/8"
+			this.juego = new Ajedrez();
 			this.seleccionada = Pieza.Ninguna;
 			this.turno = Pieza.ColorPieza.Blanco;
 			this.ActualizarTablero();

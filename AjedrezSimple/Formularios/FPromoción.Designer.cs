@@ -41,9 +41,10 @@ namespace AjedrezSimple {
 			// 
 			// lblCandidato
 			// 
+			this.lblCandidato.Font = new System.Drawing.Font("Segoe UI", 9F);
 			this.lblCandidato.Location = new System.Drawing.Point(12, 42);
 			this.lblCandidato.Name = "lblCandidato";
-			this.lblCandidato.Size = new System.Drawing.Size(55, 24);
+			this.lblCandidato.Size = new System.Drawing.Size(66, 24);
 			this.lblCandidato.TabIndex = 0;
 			this.lblCandidato.Text = "Candidato";
 			this.lblCandidato.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -62,7 +63,7 @@ namespace AjedrezSimple {
 			this.tbCandidato.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
 			this.tbCandidato.InputColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(186)))), ((int)(((byte)(218)))));
 			this.tbCandidato.InputText = "";
-			this.tbCandidato.Location = new System.Drawing.Point(73, 42);
+			this.tbCandidato.Location = new System.Drawing.Point(84, 42);
 			this.tbCandidato.MinimumSize = new System.Drawing.Size(20, 24);
 			this.tbCandidato.Multiline = true;
 			this.tbCandidato.Name = "tbCandidato";
@@ -72,7 +73,7 @@ namespace AjedrezSimple {
 			this.tbCandidato.PlaceHolderColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(88)))), ((int)(((byte)(116)))));
 			this.tbCandidato.ReadOnly = true;
 			this.tbCandidato.SelectAllOnClick = true;
-			this.tbCandidato.Size = new System.Drawing.Size(96, 24);
+			this.tbCandidato.Size = new System.Drawing.Size(85, 24);
 			this.tbCandidato.Style = ControLib.SleekTextBox.TextBoxStyle.RoundRect;
 			this.tbCandidato.TabIndex = 1;
 			this.tbCandidato.TabStop = false;
@@ -81,9 +82,10 @@ namespace AjedrezSimple {
 			// 
 			// lblEquipo
 			// 
+			this.lblEquipo.Font = new System.Drawing.Font("Segoe UI", 9F);
 			this.lblEquipo.Location = new System.Drawing.Point(12, 15);
 			this.lblEquipo.Name = "lblEquipo";
-			this.lblEquipo.Size = new System.Drawing.Size(55, 21);
+			this.lblEquipo.Size = new System.Drawing.Size(66, 21);
 			this.lblEquipo.TabIndex = 0;
 			this.lblEquipo.Text = "Equipo";
 			this.lblEquipo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -102,7 +104,7 @@ namespace AjedrezSimple {
 			this.tbEquipo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
 			this.tbEquipo.InputColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(186)))), ((int)(((byte)(218)))));
 			this.tbEquipo.InputText = "";
-			this.tbEquipo.Location = new System.Drawing.Point(73, 12);
+			this.tbEquipo.Location = new System.Drawing.Point(84, 12);
 			this.tbEquipo.MinimumSize = new System.Drawing.Size(20, 24);
 			this.tbEquipo.Multiline = true;
 			this.tbEquipo.Name = "tbEquipo";
@@ -112,7 +114,7 @@ namespace AjedrezSimple {
 			this.tbEquipo.PlaceHolderColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(88)))), ((int)(((byte)(116)))));
 			this.tbEquipo.ReadOnly = true;
 			this.tbEquipo.SelectAllOnClick = true;
-			this.tbEquipo.Size = new System.Drawing.Size(96, 24);
+			this.tbEquipo.Size = new System.Drawing.Size(85, 24);
 			this.tbEquipo.Style = ControLib.SleekTextBox.TextBoxStyle.RoundRect;
 			this.tbEquipo.TabIndex = 1;
 			this.tbEquipo.TabStop = false;
@@ -148,7 +150,7 @@ namespace AjedrezSimple {
 			this.rbReina.CheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(190)))), ((int)(((byte)(71)))));
 			this.rbReina.CheckSize = 10F;
 			this.rbReina.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.rbReina.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.rbReina.Font = new System.Drawing.Font("Segoe UI Black", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.rbReina.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(102)))), ((int)(((byte)(78)))));
 			this.rbReina.Location = new System.Drawing.Point(6, 3);
 			this.rbReina.MinimumSize = new System.Drawing.Size(0, 21);
@@ -169,7 +171,7 @@ namespace AjedrezSimple {
 			this.rbAlfil.CheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(190)))), ((int)(((byte)(71)))));
 			this.rbAlfil.CheckSize = 10F;
 			this.rbAlfil.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.rbAlfil.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+			this.rbAlfil.Font = new System.Drawing.Font("Segoe UI", 9F);
 			this.rbAlfil.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
 			this.rbAlfil.Location = new System.Drawing.Point(6, 87);
 			this.rbAlfil.MinimumSize = new System.Drawing.Size(0, 21);
@@ -189,7 +191,7 @@ namespace AjedrezSimple {
 			this.rbTorre.CheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(190)))), ((int)(((byte)(71)))));
 			this.rbTorre.CheckSize = 10F;
 			this.rbTorre.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.rbTorre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+			this.rbTorre.Font = new System.Drawing.Font("Segoe UI", 9F);
 			this.rbTorre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
 			this.rbTorre.Location = new System.Drawing.Point(6, 31);
 			this.rbTorre.MinimumSize = new System.Drawing.Size(0, 21);
@@ -209,7 +211,7 @@ namespace AjedrezSimple {
 			this.rbCaballero.CheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(190)))), ((int)(((byte)(71)))));
 			this.rbCaballero.CheckSize = 10F;
 			this.rbCaballero.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.rbCaballero.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+			this.rbCaballero.Font = new System.Drawing.Font("Segoe UI", 9F);
 			this.rbCaballero.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
 			this.rbCaballero.Location = new System.Drawing.Point(6, 59);
 			this.rbCaballero.MinimumSize = new System.Drawing.Size(0, 21);
@@ -231,7 +233,7 @@ namespace AjedrezSimple {
 			this.btnPromocionar.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.btnPromocionar.FlatAppearance.BorderSize = 0;
 			this.btnPromocionar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.btnPromocionar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnPromocionar.Font = new System.Drawing.Font("Segoe UI Black", 13F);
 			this.btnPromocionar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
 			this.btnPromocionar.Location = new System.Drawing.Point(9, 125);
 			this.btnPromocionar.Name = "btnPromocionar";
