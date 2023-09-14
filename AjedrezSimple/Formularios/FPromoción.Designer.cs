@@ -28,15 +28,15 @@ namespace AjedrezSimple {
 			this.tbCandidato = new ControLib.SleekTextBox();
 			this.lblEquipo = new System.Windows.Forms.Label();
 			this.tbEquipo = new ControLib.SleekTextBox();
-			this.gbPromoción = new System.Windows.Forms.GroupBox();
-			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+			this.tlpPromociones = new System.Windows.Forms.TableLayoutPanel();
 			this.rbReina = new ControLib.SleekRadioButton();
 			this.rbAlfil = new ControLib.SleekRadioButton();
 			this.rbTorre = new ControLib.SleekRadioButton();
 			this.rbCaballero = new ControLib.SleekRadioButton();
 			this.btnPromocionar = new ControLib.SleekButton();
-			this.gbPromoción.SuspendLayout();
-			this.tableLayoutPanel1.SuspendLayout();
+			this.panelContenido = new System.Windows.Forms.Panel();
+			this.tlpPromociones.SuspendLayout();
+			this.panelContenido.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// lblCandidato
@@ -52,7 +52,7 @@ namespace AjedrezSimple {
 			// 
 			this.tbCandidato.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.tbCandidato.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(48)))), ((int)(((byte)(80)))));
+			this.tbCandidato.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(47)))), ((int)(((byte)(70)))));
 			this.tbCandidato.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
 			this.tbCandidato.BorderRadius = 100F;
 			this.tbCandidato.BorderSize = 0F;
@@ -60,7 +60,7 @@ namespace AjedrezSimple {
 			this.tbCandidato.FocusColor = System.Drawing.Color.Empty;
 			this.tbCandidato.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.tbCandidato.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
-			this.tbCandidato.InputColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(222)))), ((int)(((byte)(239)))));
+			this.tbCandidato.InputColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(186)))), ((int)(((byte)(218)))));
 			this.tbCandidato.InputText = "";
 			this.tbCandidato.Location = new System.Drawing.Point(73, 42);
 			this.tbCandidato.MinimumSize = new System.Drawing.Size(20, 24);
@@ -92,7 +92,7 @@ namespace AjedrezSimple {
 			// 
 			this.tbEquipo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-			this.tbEquipo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(48)))), ((int)(((byte)(80)))));
+			this.tbEquipo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(47)))), ((int)(((byte)(70)))));
 			this.tbEquipo.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
 			this.tbEquipo.BorderRadius = 100F;
 			this.tbEquipo.BorderSize = 0F;
@@ -100,8 +100,8 @@ namespace AjedrezSimple {
 			this.tbEquipo.FocusColor = System.Drawing.Color.Empty;
 			this.tbEquipo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.tbEquipo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(22)))), ((int)(((byte)(22)))));
-			this.tbEquipo.InputColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(222)))), ((int)(((byte)(239)))));
-			this.tbEquipo.InputText = "Equipo";
+			this.tbEquipo.InputColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(186)))), ((int)(((byte)(218)))));
+			this.tbEquipo.InputText = "";
 			this.tbEquipo.Location = new System.Drawing.Point(73, 12);
 			this.tbEquipo.MinimumSize = new System.Drawing.Size(20, 24);
 			this.tbEquipo.Multiline = true;
@@ -119,38 +119,25 @@ namespace AjedrezSimple {
 			this.tbEquipo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
 			this.tbEquipo.WordWrap = true;
 			// 
-			// gbPromoción
+			// tlpPromociones
 			// 
-			this.gbPromoción.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.gbPromoción.Controls.Add(this.tableLayoutPanel1);
-			this.gbPromoción.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
-			this.gbPromoción.Location = new System.Drawing.Point(12, 72);
-			this.gbPromoción.Name = "gbPromoción";
-			this.gbPromoción.Size = new System.Drawing.Size(157, 119);
-			this.gbPromoción.TabIndex = 0;
-			this.gbPromoción.TabStop = false;
-			this.gbPromoción.Text = "Selecciona una Promoción";
-			// 
-			// tableLayoutPanel1
-			// 
-			this.tableLayoutPanel1.ColumnCount = 1;
-			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.tableLayoutPanel1.Controls.Add(this.rbReina, 0, 0);
-			this.tableLayoutPanel1.Controls.Add(this.rbAlfil, 0, 3);
-			this.tableLayoutPanel1.Controls.Add(this.rbTorre, 0, 1);
-			this.tableLayoutPanel1.Controls.Add(this.rbCaballero, 0, 2);
-			this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 16);
-			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-			this.tableLayoutPanel1.RowCount = 4;
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-			this.tableLayoutPanel1.Size = new System.Drawing.Size(151, 100);
-			this.tableLayoutPanel1.TabIndex = 4;
+			this.tlpPromociones.ColumnCount = 1;
+			this.tlpPromociones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+			this.tlpPromociones.Controls.Add(this.rbReina, 0, 0);
+			this.tlpPromociones.Controls.Add(this.rbAlfil, 0, 3);
+			this.tlpPromociones.Controls.Add(this.rbTorre, 0, 1);
+			this.tlpPromociones.Controls.Add(this.rbCaballero, 0, 2);
+			this.tlpPromociones.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tlpPromociones.Location = new System.Drawing.Point(9, 9);
+			this.tlpPromociones.Name = "tlpPromociones";
+			this.tlpPromociones.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
+			this.tlpPromociones.RowCount = 4;
+			this.tlpPromociones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+			this.tlpPromociones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+			this.tlpPromociones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+			this.tlpPromociones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+			this.tlpPromociones.Size = new System.Drawing.Size(163, 116);
+			this.tlpPromociones.TabIndex = 0;
 			// 
 			// rbReina
 			// 
@@ -159,14 +146,14 @@ namespace AjedrezSimple {
 			this.rbReina.CheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(237)))), ((int)(((byte)(6)))));
 			this.rbReina.Checked = true;
 			this.rbReina.CheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(190)))), ((int)(((byte)(71)))));
-			this.rbReina.CheckSize = 11F;
+			this.rbReina.CheckSize = 10F;
 			this.rbReina.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.rbReina.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.rbReina.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(102)))), ((int)(((byte)(78)))));
-			this.rbReina.Location = new System.Drawing.Point(3, 3);
+			this.rbReina.Location = new System.Drawing.Point(6, 3);
 			this.rbReina.MinimumSize = new System.Drawing.Size(0, 21);
 			this.rbReina.Name = "rbReina";
-			this.rbReina.Size = new System.Drawing.Size(145, 21);
+			this.rbReina.Size = new System.Drawing.Size(151, 22);
 			this.rbReina.TabIndex = 0;
 			this.rbReina.TabStop = true;
 			this.rbReina.Text = "Reina";
@@ -180,14 +167,14 @@ namespace AjedrezSimple {
 			this.rbAlfil.BorderWidth = 2F;
 			this.rbAlfil.CheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(237)))), ((int)(((byte)(6)))));
 			this.rbAlfil.CheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(190)))), ((int)(((byte)(71)))));
-			this.rbAlfil.CheckSize = 11F;
+			this.rbAlfil.CheckSize = 10F;
 			this.rbAlfil.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.rbAlfil.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
 			this.rbAlfil.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
-			this.rbAlfil.Location = new System.Drawing.Point(3, 78);
+			this.rbAlfil.Location = new System.Drawing.Point(6, 87);
 			this.rbAlfil.MinimumSize = new System.Drawing.Size(0, 21);
 			this.rbAlfil.Name = "rbAlfil";
-			this.rbAlfil.Size = new System.Drawing.Size(145, 21);
+			this.rbAlfil.Size = new System.Drawing.Size(151, 23);
 			this.rbAlfil.TabIndex = 3;
 			this.rbAlfil.Text = "Alfil";
 			this.rbAlfil.TextPadding = 4F;
@@ -200,14 +187,14 @@ namespace AjedrezSimple {
 			this.rbTorre.BorderWidth = 2F;
 			this.rbTorre.CheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(237)))), ((int)(((byte)(6)))));
 			this.rbTorre.CheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(190)))), ((int)(((byte)(71)))));
-			this.rbTorre.CheckSize = 11F;
+			this.rbTorre.CheckSize = 10F;
 			this.rbTorre.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.rbTorre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
 			this.rbTorre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
-			this.rbTorre.Location = new System.Drawing.Point(3, 28);
+			this.rbTorre.Location = new System.Drawing.Point(6, 31);
 			this.rbTorre.MinimumSize = new System.Drawing.Size(0, 21);
 			this.rbTorre.Name = "rbTorre";
-			this.rbTorre.Size = new System.Drawing.Size(145, 21);
+			this.rbTorre.Size = new System.Drawing.Size(151, 22);
 			this.rbTorre.TabIndex = 1;
 			this.rbTorre.Text = "Torre";
 			this.rbTorre.TextPadding = 4F;
@@ -220,14 +207,14 @@ namespace AjedrezSimple {
 			this.rbCaballero.BorderWidth = 2F;
 			this.rbCaballero.CheckColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(237)))), ((int)(((byte)(6)))));
 			this.rbCaballero.CheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(190)))), ((int)(((byte)(71)))));
-			this.rbCaballero.CheckSize = 11F;
+			this.rbCaballero.CheckSize = 10F;
 			this.rbCaballero.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.rbCaballero.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
 			this.rbCaballero.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
-			this.rbCaballero.Location = new System.Drawing.Point(3, 53);
+			this.rbCaballero.Location = new System.Drawing.Point(6, 59);
 			this.rbCaballero.MinimumSize = new System.Drawing.Size(0, 21);
 			this.rbCaballero.Name = "rbCaballero";
-			this.rbCaballero.Size = new System.Drawing.Size(145, 21);
+			this.rbCaballero.Size = new System.Drawing.Size(151, 22);
 			this.rbCaballero.TabIndex = 2;
 			this.rbCaballero.Text = "Caballero";
 			this.rbCaballero.TextPadding = 4F;
@@ -236,34 +223,46 @@ namespace AjedrezSimple {
 			// 
 			// btnPromocionar
 			// 
-			this.btnPromocionar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
 			this.btnPromocionar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(95)))), ((int)(((byte)(237)))), ((int)(((byte)(23)))));
 			this.btnPromocionar.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(190)))), ((int)(((byte)(71)))));
 			this.btnPromocionar.BorderRadius = 12F;
 			this.btnPromocionar.BorderSize = 0F;
 			this.btnPromocionar.DialogResult = System.Windows.Forms.DialogResult.OK;
+			this.btnPromocionar.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.btnPromocionar.FlatAppearance.BorderSize = 0;
 			this.btnPromocionar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnPromocionar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnPromocionar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(36)))), ((int)(((byte)(36)))));
-			this.btnPromocionar.Location = new System.Drawing.Point(12, 197);
+			this.btnPromocionar.Location = new System.Drawing.Point(9, 125);
 			this.btnPromocionar.Name = "btnPromocionar";
 			this.btnPromocionar.PercentualRadius = false;
-			this.btnPromocionar.Size = new System.Drawing.Size(157, 44);
+			this.btnPromocionar.Size = new System.Drawing.Size(163, 44);
 			this.btnPromocionar.TabIndex = 4;
 			this.btnPromocionar.Text = "Promocionar";
 			this.btnPromocionar.UseVisualStyleBackColor = false;
 			// 
+			// panelContenido
+			// 
+			this.panelContenido.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(48)))), ((int)(((byte)(80)))));
+			this.panelContenido.Controls.Add(this.tlpPromociones);
+			this.panelContenido.Controls.Add(this.btnPromocionar);
+			this.panelContenido.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.panelContenido.Location = new System.Drawing.Point(0, 75);
+			this.panelContenido.Margin = new System.Windows.Forms.Padding(6);
+			this.panelContenido.Name = "panelContenido";
+			this.panelContenido.Padding = new System.Windows.Forms.Padding(9);
+			this.panelContenido.Size = new System.Drawing.Size(181, 178);
+			this.panelContenido.TabIndex = 0;
+			// 
 			// FPromoción
 			// 
+			this.AcceptButton = this.btnPromocionar;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(42)))));
 			this.ClientSize = new System.Drawing.Size(181, 253);
 			this.ControlBox = false;
-			this.Controls.Add(this.btnPromocionar);
-			this.Controls.Add(this.gbPromoción);
+			this.Controls.Add(this.panelContenido);
 			this.Controls.Add(this.tbEquipo);
 			this.Controls.Add(this.lblEquipo);
 			this.Controls.Add(this.tbCandidato);
@@ -273,8 +272,8 @@ namespace AjedrezSimple {
 			this.Name = "FPromoción";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Promoción de Peón";
-			this.gbPromoción.ResumeLayout(false);
-			this.tableLayoutPanel1.ResumeLayout(false);
+			this.tlpPromociones.ResumeLayout(false);
+			this.panelContenido.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -283,8 +282,7 @@ namespace AjedrezSimple {
 
 		private System.Windows.Forms.Label lblCandidato;
 		private System.Windows.Forms.Label lblEquipo;
-		private System.Windows.Forms.GroupBox gbPromoción;
-		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+		private System.Windows.Forms.TableLayoutPanel tlpPromociones;
 		private ControLib.SleekButton btnPromocionar;
 		public ControLib.SleekTextBox tbCandidato;
 		public ControLib.SleekTextBox tbEquipo;
@@ -292,5 +290,6 @@ namespace AjedrezSimple {
 		public ControLib.SleekRadioButton rbAlfil;
 		public ControLib.SleekRadioButton rbTorre;
 		public ControLib.SleekRadioButton rbCaballero;
+		private System.Windows.Forms.Panel panelContenido;
 	}
 }

@@ -28,9 +28,11 @@ namespace AjedrezSimple {
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FPrincipal));
 			this.btnMover = new ControLib.SleekButton();
-			this.lsbHistorialBlancas = new System.Windows.Forms.ListBox();
 			this.dgvTablero = new System.Windows.Forms.DataGridView();
 			this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,17 +48,17 @@ namespace AjedrezSimple {
 			this.lblPosicion = new System.Windows.Forms.Label();
 			this.cmbDestinoY = new System.Windows.Forms.ComboBox();
 			this.cmbDestinoX = new System.Windows.Forms.ComboBox();
-			this.label1 = new System.Windows.Forms.Label();
-			this.lblBlancas = new System.Windows.Forms.Label();
-			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-			this.lsbHistorialNegras = new System.Windows.Forms.ListBox();
 			this.panelIzquierdo = new System.Windows.Forms.Panel();
 			this.panelHistorial = new System.Windows.Forms.Panel();
+			this.dgvHistorial = new System.Windows.Forms.DataGridView();
+			this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.panelControl = new System.Windows.Forms.Panel();
 			((System.ComponentModel.ISupportInitialize)(this.dgvTablero)).BeginInit();
-			this.tableLayoutPanel1.SuspendLayout();
 			this.panelIzquierdo.SuspendLayout();
 			this.panelHistorial.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dgvHistorial)).BeginInit();
 			this.panelControl.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -81,22 +83,6 @@ namespace AjedrezSimple {
 			this.btnMover.UseVisualStyleBackColor = false;
 			this.btnMover.Click += new System.EventHandler(this.btnMover_Click);
 			// 
-			// lsbHistorialBlancas
-			// 
-			this.lsbHistorialBlancas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(61)))), ((int)(((byte)(101)))));
-			this.lsbHistorialBlancas.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.lsbHistorialBlancas.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.lsbHistorialBlancas.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-			this.lsbHistorialBlancas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
-			this.lsbHistorialBlancas.FormattingEnabled = true;
-			this.lsbHistorialBlancas.IntegralHeight = false;
-			this.lsbHistorialBlancas.ItemHeight = 15;
-			this.lsbHistorialBlancas.Location = new System.Drawing.Point(3, 3);
-			this.lsbHistorialBlancas.Name = "lsbHistorialBlancas";
-			this.lsbHistorialBlancas.Size = new System.Drawing.Size(76, 323);
-			this.lsbHistorialBlancas.TabIndex = 4;
-			this.lsbHistorialBlancas.TabStop = false;
-			// 
 			// dgvTablero
 			// 
 			this.dgvTablero.AllowUserToAddRows = false;
@@ -104,13 +90,14 @@ namespace AjedrezSimple {
 			this.dgvTablero.AllowUserToResizeColumns = false;
 			this.dgvTablero.AllowUserToResizeRows = false;
 			this.dgvTablero.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-			this.dgvTablero.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(48)))), ((int)(((byte)(80)))));
+			this.dgvTablero.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(56)))), ((int)(((byte)(103)))));
 			this.dgvTablero.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.dgvTablero.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
 			this.dgvTablero.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
 			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-			dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(61)))), ((int)(((byte)(101)))));
+			dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(153)))), ((int)(((byte)(187)))));
 			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
 			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
 			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
@@ -137,6 +124,7 @@ namespace AjedrezSimple {
 			this.dgvTablero.DefaultCellStyle = dataGridViewCellStyle3;
 			this.dgvTablero.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dgvTablero.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+			this.dgvTablero.EnableHeadersVisualStyles = false;
 			this.dgvTablero.GridColor = System.Drawing.Color.DarkSlateGray;
 			this.dgvTablero.Location = new System.Drawing.Point(189, 0);
 			this.dgvTablero.MultiSelect = false;
@@ -237,7 +225,7 @@ namespace AjedrezSimple {
 			this.btnVolverMenu.Location = new System.Drawing.Point(12, 12);
 			this.btnVolverMenu.Name = "btnVolverMenu";
 			this.btnVolverMenu.PercentualRadius = false;
-			this.btnVolverMenu.Size = new System.Drawing.Size(165, 54);
+			this.btnVolverMenu.Size = new System.Drawing.Size(165, 55);
 			this.btnVolverMenu.TabIndex = 4;
 			this.btnVolverMenu.Text = "Volver al Menú";
 			this.btnVolverMenu.UseVisualStyleBackColor = false;
@@ -254,7 +242,7 @@ namespace AjedrezSimple {
 			this.tbNombrePieza.BorderSize = 0F;
 			this.tbNombrePieza.Cursor = System.Windows.Forms.Cursors.Default;
 			this.tbNombrePieza.FocusColor = System.Drawing.Color.Empty;
-			this.tbNombrePieza.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.tbNombrePieza.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
 			this.tbNombrePieza.ForeColor = System.Drawing.SystemColors.WindowText;
 			this.tbNombrePieza.InputColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(222)))), ((int)(((byte)(239)))));
 			this.tbNombrePieza.InputText = "";
@@ -323,62 +311,6 @@ namespace AjedrezSimple {
 			this.cmbDestinoX.Size = new System.Drawing.Size(31, 21);
 			this.cmbDestinoX.TabIndex = 1;
 			// 
-			// label1
-			// 
-			this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.label1.AutoSize = true;
-			this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(117)))), ((int)(((byte)(223)))));
-			this.label1.Location = new System.Drawing.Point(136, 9);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(41, 13);
-			this.label1.TabIndex = 2;
-			this.label1.Text = "Negras";
-			this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			// 
-			// lblBlancas
-			// 
-			this.lblBlancas.AutoSize = true;
-			this.lblBlancas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(117)))), ((int)(((byte)(223)))));
-			this.lblBlancas.Location = new System.Drawing.Point(12, 9);
-			this.lblBlancas.Name = "lblBlancas";
-			this.lblBlancas.Size = new System.Drawing.Size(45, 13);
-			this.lblBlancas.TabIndex = 2;
-			this.lblBlancas.Text = "Blancas";
-			// 
-			// tableLayoutPanel1
-			// 
-			this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.tableLayoutPanel1.ColumnCount = 2;
-			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-			this.tableLayoutPanel1.Controls.Add(this.lsbHistorialBlancas, 0, 0);
-			this.tableLayoutPanel1.Controls.Add(this.lsbHistorialNegras, 1, 0);
-			this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 25);
-			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-			this.tableLayoutPanel1.RowCount = 1;
-			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.tableLayoutPanel1.Size = new System.Drawing.Size(165, 329);
-			this.tableLayoutPanel1.TabIndex = 1;
-			// 
-			// lsbHistorialNegras
-			// 
-			this.lsbHistorialNegras.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(61)))), ((int)(((byte)(101)))));
-			this.lsbHistorialNegras.BorderStyle = System.Windows.Forms.BorderStyle.None;
-			this.lsbHistorialNegras.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.lsbHistorialNegras.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-			this.lsbHistorialNegras.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
-			this.lsbHistorialNegras.FormattingEnabled = true;
-			this.lsbHistorialNegras.IntegralHeight = false;
-			this.lsbHistorialNegras.ItemHeight = 15;
-			this.lsbHistorialNegras.Location = new System.Drawing.Point(85, 3);
-			this.lsbHistorialNegras.Name = "lsbHistorialNegras";
-			this.lsbHistorialNegras.Size = new System.Drawing.Size(77, 323);
-			this.lsbHistorialNegras.TabIndex = 5;
-			this.lsbHistorialNegras.TabStop = false;
-			// 
 			// panelIzquierdo
 			// 
 			this.panelIzquierdo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(37)))), ((int)(((byte)(42)))));
@@ -395,15 +327,89 @@ namespace AjedrezSimple {
 			// panelHistorial
 			// 
 			this.panelHistorial.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(48)))), ((int)(((byte)(80)))));
-			this.panelHistorial.Controls.Add(this.label1);
-			this.panelHistorial.Controls.Add(this.lblBlancas);
-			this.panelHistorial.Controls.Add(this.tableLayoutPanel1);
+			this.panelHistorial.Controls.Add(this.dgvHistorial);
 			this.panelHistorial.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panelHistorial.Location = new System.Drawing.Point(0, 79);
 			this.panelHistorial.Name = "panelHistorial";
-			this.panelHistorial.Padding = new System.Windows.Forms.Padding(9);
+			this.panelHistorial.Padding = new System.Windows.Forms.Padding(6, 9, 6, 9);
 			this.panelHistorial.Size = new System.Drawing.Size(189, 366);
 			this.panelHistorial.TabIndex = 1;
+			// 
+			// dgvHistorial
+			// 
+			this.dgvHistorial.AllowUserToAddRows = false;
+			this.dgvHistorial.AllowUserToDeleteRows = false;
+			this.dgvHistorial.AllowUserToResizeColumns = false;
+			this.dgvHistorial.AllowUserToResizeRows = false;
+			this.dgvHistorial.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(48)))), ((int)(((byte)(80)))));
+			this.dgvHistorial.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.dgvHistorial.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+			this.dgvHistorial.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+			dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(48)))), ((int)(((byte)(80)))));
+			dataGridViewCellStyle5.Font = new System.Drawing.Font("Lato Black", 8.999999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(117)))), ((int)(((byte)(223)))));
+			dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(48)))), ((int)(((byte)(80)))));
+			dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(117)))), ((int)(((byte)(223)))));
+			dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dgvHistorial.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+			this.dgvHistorial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dgvHistorial.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column10,
+            this.Column11,
+            this.Column12});
+			dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(48)))), ((int)(((byte)(80)))));
+			dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
+			dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(48)))), ((int)(((byte)(80)))));
+			dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
+			dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+			this.dgvHistorial.DefaultCellStyle = dataGridViewCellStyle7;
+			this.dgvHistorial.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.dgvHistorial.EnableHeadersVisualStyles = false;
+			this.dgvHistorial.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(48)))), ((int)(((byte)(80)))));
+			this.dgvHistorial.Location = new System.Drawing.Point(6, 9);
+			this.dgvHistorial.Name = "dgvHistorial";
+			this.dgvHistorial.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+			this.dgvHistorial.RowHeadersVisible = false;
+			this.dgvHistorial.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+			this.dgvHistorial.ScrollBars = System.Windows.Forms.ScrollBars.None;
+			this.dgvHistorial.Size = new System.Drawing.Size(177, 348);
+			this.dgvHistorial.TabIndex = 2;
+			this.dgvHistorial.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvHistorial_KeyDown);
+			// 
+			// Column10
+			// 
+			this.Column10.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+			dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI Semibold", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(183)))), ((int)(((byte)(179)))), ((int)(((byte)(204)))));
+			this.Column10.DefaultCellStyle = dataGridViewCellStyle6;
+			this.Column10.FillWeight = 32F;
+			this.Column10.HeaderText = "N.";
+			this.Column10.Name = "Column10";
+			this.Column10.ReadOnly = true;
+			this.Column10.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+			this.Column10.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+			// 
+			// Column11
+			// 
+			this.Column11.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.Column11.HeaderText = "BLANCAS";
+			this.Column11.Name = "Column11";
+			this.Column11.ReadOnly = true;
+			this.Column11.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+			this.Column11.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+			// 
+			// Column12
+			// 
+			this.Column12.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+			this.Column12.HeaderText = "NEGRAS";
+			this.Column12.Name = "Column12";
+			this.Column12.ReadOnly = true;
+			this.Column12.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+			this.Column12.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
 			// 
 			// panelControl
 			// 
@@ -442,10 +448,9 @@ namespace AjedrezSimple {
 			this.Load += new System.EventHandler(this.FPrincipal_Load);
 			this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FPrincipal_KeyPress);
 			((System.ComponentModel.ISupportInitialize)(this.dgvTablero)).EndInit();
-			this.tableLayoutPanel1.ResumeLayout(false);
 			this.panelIzquierdo.ResumeLayout(false);
 			this.panelHistorial.ResumeLayout(false);
-			this.panelHistorial.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dgvHistorial)).EndInit();
 			this.panelControl.ResumeLayout(false);
 			this.panelControl.PerformLayout();
 			this.ResumeLayout(false);
@@ -455,16 +460,11 @@ namespace AjedrezSimple {
 		#endregion
 
 		private ControLib.SleekButton btnMover;
-		private System.Windows.Forms.ListBox lsbHistorialBlancas;
 		private System.Windows.Forms.DataGridView dgvTablero;
 		private System.Windows.Forms.ComboBox cmbDestinoX;
 		private System.Windows.Forms.ComboBox cmbDestinoY;
 		private System.Windows.Forms.Label lblPosicion;
 		private ControLib.SleekTextBox tbNombrePieza;
-		private System.Windows.Forms.ListBox lsbHistorialNegras;
-		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Label lblBlancas;
 		private ControLib.SleekButton btnVolverMenu;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
 		private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
@@ -478,6 +478,10 @@ namespace AjedrezSimple {
 		private System.Windows.Forms.Panel panelIzquierdo;
 		private System.Windows.Forms.Panel panelControl;
 		private System.Windows.Forms.Panel panelHistorial;
+		private System.Windows.Forms.DataGridView dgvHistorial;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
+		private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
 	}
 }
 
