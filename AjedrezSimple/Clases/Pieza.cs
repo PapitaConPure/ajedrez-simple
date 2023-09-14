@@ -4,10 +4,12 @@ using System.Collections;
 namespace AjedrezSimple {
 	public abstract class Pieza {
 		private static int totalSimulacionesApiladas = 0;
+		private readonly ArrayList simulaciones;
 		protected int x;
 		protected int y;
+		private int últimoX;
+		private int últimoY;
 		protected Ajedrez juego;
-		private ArrayList simulaciones;
 
 		public enum ColorPieza {
 			Ninguno = -1,
@@ -16,8 +18,8 @@ namespace AjedrezSimple {
 		}
 
 		public Pieza(int x, int y, ColorPieza color, Ajedrez juego) {
-			this.x = x;
-			this.y = y;
+			this.últimoX = this.x = x;
+			this.últimoY = this.y = y;
 			this.Color = color;
 			this.juego = juego;
 			this.simulaciones = new ArrayList();
@@ -83,12 +85,19 @@ namespace AjedrezSimple {
 			return true;
 		}
 
-		public void ComenzarSimulación() {
+		public int VerÚltimaPosición(out int origenX, out int origenY) {
+			origenX = this.últimoX;
+			origenY = this.últimoY;
+			return this.últimoX + this.últimoY * 8;
+		}
+
+		#region Simulaciones (Esto puede ser cambiado por un mejor sistema después)
+		internal void ComenzarSimulación() {
 			this.simulaciones.Add(new ArrayList());
 			totalSimulacionesApiladas++;
 		}
 
-		public void Simular(Movimiento movimiento) {
+		internal void Simular(Movimiento movimiento) {
 			ArrayList simulación = this.simulaciones[this.simulaciones.Count - 1] as ArrayList;
 			movimiento = movimiento.Copia;
 			movimiento.Captura = Ninguna;
@@ -114,7 +123,7 @@ namespace AjedrezSimple {
 			movimiento.Captura = atacada;
 		}
 
-		public void Desimular() {
+		internal void Desimular() {
 			ArrayList simulación = this.simulaciones[this.simulaciones.Count - 1] as ArrayList;
 
 			int último = simulación.Count - 1;
@@ -125,7 +134,7 @@ namespace AjedrezSimple {
 			simulación.RemoveAt(último);
 		}
 
-		public void DetenerSimulación() {
+		internal void DetenerSimulación() {
 			ArrayList simulación = this.simulaciones[this.simulaciones.Count - 1] as ArrayList;
 
 			int cnt = simulación.Count;
@@ -140,7 +149,9 @@ namespace AjedrezSimple {
 			this.simulaciones.Remove(simulación);
 			totalSimulacionesApiladas--;
 		}
+		#endregion
 
+		#region Cálculos de Caminos y Viajes
 		internal Pieza[] PasosHasta(Movimiento movimiento, bool hastaColisión = false) {
 			if(!movimiento.EsOrtogonal && !movimiento.EsDiagonal)
 				return new Pieza[0];
@@ -193,6 +204,7 @@ namespace AjedrezSimple {
 
 			return true;
 		}
+		#endregion
 
 		protected bool VerificarNoFuturoJaque(Movimiento movimiento) {
 			if(totalSimulacionesApiladas > 0)
@@ -212,6 +224,9 @@ namespace AjedrezSimple {
 
 		protected virtual void EfectuarCambios(Movimiento movimiento) {
 			Registro registro = new Registro(this, movimiento, this.juego);
+
+			this.últimoX = this.x;
+			this.últimoY = this.y;
 			this.x = movimiento.DestinoX;
 			this.y = movimiento.DestinoY;
 
