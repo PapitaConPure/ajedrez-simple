@@ -5,6 +5,12 @@ Una aplicación de Ajedrez sencilla para practicar herencia y polimorfismo en C#
 
 ![Mate del Pastor](https://github.com/PapitaConPure/ajedrez-simple/blob/main/Muestras/muestra2.gif)
 
+![Apertura](https://github.com/PapitaConPure/ajedrez-simple/blob/main/Muestras/muestra3.gif)
+
+![Tablas](https://github.com/PapitaConPure/ajedrez-simple/blob/main/Muestras/muestra4.gif)
+
+![Promoción](https://github.com/PapitaConPure/ajedrez-simple/blob/main/Muestras/muestra5.gif)
+
 ## Tecnologías
 * .NET Framework 4.7.2
 * WhiteStarUML 5.9.1.0
