@@ -13,7 +13,8 @@ namespace AjedrezSimple {
 		private static readonly Color ColorCeldaPaso = Color.FromArgb(77, 59, 173);
 		private static readonly Color ColorCeldaBlancaCaptura = Color.FromArgb(240, 52, 14);
 		private static readonly Color ColorCeldaNegraCaptura = Color.FromArgb(255, 94, 61);
-		private static readonly Color ColorCeldaResaltado = Color.FromArgb(93, 214, 34);
+		private static readonly Color ColorCeldaBlancaResaltado = Color.FromArgb(91, 227, 23);
+		private static readonly Color ColorCeldaNegraResaltado = Color.FromArgb(91, 201, 34);
 		#endregion
 
 		private Ajedrez juego;
@@ -228,20 +229,15 @@ namespace AjedrezSimple {
 			this.ActualizarTablero();
 
 			if(this.últimoOrigen != null) {
-				DataGridViewCellStyle estiloCelda = new DataGridViewCellStyle(this.últimoOrigen.Style);
 				if(this.EsCasillaBlanca(this.últimoOrigen))
-					estiloCelda.BackColor = ColorCeldaBlanca;
+					this.últimoOrigen.Style.BackColor = ColorCeldaBlanca;
 				else
-					estiloCelda.BackColor = ColorCeldaNegra;
-				this.últimoOrigen.Style = estiloCelda;
+					this.últimoOrigen.Style.BackColor = ColorCeldaNegra;
 
-				estiloCelda = new DataGridViewCellStyle(this.últimoDestino.Style);
-				this.últimoDestino.Style = new DataGridViewCellStyle(this.últimoDestino.Style) { BackColor = ColorCeldaResaltado };
 				if(this.EsCasillaBlanca(this.últimoDestino))
-					estiloCelda.BackColor = ColorCeldaBlanca;
+					this.últimoDestino.Style.BackColor = ColorCeldaBlanca;
 				else
-					estiloCelda.BackColor = ColorCeldaNegra;
-				this.últimoDestino.Style = estiloCelda;
+					this.últimoDestino.Style.BackColor = ColorCeldaNegra;
 
 				this.últimoOrigen = null;
 				this.últimoDestino = null;
@@ -251,8 +247,17 @@ namespace AjedrezSimple {
 			pieza.VerÚltimaPosición(out ox, out oy);
 			DataGridViewCell celdaOrigen = this.VerCelda(ox, oy);
 			DataGridViewCell celdaDestino = this.VerCelda(dx, dy);
-			celdaOrigen.Style = new DataGridViewCellStyle(celdaOrigen.Style) { BackColor = ColorCeldaResaltado };
-			celdaDestino.Style = new DataGridViewCellStyle(celdaDestino.Style) { BackColor = ColorCeldaResaltado };
+
+			if(this.EsCasillaBlanca(celdaOrigen))
+				celdaOrigen.Style.BackColor = ColorCeldaBlancaResaltado;
+			else
+				celdaOrigen.Style.BackColor = ColorCeldaNegraResaltado;
+
+			if(this.EsCasillaBlanca(celdaDestino))
+				celdaDestino.Style.BackColor = ColorCeldaBlancaResaltado;
+			else
+				celdaDestino.Style.BackColor = ColorCeldaNegraResaltado;
+
 			this.últimoOrigen = celdaOrigen;
 			this.últimoDestino = celdaDestino;
 
