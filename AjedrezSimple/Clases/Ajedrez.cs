@@ -3,10 +3,10 @@ using System.Collections;
 
 namespace AjedrezSimple {
 	public class Ajedrez {
-		private ArrayList piezas;
-		private ArrayList historial;
-		private Rey reyBlanco;
-		private Rey reyNegro;
+		private readonly ArrayList piezas;
+		private readonly ArrayList historial;
+		private readonly Rey reyBlanco;
+		private readonly Rey reyNegro;
 
 		public enum OpciónPromoción {
 			Ninguno = 0,
@@ -65,22 +65,15 @@ namespace AjedrezSimple {
 
 		public Ajedrez(): this("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR") {}
 
+		#region Propiedades de Partida
 		public bool HaFinalizado { get; private set; }
 
 		public Pieza.ColorPieza Ganador { get; private set; }
 
 		public string Empate { get; private set; }
 
-		public Pieza[] Piezas {
-			get {
-				Pieza[] arr = new Pieza[this.piezas.Count];
-				int c = 0;
-
-				foreach(Pieza pieza in this.piezas)
-					arr[c++] = pieza;
-
-				return arr;
-			}
+		public Registro ÚltimoRegistro {
+			get { return this.historial[this.historial.Count - 1] as Registro; }
 		}
 
 		public Registro[] Historial {
@@ -90,6 +83,20 @@ namespace AjedrezSimple {
 
 				foreach(Registro registro in this.historial)
 					arr[c++] = registro;
+
+				return arr;
+			}
+		}
+		#endregion
+
+		#region Búsqueda y Resolución de Piezas
+		public Pieza[] Piezas {
+			get {
+				Pieza[] arr = new Pieza[this.piezas.Count];
+				int c = 0;
+
+				foreach(Pieza pieza in this.piezas)
+					arr[c++] = pieza;
 
 				return arr;
 			}
@@ -136,7 +143,9 @@ namespace AjedrezSimple {
 				return encontrada;
 			}
 		}
+		#endregion
 
+		#region Acciones de Turno
 		public void IniciarNuevoTurno(Pieza.ColorPieza turno) {
 			foreach(Pieza pieza in this.piezas) {
 				if(pieza.Color != turno)
@@ -167,7 +176,7 @@ namespace AjedrezSimple {
 			this.piezas[índice] = nueva;
 			#endregion
 
-			Registro registro = this.historial[this.historial.Count - 1] as Registro;
+			Registro registro = this.ÚltimoRegistro;
 			registro.Movimiento.Promoción = nueva;
 
 			Pieza[] jaques = this.JaquesHacia(peón.ColorContrario);
@@ -182,7 +191,9 @@ namespace AjedrezSimple {
 
 			return true;
 		}
+		#endregion
 
+		#region Ver Piezas
 		public Pieza VerPieza(string posición) {
 			int[] pos = Pieza.APosición(posición);
 			int x = pos[0];
@@ -228,7 +239,9 @@ namespace AjedrezSimple {
 
 			return piezas.ToArray(typeof(Pieza)) as Pieza[];
 		}
+		#endregion
 
+		#region Escenarios Finales
 		public bool ComprobarReyAhogado(Pieza.ColorPieza color) {
 			bool estáAhogado = true;
 
@@ -284,6 +297,50 @@ namespace AjedrezSimple {
 			return !puedeBloquearTodo;
 		}
 
+		public bool ComprobarInsuficienciaMaterial() {
+			bool esInsuficiente = true;
+			bool huboCaballero = false;
+			int bits;
+			int bitsAlfilesBlancos = 0;
+			int bitsAlfilesNegros = 0;
+			bool casillaBlanca;
+
+			int cnt = this.piezas.Count;
+			int i = 0;
+			while(i < cnt && esInsuficiente) {
+				Pieza pieza = this.piezas[i++] as Pieza;
+
+				if(pieza is Rey)
+					continue;
+
+				if(pieza is Caballero) {
+					esInsuficiente = !huboCaballero;
+					huboCaballero = true;
+				} else if(pieza is Alfil) {
+					if(pieza.Color == Pieza.ColorPieza.Blanco)
+						bits = 1;
+					else
+						bits = 2;
+
+					casillaBlanca = (pieza.X + pieza.Y) % 2 == 0;
+					if(casillaBlanca) {
+						bitsAlfilesBlancos |= bits;
+						if(bitsAlfilesBlancos == 3)
+							esInsuficiente = false;
+					} else {
+						bitsAlfilesNegros |= bits;
+						if(bitsAlfilesNegros == 3)
+							esInsuficiente = false;
+					}
+				} else
+					esInsuficiente = false;
+			}
+
+			return esInsuficiente;
+		}
+		#endregion
+
+		#region Interacciones entre Piezas
 		public Pieza[] Colisiones(int ox, int oy, Movimiento m, bool contarColisiónFinal = false) {
 			ArrayList colisiones = new ArrayList();
 
@@ -340,6 +397,7 @@ namespace AjedrezSimple {
 
 			return atacantes.ToArray(typeof(Pieza)) as Pieza[];
 		}
+		#endregion
 
 		internal void Registrar(Registro registro) {
 			if(!registro.Captura.EsVacía)
@@ -357,6 +415,9 @@ namespace AjedrezSimple {
 				registro.EsReyAhogado = true;
 				this.HaFinalizado = true;
 				this.Empate = "Rey Ahogado";
+			} else if(this.ComprobarInsuficienciaMaterial()) {
+				this.HaFinalizado = true;
+				this.Empate = "Insuficiencia Material";
 			}
 
 			this.historial.Add(registro);
