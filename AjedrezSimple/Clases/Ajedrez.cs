@@ -317,13 +317,13 @@ namespace AjedrezSimple {
 					esInsuficiente = !huboCaballero;
 					huboCaballero = true;
 				} else if(pieza is Alfil) {
-					if(pieza.Color == Pieza.ColorPieza.Blanco)
+					casillaBlanca = (pieza.X + pieza.Y) % 2 == 1;
+					if(casillaBlanca)
 						bits = 1;
 					else
 						bits = 2;
 
-					casillaBlanca = (pieza.X + pieza.Y) % 2 == 0;
-					if(casillaBlanca) {
+					if(pieza.Color == Pieza.ColorPieza.Blanco) {
 						bitsAlfilesBlancos |= bits;
 						if(bitsAlfilesBlancos == 3)
 							esInsuficiente = false;
@@ -404,8 +404,12 @@ namespace AjedrezSimple {
 				this.piezas.Remove(registro.Captura);
 
 			Pieza[] jaques = this.JaquesHacia(registro.Emisora.ColorContrario);
-			if(jaques.Length > 0) {
-				registro.EsJaque = true;
+			registro.EsJaque = jaques.Length > 0;
+
+			if(this.ComprobarInsuficienciaMaterial()) {
+				this.HaFinalizado = true;
+				this.Empate = "Insuficiencia Material";
+			} else if(registro.EsJaque) {
 				if(this.ComprobarJaqueMate(jaques)) {
 					registro.EsJaqueMate = true;
 					this.HaFinalizado = true;
@@ -415,9 +419,6 @@ namespace AjedrezSimple {
 				registro.EsReyAhogado = true;
 				this.HaFinalizado = true;
 				this.Empate = "Rey Ahogado";
-			} else if(this.ComprobarInsuficienciaMaterial()) {
-				this.HaFinalizado = true;
-				this.Empate = "Insuficiencia Material";
 			}
 
 			this.historial.Add(registro);
