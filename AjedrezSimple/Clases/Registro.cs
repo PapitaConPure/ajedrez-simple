@@ -74,7 +74,9 @@
 
 			string notación = this.Emisora.Ícono;
 
-			if(this.HayAmbiguedad) {
+			if(this.Emisora is Peón && !this.Captura.EsVacía) {
+				notación += Pieza.ANotación(this.OrigenX, this.OrigenY)[0];
+			} else if(this.HayAmbiguedad) {
 				string notaciónOrigen = Pieza.ANotación(this.OrigenX, this.OrigenY);
 				if(this.DesambiguableX)
 					notación += notaciónOrigen[0];
