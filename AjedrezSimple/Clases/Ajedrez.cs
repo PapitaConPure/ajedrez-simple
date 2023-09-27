@@ -16,55 +16,74 @@ namespace AjedrezSimple {
 			Reina
 		}
 
+		#region Constructores
 		public Ajedrez(string formación) {
 			this.piezas = new ArrayList();
 			this.historial = new ArrayList();
 
 			this.HaFinalizado = false;
 			this.Ganador = Pieza.ColorPieza.Ninguno;
+			this.reyBlanco = this.reyNegro = null;
 
 			int rep;
 			int x = 0;
 			int y = 7;
 			Pieza.ColorPieza color;
-			Pieza pieza = null;
+			Pieza pieza;
 			foreach(char c in formación) {
 				if(c == '/') {
+					if(x < 7)
+						throw new FENFormatException();
+
 					x = 0;
 					y--;
 				} else if(char.IsDigit(c)) {
 					rep = Convert.ToInt32(c.ToString());
+					if(x + rep > 8)
+						throw new FENFormatException();
 					x += rep;
-				} else {
+				} else if(char.IsLetter(c)) {
+					if(x > 7)
+						throw new FENFormatException();
+
 					if(char.IsUpper(c))
 						color = Pieza.ColorPieza.Blanco;
 					else
 						color = Pieza.ColorPieza.Negro;
 
 					switch(c.ToString().ToLower()[0]) {
-					case 'r': pieza = new Torre(x, y, color, this); break;
+					case 'r': pieza = new Torre    (x, y, color, this); break;
 					case 'n': pieza = new Caballero(x, y, color, this); break;
-					case 'b': pieza = new Alfil(x, y, color, this); break;
-					case 'q': pieza = new Reina(x, y, color, this); break;
-					case 'k': pieza = new Rey(x, y, color, this); break;
-					case 'p': pieza = new Peón(x, y, color, this); break;
+					case 'b': pieza = new Alfil    (x, y, color, this); break;
+					case 'q': pieza = new Reina    (x, y, color, this); break;
+					case 'k': pieza = new Rey      (x, y, color, this); break;
+					case 'p': pieza = new Peón     (x, y, color, this); break;
+					default: throw new FENFormatException();
 					}
 
 					this.piezas.Add(pieza);
 					if(pieza is Rey) {
-						if(color == Pieza.ColorPieza.Blanco)
+						if(color == Pieza.ColorPieza.Blanco && this.reyBlanco == null)
 							this.reyBlanco = pieza as Rey;
-						else
+						else if(color == Pieza.ColorPieza.Negro && this.reyNegro == null)
 							this.reyNegro = pieza as Rey;
+						else
+							throw new FENFormatException();
 					}
 
 					x++;
-				}
+				} else
+					throw new FENFormatException();
 			}
+
+			if(y > 0 || this.reyBlanco == null || this.reyNegro == null)
+				throw new FENFormatException();
 		}
 
 		public Ajedrez(): this("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR") {}
+		#endregion
 
+		#region Generadores estáticos
 		public static Ajedrez Cargar(string notación, string formación, out Pieza.ColorPieza próximoTurno) {
 			Ajedrez nuevo = new Ajedrez(formación);
 
@@ -113,7 +132,7 @@ namespace AjedrezSimple {
 					do n++; while(n < arr.Length && arr[n] != ']');
 
 					if(n == arr.Length)
-						return null;
+						throw new PGNFormatException();
 
 					n++;
 					continue;
@@ -155,13 +174,13 @@ namespace AjedrezSimple {
 					}
 
 					if(nroTurnoRecibido || turno != Pieza.ColorPieza.Blanco)
-						return null;
+						throw new PGNFormatException();
 
 					nroTurnoRecibido = true;
 					do n++; while(n < arr.Length && char.IsDigit(arr[n]));
 
 					if(arr[n++] != '.')
-						return null;
+						throw new PGNFormatException();
 
 					continue;
 				}
@@ -173,10 +192,10 @@ namespace AjedrezSimple {
 					n++;
 					while(n < arr.Length && !char.IsWhiteSpace(arr[n]) && arr[n++] == '-') {
 						if(n == arr.Length)
-							return null;
+							throw new PGNFormatException();
 
 						if(arr[n] != 'O' && arr[n] != '0')
-							return null;
+							throw new PGNFormatException();
 
 						cuentaEnroque++;
 						n++;
@@ -190,7 +209,7 @@ namespace AjedrezSimple {
 						valido = p.Mover(p.X - 2, p.Y);
 
 					if(!valido)
-						return null;
+						throw new PGNFormatException();
 
 					turno = p.ColorContrario;
 					if(turno == Pieza.ColorPieza.Blanco)
@@ -211,7 +230,7 @@ namespace AjedrezSimple {
 					n--;
 
 					if(n == arr.Length || n < 2 || !char.IsDigit(arr[n]) || !char.IsLetter(arr[n - 1]))
-						return null;
+						throw new PGNFormatException();
 
 					ty = arr[n--];
 					tx = arr[n--];
@@ -236,7 +255,7 @@ namespace AjedrezSimple {
 							}
 						}
 					} else if(!char.IsLetterOrDigit(arr[n]))
-						return null;
+						throw new PGNFormatException();
 					else {
 						bool dsx = false, dsy = false;
 
@@ -247,7 +266,7 @@ namespace AjedrezSimple {
 
 						if(n >= 0) {
 							if(char.IsDigit(arr[n]))
-								return null;
+								throw new PGNFormatException();
 							else if(char.IsLetter(arr[n]) && arr[n] >= 'a' && arr[n] <= 'h') {
 								dsx = true;
 								tx = arr[n--];
@@ -268,7 +287,7 @@ namespace AjedrezSimple {
 						}
 
 						if(!valido)
-							return null;
+							throw new PGNFormatException();
 
 						if(dsx && dsy) {
 							Pieza.APosición($"{tx}{ty}", out ox, out oy);
@@ -313,7 +332,7 @@ namespace AjedrezSimple {
 
 							observantes = nuevo.Observantes(p, turno, piezaBuscada, 2);
 							if(observantes.Length != 1)
-								return null;
+								throw new PGNFormatException();
 
 							p = observantes[0];
 							ox = p.X;
@@ -321,17 +340,17 @@ namespace AjedrezSimple {
 						}
 
 						if(p.Color != turno)
-							return null;
+							throw new PGNFormatException();
 
 						m = new Movimiento(ox, oy, dx, dy);
 						valido = p.PuedeMover(m);
 					}
 
 					if(!valido)
-						return null;
+						throw new PGNFormatException();
 
 					if(debeHaberCaptura && nuevo[dx, dy].EsVacía)
-						return null;
+						throw new PGNFormatException();
 
 					p.Mover(dx, dy);
 					turno = p.ColorContrario;
@@ -343,7 +362,7 @@ namespace AjedrezSimple {
 				#endregion
 
 				//Caracter inválido
-				return null;
+				throw new PGNFormatException();
 			}
 
 			próximoTurno = turno;
@@ -354,6 +373,7 @@ namespace AjedrezSimple {
 		public static Ajedrez Cargar(string notación, out Pieza.ColorPieza próximoTurno) {
 			return Cargar(notación, "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR", out próximoTurno);
 		}
+		#endregion
 
 		#region Propiedades de Partida
 		public bool HaFinalizado { get; private set; }

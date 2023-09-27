@@ -204,6 +204,7 @@ namespace AjedrezSimple {
 		private void ActualizarHistorial(Registro registro = null) {
 			if(registro == null)
 				registro = this.juego.ÚltimoRegistro;
+
 			DataGridViewRow rowActual;
 
 			if(registro.Emisora.Color == Pieza.ColorPieza.Blanco) {
@@ -357,7 +358,6 @@ namespace AjedrezSimple {
 			fJuegoNuevo.btnVerPartida.Enabled = this.juego != null;
 			esPartidaCargada = false;
 			do {
-				sigue = false;
 				DialogResult resultado = fJuegoNuevo.ShowDialog();
 				switch(resultado) {
 				case DialogResult.Ignore:
@@ -381,36 +381,42 @@ namespace AjedrezSimple {
 				string pgn = this.fConfiguración.tbPGN.InputText;
 				this.turno = Pieza.ColorPieza.Blanco;
 				esPartidaCargada = pgn.Length != 0;
-				if(fen.Length > 0 && pgn.Length > 0)
-					this.juego = Ajedrez.Cargar(fen, pgn, out this.turno);
-				else if(pgn.Length > 0)
-					this.juego = Ajedrez.Cargar(pgn, out this.turno);
-				else if(fen.Length > 0)
-					this.juego = new Ajedrez(fen);
-				else
-					this.juego = new Ajedrez();
 
-				if(this.juego == null) {
-					new FError(
-						"Error",
-						"No se pudo procesar la información de la partida.\n" +
-						"Asegúrate de que no hayan problemas con las notaciones descriptas en la configuración."
-					).ShowDialog();
-					sigue = true;
+				sigue = true;
+				try {
+					if(fen.Length > 0 && pgn.Length > 0)
+						this.juego = Ajedrez.Cargar(fen, pgn, out this.turno);
+					else if(pgn.Length > 0)
+						this.juego = Ajedrez.Cargar(pgn, out this.turno);
+					else if(fen.Length > 0)
+						this.juego = new Ajedrez(fen);
+					else
+						this.juego = new Ajedrez();
+
+					sigue = false;
+				} catch(FormatException ex) {
+					string títuloError = "Error";
+
+					if(ex is FENFormatException)
+						títuloError = "Error de Notación FEN";
+					else if(ex is PGNFormatException)
+						títuloError = "Error de Notación PGN";
+
+					new FError(títuloError, $"{ex.Message}.").ShowDialog();
 					fJuegoNuevo.Reiniciar();
 					this.fConfiguración.Reiniciar();
 				}
 			} while(sigue);
 
+			this.dgvHistorial.Rows.Clear();
 			if(esPartidaCargada)
 				foreach(Registro registro in this.juego.Historial)
 					this.ActualizarHistorial(registro);
 
 			this.seleccionada = Pieza.Ninguna;
 			this.ActualizarTablero();
-			this.dgvHistorial.Rows.Clear();
 			this.AlternarControl(true);
-			this.NuevaPartida(0.25, true);
+			this.NuevaPartida(0.25, true); //Verifica que la partida no haya terminado antes de empezar, por la razón que sea
 		}
 
 		private void AlternarControl(bool activarJuego) {
