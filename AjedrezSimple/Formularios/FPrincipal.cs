@@ -27,6 +27,8 @@ namespace AjedrezSimple {
 		private Color colorBotónNegro;
 		private bool espectando = false;
 
+		private FConfiguración fConfiguración;
+
 		public FPrincipal() {
 			this.InitializeComponent();
 
@@ -76,16 +78,17 @@ namespace AjedrezSimple {
 		}
 
 		private void FPrincipal_Load(object sender, EventArgs e) {
-			colorBotónBlanco = this.btnMover.BackColor;
-			colorBotónNegro = this.btnMover.ForeColor;
+			this.colorBotónBlanco = this.btnMover.BackColor;
+			this.colorBotónNegro = this.btnMover.ForeColor;
+			this.fConfiguración = new FConfiguración();
 			this.NuevaPartida(1);
 		}
 
-		private void btnMover_Click(object sender, EventArgs e) {
+		private void BtnMover_Click(object sender, EventArgs e) {
 			this.MoverPiezaSeleccionada(this.cmbDestinoX.SelectedIndex, this.cmbDestinoY.SelectedIndex);
 		}
 
-		private void dgvTablero_CellStateChanged(object sender, DataGridViewCellStateChangedEventArgs e) {
+		private void DgvTablero_CellStateChanged(object sender, DataGridViewCellStateChangedEventArgs e) {
 			if(this.juego == null) {
 				this.dgvTablero.ClearSelection();
 				return;
@@ -138,7 +141,10 @@ namespace AjedrezSimple {
 				this.cmbDestinoX.SelectedIndex = tecla - 'A';
 		}
 
-		private void dgvHistorial_KeyDown(object sender, KeyEventArgs e) {
+		private void DgvHistorial_KeyDown(object sender, KeyEventArgs e) {
+			if(this.dgvHistorial.RowCount < 10)
+				return;
+
 			int diff = 0;
 
 			switch(e.KeyCode) {
@@ -152,7 +158,7 @@ namespace AjedrezSimple {
 			this.dgvHistorial.FirstDisplayedScrollingRowIndex = Math.Max(0, Math.Min(value, this.dgvHistorial.RowCount - 1));
 		}
 
-		private void btnVolverMenu_Click(object sender, EventArgs e) {
+		private void BtnVolverMenu_Click(object sender, EventArgs e) {
 			this.NuevaPartida(0.25);
 		}
 
@@ -195,8 +201,9 @@ namespace AjedrezSimple {
 				}
 		}
 
-		private void ActualizarHistorial() {
-			Registro registro = this.juego.ÚltimoRegistro;
+		private void ActualizarHistorial(Registro registro = null) {
+			if(registro == null)
+				registro = this.juego.ÚltimoRegistro;
 			DataGridViewRow rowActual;
 
 			if(registro.Emisora.Color == Pieza.ColorPieza.Blanco) {
@@ -304,7 +311,28 @@ namespace AjedrezSimple {
 			this.ActualizarTablero();
 		}
 
-		private void NuevaPartida(double segundosEntrada) {
+		private void NuevaPartida(double segundosEntrada, bool habilitaControles = false) {
+			//Formación estándar: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"
+			//Formación sin peones: "r2qk2r/1bn2nb1/8/8/8/8/1BN2NB1/R2QK2R"
+			//Formación para probar ambigüedades con caballos: "8/2n5/8/8/5n2/2n5/8/8"
+			//Formación para probar ambigüedades con alfiles: "8/8/2b1b3/8/2b1B3/8/8/8"
+			//Formación de Mate del Pastor: "r1bqkb1r/pppp1ppp/2n2n2/4p2Q/2B1P3/8/PPPP1PPP/RNB1K1NR"
+			//Formación para probar Rey Ahogado: "1N5k/p4Q1p/P6P/5N2/8/1p6/3N4/R1B1KB2"
+			//Formación para escenario de jaque de prueba 1: "3ppp2/3pkp2/3p1p2/rb4br/8/Q7/8/6K1"
+			//Formación para escenario de jaque de prueba 2: "3ppp2/3pkp2/3p1p2/rb4br/8/Q7/8/6K1"
+			//Formación para promoción seguida de jaque mate: "k7/pppppp1P/8/8/8/8/8/K7"
+			//Formación para Insuficiencia Material 1: "k7/8/8/3n4/8/5P2/8/K7"
+			//Formación para Insuficiencia Material 2: "8/3k4/8/2bbbb2/2BBBB2/8/3K4/8"
+			//Formación para Insuficiencia Material 3: "8/3k4/8/2p5/5P2/8/3K4/8"
+			//Probar carga: "1. e4 e5 2. Nf3 Nc6 3. d4 exd4 4. Nxd4 Nf6 5. Nxc6 bxc6 6. e5 Qe7 7. Qe2 Nd5 8." +
+			//				"c4 Qb4+ 9. Nd2 Nf4 10. Qe3 Ng6 11. Bd3 Bc5 12. Qg3 O-O 13. O-O d6 14. Nb3 Nxe5 " +
+			//				"15. a3 Qb6 16. Nxc5 Qxc5 17. Be3 Qa5 18. b4 Qa4 19. Bd4 f6 20. Bxe5 fxe5 21. f4 " +
+			//				"Bf5 22. fxe5 Bxd3 23. Qxd3 dxe5 24. Qd7 Qb3 25. Qxc6 Qe3+ 26. Kh1 Kh8 27. Rfe1 " +
+			//				"Qc3 28. Qxc7 Rac8 29. Qxa7 Rxc4 30. h3 Rcf4 31. Qc5 Qb2 32. Qxe5 Qb3 33. Qe3 Qc4 " +
+			//				"34. Rac1 Qf7 35. Qg3 h6 36. b5 Qd5 37. a4 Rxa4 38. Rb1 Rf5 39. b6 Rg5 40. b7 " +
+			//				"Qxb7 41. Qxg5 1-0"
+
+			bool esPartidaCargada;
 			string título;
 			string estado;
 			if(this.juego == null) {
@@ -318,39 +346,71 @@ namespace AjedrezSimple {
 					título = "¡Es un Empate!";
 					estado = $"La partida finalizó por {this.juego.Empate}.";
 				}
+
+				if(habilitaControles)
+					this.AlternarControl(false);
 			} else
 				return;
 
+			bool sigue;
 			FJuegoNuevo fJuegoNuevo = new FJuegoNuevo(título, estado, segundosEntrada);
 			fJuegoNuevo.btnVerPartida.Enabled = this.juego != null;
-			DialogResult resultado = fJuegoNuevo.ShowDialog();
-			switch(resultado) {
-			case DialogResult.Ignore:
-				this.AlternarControl(false);
-				return;
-			case DialogResult.Cancel:
-				Application.Exit();
-				return;
-			}
+			esPartidaCargada = false;
+			do {
+				sigue = false;
+				DialogResult resultado = fJuegoNuevo.ShowDialog();
+				switch(resultado) {
+				case DialogResult.Ignore:
+						this.AlternarControl(false);
+					return;
+				case DialogResult.Cancel:
+					if(this.juego == null)
+						this.Opacity = 0;
+					Application.Exit();
+					return;
+				}
 
-			//Formación estándar: "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"
-			//Formación sin peones: "r2qk2r/1bn2nb1/8/8/8/8/1BN2NB1/R2QK2R"
-			//Formación para probar ambigüedades con caballos: "8/2n5/8/8/5n2/2n5/8/8"
-			//Formación para probar ambigüedades con alfiles: "8/8/2b1b3/8/2b1B3/8/8/8"
-			//Formación de Mate del Pastor: "r1bqkb1r/pppp1ppp/2n2n2/4p2Q/2B1P3/8/PPPP1PPP/RNB1K1NR"
-			//Formación para probar Rey Ahogado: "1N5k/p4Q1p/P6P/5N2/8/1p6/3N4/R1B1KB2"
-			//Formación para escenario de jaque de prueba 1: "3ppp2/3pkp2/3p1p2/rb4br/8/Q7/8/6K1"
-			//Formación para escenario de jaque de prueba 2: "3ppp2/3pkp2/3p1p2/rb4br/8/Q7/8/6K1"
-			//Formación para promoción seguida de jaque mate: "k7/pppppp1P/8/8/8/8/8/K7"
-			//Formación para Insuficiencia Material 1: "k7/8/8/3n4/8/5P2/8/K7"
-			//Formación para Insuficiencia Material 2: "8/3k4/8/2bbbb2/2BBBB2/8/3K4/8"
-			//Formación para Insuficiencia Material 2: "8/3k4/8/2p5/5P2/8/3K4/8"
-			this.juego = new Ajedrez();
+				this.fConfiguración.Reiniciar();
+				if(this.fConfiguración.ShowDialog() != DialogResult.OK) {
+					sigue = true;
+					fJuegoNuevo.Reiniciar();
+					continue;
+				}
+
+				string fen = this.fConfiguración.tbFEN.InputText;
+				string pgn = this.fConfiguración.tbPGN.InputText;
+				this.turno = Pieza.ColorPieza.Blanco;
+				esPartidaCargada = pgn.Length != 0;
+				if(fen.Length > 0 && pgn.Length > 0)
+					this.juego = Ajedrez.Cargar(fen, pgn, out this.turno);
+				else if(pgn.Length > 0)
+					this.juego = Ajedrez.Cargar(pgn, out this.turno);
+				else if(fen.Length > 0)
+					this.juego = new Ajedrez(fen);
+				else
+					this.juego = new Ajedrez();
+
+				if(this.juego == null) {
+					new FError(
+						"Error",
+						"No se pudo procesar la información de la partida.\n" +
+						"Asegúrate de que no hayan problemas con las notaciones descriptas en la configuración."
+					).ShowDialog();
+					sigue = true;
+					fJuegoNuevo.Reiniciar();
+					this.fConfiguración.Reiniciar();
+				}
+			} while(sigue);
+
+			if(esPartidaCargada)
+				foreach(Registro registro in this.juego.Historial)
+					this.ActualizarHistorial(registro);
+
 			this.seleccionada = Pieza.Ninguna;
-			this.turno = Pieza.ColorPieza.Blanco;
 			this.ActualizarTablero();
 			this.dgvHistorial.Rows.Clear();
 			this.AlternarControl(true);
+			this.NuevaPartida(0.25, true);
 		}
 
 		private void AlternarControl(bool activarJuego) {
@@ -370,9 +430,9 @@ namespace AjedrezSimple {
 		}
 
 		#region Mapeo de casillas con el DataGridView (Por si quiero rotar el tablero)
-		private DataGridViewCell VerCasilla(int x, int y) {
-			return this.dgvTablero[this.CasillaX(x), this.CasillaY(y)];
-		}
+		//private DataGridViewCell VerCasilla(int x, int y) {
+		//	return this.dgvTablero[this.CasillaX(x), this.CasillaY(y)];
+		//}
 
 		private int CasillaX(int x) {
 			return x - 1;

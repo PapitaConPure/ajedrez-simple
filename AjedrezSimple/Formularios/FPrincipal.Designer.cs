@@ -81,7 +81,7 @@ namespace AjedrezSimple {
 			this.btnMover.TabIndex = 3;
 			this.btnMover.Text = "Mover...";
 			this.btnMover.UseVisualStyleBackColor = false;
-			this.btnMover.Click += new System.EventHandler(this.btnMover_Click);
+			this.btnMover.Click += new System.EventHandler(this.BtnMover_Click);
 			// 
 			// dgvTablero
 			// 
@@ -148,7 +148,7 @@ namespace AjedrezSimple {
 			this.dgvTablero.Size = new System.Drawing.Size(445, 445);
 			this.dgvTablero.StandardTab = true;
 			this.dgvTablero.TabIndex = 0;
-			this.dgvTablero.CellStateChanged += new System.Windows.Forms.DataGridViewCellStateChangedEventHandler(this.dgvTablero_CellStateChanged);
+			this.dgvTablero.CellStateChanged += new System.Windows.Forms.DataGridViewCellStateChangedEventHandler(this.DgvTablero_CellStateChanged);
 			// 
 			// Column9
 			// 
@@ -225,17 +225,15 @@ namespace AjedrezSimple {
 			this.btnVolverMenu.Location = new System.Drawing.Point(12, 12);
 			this.btnVolverMenu.Name = "btnVolverMenu";
 			this.btnVolverMenu.PercentualRadius = false;
-			this.btnVolverMenu.Size = new System.Drawing.Size(165, 54);
+			this.btnVolverMenu.Size = new System.Drawing.Size(165, 55);
 			this.btnVolverMenu.TabIndex = 4;
 			this.btnVolverMenu.Text = "Volver al Menú";
 			this.btnVolverMenu.UseVisualStyleBackColor = false;
 			this.btnVolverMenu.Visible = false;
-			this.btnVolverMenu.Click += new System.EventHandler(this.btnVolverMenu_Click);
+			this.btnVolverMenu.Click += new System.EventHandler(this.BtnVolverMenu_Click);
 			// 
 			// tbNombrePieza
 			// 
-			this.tbNombrePieza.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
 			this.tbNombrePieza.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(48)))), ((int)(((byte)(80)))));
 			this.tbNombrePieza.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(48)))), ((int)(((byte)(48)))));
 			this.tbNombrePieza.BorderRadius = 10F;
@@ -256,7 +254,7 @@ namespace AjedrezSimple {
 			this.tbNombrePieza.PlaceHolderColor = System.Drawing.Color.FromArgb(((int)(((byte)(92)))), ((int)(((byte)(88)))), ((int)(((byte)(116)))));
 			this.tbNombrePieza.ReadOnly = true;
 			this.tbNombrePieza.SelectAllOnClick = true;
-			this.tbNombrePieza.Size = new System.Drawing.Size(66, 22);
+			this.tbNombrePieza.Size = new System.Drawing.Size(66, 21);
 			this.tbNombrePieza.Style = ControLib.SleekTextBox.TextBoxStyle.RoundRect;
 			this.tbNombrePieza.TabIndex = 0;
 			this.tbNombrePieza.TabStop = false;
@@ -380,7 +378,7 @@ namespace AjedrezSimple {
 			this.dgvHistorial.ScrollBars = System.Windows.Forms.ScrollBars.None;
 			this.dgvHistorial.Size = new System.Drawing.Size(177, 348);
 			this.dgvHistorial.TabIndex = 2;
-			this.dgvHistorial.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvHistorial_KeyDown);
+			this.dgvHistorial.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DgvHistorial_KeyDown);
 			// 
 			// Column10
 			// 
