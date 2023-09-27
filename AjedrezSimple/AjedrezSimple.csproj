@@ -102,6 +102,8 @@
     <Compile Include="Formularios\FPromoción.Designer.cs">
       <DependentUpon>FPromoción.cs</DependentUpon>
     </Compile>
+    <Compile Include="Excepciones\FENFormatException.cs" />
+    <Compile Include="Excepciones\PGNFormatException.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Clases\Piezas\Reina.cs" />
@@ -150,5 +152,6 @@
     <Content Include="game.ico" />
     <None Include="Resources\game.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
