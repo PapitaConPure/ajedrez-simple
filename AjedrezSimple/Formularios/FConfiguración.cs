@@ -2,8 +2,8 @@
 using System.Windows.Forms;
 
 namespace AjedrezSimple {
-	public partial class FPromoción: FormModal {
-		public FPromoción(): base(0.5, Transición.Curva.Suave2) {
+	public partial class FConfiguración: FormModal {
+		public FConfiguración(): base(0.2, Transición.Curva.SuaveSalida3) {
 			this.InitializeComponent();
 		}
 
@@ -13,7 +13,7 @@ namespace AjedrezSimple {
 
 			this.transición
 				.Invertir()
-				.Escalar(0.25)
+				.Deformar(Transición.Curva.SuaveEntrada3)
 				.Comenzar(this.Final_Tick);
 
 			this.resultadoPendiente = (sender as Button).DialogResult;

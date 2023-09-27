@@ -242,6 +242,7 @@ namespace AjedrezSimple {
 			this.btnPromocionar.TabIndex = 4;
 			this.btnPromocionar.Text = "Promocionar";
 			this.btnPromocionar.UseVisualStyleBackColor = false;
+			this.btnPromocionar.Click += new System.EventHandler(this.Button_Click);
 			// 
 			// panelContenido
 			// 
@@ -272,6 +273,7 @@ namespace AjedrezSimple {
 			this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(236)))), ((int)(((byte)(236)))));
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.Name = "FPromoción";
+			this.Opacity = 0D;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Promoción de Peón";
 			this.tlpPromociones.ResumeLayout(false);

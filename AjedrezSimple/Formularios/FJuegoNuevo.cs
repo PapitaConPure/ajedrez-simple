@@ -1,48 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AjedrezSimple {
-	public partial class FJuegoNuevo: Form {
-		private double tps;
-		private int ticks;
-		private int maxTicks;
-
-		public FJuegoNuevo(string título, string estado, double segundosEntrada) {
+	public partial class FJuegoNuevo: FormModal {
+		public FJuegoNuevo(string título, string estado, double segundosEntrada): base(segundosEntrada, Transición.Curva.SuaveSalida3) {
 			this.InitializeComponent();
 			this.lblTitle.Text = título;
 			this.lblEstado.Text = estado;
-
-			this.tps = 60;
-			this.ticks = 0;
-			this.maxTicks = (int)Math.Round(segundosEntrada * this.tps);
-			this.timer.Interval = (int)Math.Round(1000 / this.tps);
 		}
 
-		private void FJuegoNuevo_Shown(object sender, EventArgs e) {
-			this.timer.Enabled = true;
-			this.timer.Start();
-		}
-
-		private void timer_Tick(object sender, EventArgs e) {
-			this.ticks++;
-
-			if(this.ticks >= this.maxTicks) {
-				this.Opacity = 1;
-				this.timer.Stop();
-				this.timer.Enabled = false;
+		private void Button_Click(object sender, EventArgs e) {
+			if(this.resultadoPendiente != DialogResult.None)
 				return;
-			}
 
-			double t = 1d * this.ticks / this.maxTicks;
-			double aumento = 1d - Math.Pow(1d - t, 3d);
-			this.Opacity = aumento;
+			this.transición
+				.Invertir()
+				.Estirar(0.2)
+				.Deformar(Transición.Curva.Suave3)
+				.Comenzar(this.Final_Tick);
+
+			this.resultadoPendiente = (sender as Button).DialogResult;
+			this.DialogResult = DialogResult.None;
 		}
 	}
 }

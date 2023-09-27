@@ -64,11 +64,29 @@
     <Compile Include="Clases\Piezas\Alfil.cs" />
     <Compile Include="Clases\Piezas\Caballero.cs" />
     <Compile Include="Clases\Registro.cs" />
+    <Compile Include="Formularios\FConfiguración.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FConfiguración.Designer.cs">
+      <DependentUpon>FConfiguración.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FError.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FError.Designer.cs">
+      <DependentUpon>FError.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\FJuegoNuevo.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Formularios\FJuegoNuevo.Designer.cs">
       <DependentUpon>FJuegoNuevo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FormModal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FormModal.Designer.cs">
+      <DependentUpon>FormModal.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios\FPrincipal.cs">
       <SubType>Form</SubType>
@@ -89,6 +107,13 @@
     <Compile Include="Clases\Piezas\Reina.cs" />
     <Compile Include="Clases\Piezas\Rey.cs" />
     <Compile Include="Clases\Piezas\Torre.cs" />
+    <Compile Include="Clases\Transición.cs" />
+    <EmbeddedResource Include="Formularios\FConfiguración.resx">
+      <DependentUpon>FConfiguración.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FError.resx">
+      <DependentUpon>FError.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\FJuegoNuevo.resx">
       <DependentUpon>FJuegoNuevo.cs</DependentUpon>
     </EmbeddedResource>

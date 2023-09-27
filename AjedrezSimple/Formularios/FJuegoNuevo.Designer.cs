@@ -23,7 +23,6 @@
 		/// the contents of this method with the code editor.
 		/// </summary>
 		private void InitializeComponent() {
-			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FJuegoNuevo));
 			this.btnComenzar = new ControLib.SleekButton();
 			this.btnSalir = new ControLib.SleekButton();
@@ -33,7 +32,6 @@
 			this.pcbÍcono = new System.Windows.Forms.PictureBox();
 			this.splcPrincipal = new System.Windows.Forms.SplitContainer();
 			this.lblTitle = new System.Windows.Forms.Label();
-			this.timer = new System.Windows.Forms.Timer(this.components);
 			this.tlpBotones.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pcbÍcono)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.splcPrincipal)).BeginInit();
@@ -61,6 +59,7 @@
 			this.btnComenzar.TabIndex = 0;
 			this.btnComenzar.Text = "Juego Nuevo";
 			this.btnComenzar.UseVisualStyleBackColor = false;
+			this.btnComenzar.Click += new System.EventHandler(this.Button_Click);
 			// 
 			// btnSalir
 			// 
@@ -81,6 +80,7 @@
 			this.btnSalir.TabIndex = 2;
 			this.btnSalir.Text = "Salir";
 			this.btnSalir.UseVisualStyleBackColor = false;
+			this.btnSalir.Click += new System.EventHandler(this.Button_Click);
 			// 
 			// lblEstado
 			// 
@@ -135,6 +135,7 @@
 			this.btnVerPartida.TabIndex = 1;
 			this.btnVerPartida.Text = "Ver Partida";
 			this.btnVerPartida.UseVisualStyleBackColor = false;
+			this.btnVerPartida.Click += new System.EventHandler(this.Button_Click);
 			// 
 			// pcbÍcono
 			// 
@@ -183,10 +184,6 @@
 			this.lblTitle.TabIndex = 4;
 			this.lblTitle.Text = "Título";
 			// 
-			// timer
-			// 
-			this.timer.Tick += new System.EventHandler(this.timer_Tick);
-			// 
 			// FJuegoNuevo
 			// 
 			this.AcceptButton = this.btnComenzar;
@@ -205,7 +202,6 @@
 			this.ShowIcon = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "FJuegoNuevo";
-			this.Shown += new System.EventHandler(this.FJuegoNuevo_Shown);
 			this.tlpBotones.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pcbÍcono)).EndInit();
 			this.splcPrincipal.Panel1.ResumeLayout(false);
@@ -227,6 +223,5 @@
 		private System.Windows.Forms.SplitContainer splcPrincipal;
 		public ControLib.SleekButton btnVerPartida;
 		private System.Windows.Forms.Label lblTitle;
-		private System.Windows.Forms.Timer timer;
 	}
 }
