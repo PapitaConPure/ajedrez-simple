@@ -51,6 +51,8 @@ namespace AjedrezSimple {
 			}
 		}
 
+		public char Letra { get; protected set; }
+
 		public string Ícono { get; protected set; }
 
 		public string Nombre { get; protected set; }
@@ -67,11 +69,9 @@ namespace AjedrezSimple {
 			return $"{(char)('a' + x)}{1 + y}";
 		}
 
-		public static int[] APosición(string notación) {
-			return new int[2] {
-				Convert.ToInt32((notación.ToLower()[0] - 'a').ToString()),
-				Convert.ToInt32(notación[1].ToString()) - 1,
-			};
+		public static void APosición(string notación, out int x, out int y) {
+			x = Convert.ToInt32((notación.ToLower()[0] - 'a').ToString());
+			y = Convert.ToInt32(notación[1].ToString()) - 1;
 		}
 
 		public bool Mover(int destinoX, int destinoY) {

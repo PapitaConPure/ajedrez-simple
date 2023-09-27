@@ -4,6 +4,7 @@ using System.Collections;
 namespace AjedrezSimple {
 	public class Alfil: Pieza {
 		public Alfil(int x, int y, ColorPieza color, Ajedrez juego) : base(x, y, color, juego) {
+			this.Letra = 'B';
 			this.Ícono = "♝";
 			this.Nombre = "Alfil";
 		}

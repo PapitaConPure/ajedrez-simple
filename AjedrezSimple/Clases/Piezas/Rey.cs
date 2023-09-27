@@ -8,6 +8,7 @@ namespace AjedrezSimple {
 		private bool bajoPrueba;
 
 		public Rey(int x, int y, ColorPieza color, Ajedrez juego) : base(x, y, color, juego) {
+			this.Letra = 'K';
 			this.Ícono = "♚";
 			this.Nombre = "Rey";
 			this.SeHaMovido = false;

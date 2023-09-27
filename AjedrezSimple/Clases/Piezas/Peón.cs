@@ -3,6 +3,7 @@
 namespace AjedrezSimple {
 	public class Peón: Pieza {
 		public Peón(int x, int y, ColorPieza color, Ajedrez juego): base(x, y, color, juego) {
+			this.Letra = 'P';
 			this.Ícono = "♙";
 			this.Nombre = "Peón";
 			this.HizoDobleEncaque = false;

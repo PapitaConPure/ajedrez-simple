@@ -4,6 +4,7 @@ using System.Collections;
 namespace AjedrezSimple {
 	public class Torre: Pieza {
 		public Torre(int x, int y, ColorPieza color, Ajedrez juego) : base(x, y, color, juego) {
+			this.Letra = 'R';
 			this.Ícono = "♜";
 			this.Nombre = "Torre";
 			this.SeHaMovido = false;

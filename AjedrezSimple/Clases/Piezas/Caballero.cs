@@ -4,6 +4,7 @@ using System.Collections;
 namespace AjedrezSimple {
 	public class Caballero: Pieza {
 		public Caballero(int x, int y, ColorPieza color, Ajedrez juego) : base(x, y, color, juego) {
+			this.Letra = 'N';
 			this.Ícono = "♞";
 			this.Nombre = "Caballero";
 		}
