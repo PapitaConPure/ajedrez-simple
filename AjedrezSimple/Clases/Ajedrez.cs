@@ -16,7 +16,7 @@ namespace AjedrezSimple {
 			Reina
 		}
 
-		public Ajedrez(string formacion) {
+		public Ajedrez(string formación) {
 			this.piezas = new ArrayList();
 			this.historial = new ArrayList();
 
@@ -28,7 +28,7 @@ namespace AjedrezSimple {
 			int y = 7;
 			Pieza.ColorPieza color;
 			Pieza pieza = null;
-			foreach(char c in formacion) {
+			foreach(char c in formación) {
 				if(c == '/') {
 					x = 0;
 					y--;
@@ -64,6 +64,296 @@ namespace AjedrezSimple {
 		}
 
 		public Ajedrez(): this("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR") {}
+
+		public static Ajedrez Cargar(string notación, string formación, out Pieza.ColorPieza próximoTurno) {
+			Ajedrez nuevo = new Ajedrez(formación);
+
+			Pieza.ColorPieza turno = próximoTurno = Pieza.ColorPieza.Blanco;
+			bool nroTurnoRecibido = false;
+			char[] arr = notación.ToCharArray();
+			int n = 0;
+			Pieza[] observantes;
+			Pieza p;
+			Movimiento m;
+			int ox, oy, dx, dy;
+			char tx, ty;
+			char piezaBuscada;
+			char[] piezasPosibles = new char[] {
+				'R',
+				'N',
+				'B',
+				'Q',
+				'K',
+			};
+			string[] finalesPosibles = new string[] {
+				"1-0",
+				"0-1",
+				"1 - 0",
+				"0 - 1",
+			};
+			string[] empatesPosibles = new string[] {
+				"½-½",
+				"½ - ½",
+				"1/2-1/2",
+				"1/2 - 1/2",
+			};
+			bool valido, debeHaberCaptura;
+			int cuentaEnroque;
+			int restante;
+
+			while(n < arr.Length) {
+				//Ignorar espacios y saltos de línea
+				if(char.IsWhiteSpace(arr[n])) {
+					n++;
+					continue;
+				}
+
+				//Etiquetas de metadatos
+				if(arr[n] == '[') {
+					do n++; while(n < arr.Length && arr[n] != ']');
+
+					if(n == arr.Length)
+						return null;
+
+					n++;
+					continue;
+				}
+
+				#region "1.", "2.", "3.", "1-0", "0-1", etc
+				if(char.IsDigit(arr[n])) {
+					restante = arr.Length - n;
+					if(restante > 0 && restante <= 9) {
+						string f = notación.Substring(n, restante);
+
+						valido = false;
+						foreach(string final in finalesPosibles)
+							if(f == final) {
+								valido = true;
+								if(turno == Pieza.ColorPieza.Blanco)
+									nuevo.Ganador = Pieza.ColorPieza.Negro;
+								else
+									nuevo.Ganador = Pieza.ColorPieza.Blanco;
+								break;
+							}
+
+						foreach(string empate in empatesPosibles)
+							if(f == empate) {
+								valido = true;
+								if(nuevo.ComprobarReyAhogado(turno))
+									nuevo.Empate = "Rey Ahogado";
+								else if(nuevo.ComprobarInsuficienciaMaterial())
+									nuevo.Empate = "Insuficiencia Material";
+								else
+									nuevo.Empate = "Acuerdo";
+								break;
+							}
+
+						if(valido) {
+							nuevo.HaFinalizado = true;
+							break;
+						}
+					}
+
+					if(nroTurnoRecibido || turno != Pieza.ColorPieza.Blanco)
+						return null;
+
+					nroTurnoRecibido = true;
+					do n++; while(n < arr.Length && char.IsDigit(arr[n]));
+
+					if(arr[n++] != '.')
+						return null;
+
+					continue;
+				}
+				#endregion
+
+				#region Enroque
+				if(arr[n] == 'O' || arr[n] == '0') {
+					cuentaEnroque = 1;
+					n++;
+					while(n < arr.Length && !char.IsWhiteSpace(arr[n]) && arr[n++] == '-') {
+						if(n == arr.Length)
+							return null;
+
+						if(arr[n] != 'O' && arr[n] != '0')
+							return null;
+
+						cuentaEnroque++;
+						n++;
+					}
+
+					p = nuevo.VerRey(turno);
+					valido = false;
+					if(cuentaEnroque == 2)
+						valido = p.Mover(p.X + 2, p.Y);
+					else if(cuentaEnroque == 3)
+						valido = p.Mover(p.X - 2, p.Y);
+
+					if(!valido)
+						return null;
+
+					turno = p.ColorContrario;
+					if(turno == Pieza.ColorPieza.Blanco)
+						nroTurnoRecibido = false;
+					continue;
+				}
+				#endregion
+
+				#region Notación Algebraica de Movimiento
+				if(char.IsLetter(arr[n])) {
+					while(n < arr.Length
+					&& !char.IsWhiteSpace(arr[n])
+					&& arr[n] != '+'
+					&& arr[n] != '#'
+					&& arr[n] != '!'
+					&& arr[n] != '?')
+						n++;
+					n--;
+
+					if(n == arr.Length || n < 2 || !char.IsDigit(arr[n]) || !char.IsLetter(arr[n - 1]))
+						return null;
+
+					ty = arr[n--];
+					tx = arr[n--];
+
+					Pieza.APosición($"{tx}{ty}", out dx, out dy);
+
+					debeHaberCaptura = false;
+					if(n >= 0 && arr[n] == 'x') {
+						debeHaberCaptura = true;
+						n--;
+					}
+
+					p = Pieza.Ninguna;
+					valido = false;
+					if(n < 0 || char.IsWhiteSpace(arr[n])) {
+						foreach(Pieza pieza in nuevo.VerPiezas(turno)) {
+							m = new Movimiento(pieza.X, pieza.Y, dx, dy);
+							if(pieza is Peón && pieza.PuedeMover(m)) {
+								p = pieza;
+								valido = true;
+								break;
+							}
+						}
+					} else if(!char.IsLetterOrDigit(arr[n]))
+						return null;
+					else {
+						bool dsx = false, dsy = false;
+
+						if(char.IsDigit(arr[n])) {
+							dsy = true;
+							ty = arr[n--];
+						}
+
+						if(n >= 0) {
+							if(char.IsDigit(arr[n]))
+								return null;
+							else if(char.IsLetter(arr[n]) && arr[n] >= 'a' && arr[n] <= 'h') {
+								dsx = true;
+								tx = arr[n--];
+							}
+						}
+
+						piezaBuscada = '_';
+						if(n < 0 || char.IsWhiteSpace(arr[n])) {
+							piezaBuscada = 'P';
+							valido = true;
+						} else {
+							foreach(char piezaPosible in piezasPosibles)
+								if(arr[n] == piezaPosible) {
+									piezaBuscada = arr[n++];
+									valido = true;
+									break;
+								}
+						}
+
+						if(!valido)
+							return null;
+
+						if(dsx && dsy) {
+							Pieza.APosición($"{tx}{ty}", out ox, out oy);
+							p = nuevo[ox, oy];
+						} else if(dsx || dsy) {
+							if(dsx)
+								Pieza.APosición($"{tx}1", out ox, out oy);
+							else
+								Pieza.APosición($"a{ty}", out ox, out oy);
+
+							valido = false;
+							p = nuevo[dx, dy];
+
+							if(p.EsVacía)
+								observantes = nuevo.Observantes(p, turno, piezaBuscada, 8);
+							else {
+								Pieza[] atacantes = nuevo.Atacantes(p, 8);
+								ArrayList atacantesVálidos = new ArrayList();
+
+								foreach(Pieza atacante in atacantes)
+									if(atacante.Letra == piezaBuscada)
+										atacantesVálidos.Add(atacante);
+
+								observantes = atacantesVálidos.ToArray(typeof(Pieza)) as Pieza[];
+							}
+
+							for(int i = 0; !valido && i < observantes.Length; i++) {
+								p = observantes[i];
+
+								valido = true;
+								if(!dsx && oy == p.Y)
+									ox = p.X;
+								else if(!dsy && ox == p.X)
+									oy = p.Y;
+								else
+									valido = false;
+							}
+
+							p = nuevo[ox, oy];
+						} else {
+							p = nuevo[dx, dy];
+
+							observantes = nuevo.Observantes(p, turno, piezaBuscada, 2);
+							if(observantes.Length != 1)
+								return null;
+
+							p = observantes[0];
+							ox = p.X;
+							oy = p.Y;
+						}
+
+						if(p.Color != turno)
+							return null;
+
+						m = new Movimiento(ox, oy, dx, dy);
+						valido = p.PuedeMover(m);
+					}
+
+					if(!valido)
+						return null;
+
+					if(debeHaberCaptura && nuevo[dx, dy].EsVacía)
+						return null;
+
+					p.Mover(dx, dy);
+					turno = p.ColorContrario;
+					if(turno == Pieza.ColorPieza.Blanco)
+						nroTurnoRecibido = false;
+					do n++; while(n < arr.Length && !char.IsWhiteSpace(arr[n]));
+					continue;
+				}
+				#endregion
+
+				//Caracter inválido
+				return null;
+			}
+
+			próximoTurno = turno;
+
+			return nuevo;
+		}
+
+		public static Ajedrez Cargar(string notación, out Pieza.ColorPieza próximoTurno) {
+			return Cargar(notación, "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR", out próximoTurno);
+		}
 
 		#region Propiedades de Partida
 		public bool HaFinalizado { get; private set; }
@@ -195,10 +485,8 @@ namespace AjedrezSimple {
 
 		#region Ver Piezas
 		public Pieza VerPieza(string posición) {
-			int[] pos = Pieza.APosición(posición);
-			int x = pos[0];
-			int y = pos[1];
-
+			int x, y;
+			Pieza.APosición(posición, out x, out y);
 			return this[x, y];
 		}
 
@@ -384,6 +672,7 @@ namespace AjedrezSimple {
 
 		public Pieza[] Atacantes(Pieza atacada, int límiteAtacantes = 16, bool considerarSimulado = false) {
 			Pieza[] posiblesAtacantes = this.VerPiezas(atacada.ColorContrario);
+
 			ArrayList atacantes = new ArrayList();
 			Pieza atacante;
 
@@ -396,6 +685,23 @@ namespace AjedrezSimple {
 			}
 
 			return atacantes.ToArray(typeof(Pieza)) as Pieza[];
+		}
+
+		public Pieza[] Observantes(Pieza destino, Pieza.ColorPieza equipo, char tipoPieza, int límiteAtacantes = 16) {
+			Pieza[] posiblesObservantes = this.VerPiezas(equipo);
+
+			ArrayList observantes = new ArrayList();
+			Pieza observante;
+
+			for(int i = 0; i < posiblesObservantes.Length && observantes.Count < límiteAtacantes; i++) {
+				observante = posiblesObservantes[i];
+
+				if(observante.Letra == tipoPieza
+				&& observante.PuedeMover(new Movimiento(observante.X, observante.Y, destino.X, destino.Y)))
+					observantes.Add(observante);
+			}
+
+			return observantes.ToArray(typeof(Pieza)) as Pieza[];
 		}
 		#endregion
 
